@@ -1,0 +1,86 @@
+'use client';
+import React from 'react';
+import '../Navbar/Navbar.css';
+
+const Footer = () => {
+    return (
+        <footer className='bg-[#090d16] text-slate-300 border-t border-slate-900/80 py-12 px-6 md:px-12 mt-auto w-full'>
+            <div className='max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
+                {/* Column 1: Brand & Logo */}
+                <div className='flex flex-col gap-4'>
+                    <div className='flex items-center gap-2.5'>
+                        <img src="/img/devaioz_tlogo.png" alt="DEVAIOZ Logo" className="h-8 w-auto" />
+                    </div>
+                    <p className='text-sm text-slate-400 leading-relaxed'>
+                        Empowering innovation and digital transformation. We deliver cutting-edge software solutions to elevate your business.
+                    </p>
+                    <div className='flex gap-4 mt-2 text-slate-400'>
+                        <a href="#" className='hover:text-violet-400 transition-colors duration-200 text-sm'>
+                            Twitter
+                        </a>
+                        <a href="#" className='hover:text-violet-400 transition-colors duration-200 text-sm'>
+                            LinkedIn
+                        </a>
+                        <a href="#" className='hover:text-violet-400 transition-colors duration-200 text-sm'>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                {/* Column 2: Services */}
+                <div>
+                    <h3 className='text-white font-semibold text-lg mb-4 relative after:content-[""] after:block after:w-8 after:h-0.5 after:bg-violet-500 after:mt-2'>Services</h3>
+                    <ul className='flex flex-col gap-2.5 text-sm'>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>Web Development</a></li>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>Mobile Applications</a></li>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>UI/UX Design</a></li>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>Cloud Solutions</a></li>
+                    </ul>
+                </div>
+
+                {/* Column 3: Company */}
+                <div>
+                    <h3 className='text-white font-semibold text-lg mb-4 relative after:content-[""] after:block after:w-8 after:h-0.5 after:bg-violet-500 after:mt-2'>Company</h3>
+                    <ul className='flex flex-col gap-2.5 text-sm'>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>About Us</a></li>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>Careers</a></li>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>Our Work</a></li>
+                        <li><a href="#" className='hover:text-white hover:translate-x-1 transition-all duration-200 inline-block'>Contact Us</a></li>
+                    </ul>
+                </div>
+
+                {/* Column 4: Newsletter */}
+                <div className='flex flex-col gap-4'>
+                    <h3 className='text-white font-semibold text-lg relative after:content-[""] after:block after:w-8 after:h-0.5 after:bg-violet-500 after:mt-2'>Newsletter</h3>
+                    <p className='text-sm text-slate-400 leading-relaxed'>
+                        Subscribe to get the latest updates, news, and special offers.
+                    </p>
+                    <form className='flex flex-col sm:flex-row gap-2 mt-2' onSubmit={(e) => e.preventDefault()}>
+                        <input 
+                            type="email" 
+                            placeholder="Email address" 
+                            className='bg-slate-900/60 border border-slate-800 text-slate-200 rounded px-4 py-2 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 flex-1'
+                        />
+                        <button 
+                            type="submit" 
+                            className='bg-violet-600 hover:bg-violet-700 text-white rounded px-4 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer shadow-lg shadow-violet-500/20'
+                        >
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            {/* Bottom Section */}
+            <div className='max-w-7xl mx-auto border-t border-slate-900 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500'>
+                <p>&copy; {new Date().getFullYear()} DEVAIOZ. All rights reserved.</p>
+                <div className='flex gap-6'>
+                    <a href="#" className='hover:text-slate-300 transition-colors duration-200'>Privacy Policy</a>
+                    <a href="#" className='hover:text-slate-300 transition-colors duration-200'>Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;

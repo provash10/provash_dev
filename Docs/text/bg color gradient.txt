@@ -1,0 +1,10 @@
+<!-- লিনিয়ার গ্রেডিয়েন্ট (Linear Gradient) -->
+<div className="bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950/40"></div>
+
+<!-- রেডিয়াল গ্লো ইফেক্ট (Radial Glow) -->
+<div className="bg-slate-950 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15),transparent_60%)]"></div>
+
+
+.logo-bg-gradient {
+  background: radial-gradient(circle, rgba(49, 46, 129, 0.25) 0%, rgba(9, 13, 22, 1) 70%);
+}
