@@ -6,9 +6,12 @@ import { IoMdContact } from 'react-icons/io';
 import { LiaBlogSolid } from 'react-icons/lia';
 import { MdContactPhone } from 'react-icons/md';
 
+import { usePathname } from 'next/navigation';
+
 const HeaderIcon = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeHash, setActiveHash] = useState('/');
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleHashChange = () => {
@@ -29,20 +32,20 @@ const HeaderIcon = () => {
 
     const menuItems = [
         { href: "/", label: "HOME", icon: <FaHome size={24} /> },
-        { href: "#overview", label: "ABOUT", icon: <IoMdContact size={24} /> },
-        { href: "#services", label: "SERVICES", icon: <FaBusinessTime size={24} /> },
-        { href: "#projects", label: "PROJECTS", icon: <FaTools size={24} /> },
-        { href: "#contact", label: "CONTACT", icon: <MdContactPhone size={24} /> },
-        { href: "#blog", label: "BLOG", icon: <LiaBlogSolid size={24} /> },
+        { href: "/about", label: "ABOUT", icon: <IoMdContact size={24} /> },
+        { href: "/showcase/services", label: "SERVICES", icon: <FaBusinessTime size={24} /> },
+        { href: "/showcase/allprojects", label: "PROJECTS", icon: <FaTools size={24} /> },
+        { href: "/contact", label: "CONTACT", icon: <MdContactPhone size={24} /> },
+        { href: "/blog", label: "BLOG", icon: <LiaBlogSolid size={24} /> },
     ];
 
     return (
         <>
             {/* Desktop View: Floating Navbar on the right */}
-            <div className='fixed right-16 top-[44%] -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3'>
+            <div className='fixed right-8 md:right-10 lg:right-12 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3'>
                 {menuItems.map((item, index) => {
                     // Check if current item is active. Default to home ('/') if hash is empty.
-                    const isActive = activeHash === item.href || (item.href === '/' && (activeHash === '/' || activeHash === '' || activeHash === '#'));
+                    const isActive = pathname === item.href || activeHash === item.href || (item.href === '/' && (pathname === '/' || activeHash === '/' || activeHash === '' || activeHash === '#'));
                     return (
                         <Link 
                             key={index}
@@ -86,7 +89,7 @@ const HeaderIcon = () => {
                     {/* Drawer Items */}
                     <div className='flex-1 flex flex-col items-center justify-center gap-8 pb-12'>
                         {menuItems.map((item, index) => {
-                            const isActive = activeHash === item.href || (item.href === '/' && (activeHash === '/' || activeHash === '' || activeHash === '#'));
+                            const isActive = pathname === item.href || activeHash === item.href || (item.href === '/' && (pathname === '/' || activeHash === '/' || activeHash === '' || activeHash === '#'));
                             return (
                                 <Link 
                                     key={index}

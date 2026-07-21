@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col bg-slate-950" suppressHydrationWarning>
         {/* <Navbar></Navbar> */}
         <HeaderIcon></HeaderIcon>
-        <main className="px-4 py-3 pt-20 md:pt-3 flex-1">
+        <main className="px-2 md:px-3 py-3 pt-20 md:pt-3 flex-1">
           {children}
         </main>
         {/* <Footer></Footer> */}
