@@ -7,9 +7,9 @@ import profileImg from '../../../../public/img/profileImg.png';
 const AboutCard = () => {
     const skills = {
         frontend: ['Next.js (SSR/SSG)', 'React.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Framer Motion', 'Shadcn UI'],
-        backend: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Auth', 'Axios Interceptors', 'Firebase Auth'],
-        database: ['MongoDB', 'PostgreSQL', 'Prisma ORM', 'Beekeeper Studio'],
-        tools: ['Git & GitHub', 'VS Code', 'Vercel', 'Netlify', 'Postman']
+        backend: ['Node.js', 'Express.js', 'Zod', 'Multer', 'RESTful APIs', 'JWT Auth', 'Axios Interceptors', 'Firebase Auth'],
+        database: ['MongoDB', 'Redis', 'PostgreSQL', 'Prisma ORM', 'Beekeeper Studio'],
+        tools: ['Cloudinary', 'Git & GitHub', 'VS Code', 'Vercel', 'Netlify', 'Postman']
     };
 
     const experiences = [

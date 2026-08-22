@@ -12,7 +12,7 @@ const featuredProjects = [
     impact:
       "99+ Lighthouse Performance Score, SEO-optimized, secure payments via Stripe.",
     techStack: ["Next.js", "React", "Node.js", "MongoDB", "Tailwind CSS"],
-    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=E-Commerce+Platform", // আপনার প্রজেক্টের ছবি দিন
+    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=E-Commerce+Platform",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/example",
   },
@@ -25,7 +25,7 @@ const featuredProjects = [
     impact:
       "Real-time data visualization, advanced animations, role-based access control.",
     techStack: ["React", "GSAP", "Tailwind CSS", "Chart.js", "Firebase"],
-    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=SaaS+Dashboard", // আপনার প্রজেক্টের ছবি দিন
+    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=SaaS+Dashboard",
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/example",
   },
