@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { FaYoutube } from "react-icons/fa";
+import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import {
 	Code2,
 	TrendingUp,
@@ -247,6 +248,9 @@ export default function HomePage() {
 					))}
 				</div>
 			</section>
+
+			{/* pricing plans and online payment section */}
+			<PricingAndPayment />
 
 			{/* portfolio showcase teaser banner */}
 			<section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950 via-slate-900 to-slate-950 border border-cyan-500/40 p-8 md:p-12 shadow-2xl">
