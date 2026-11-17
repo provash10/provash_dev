@@ -31,12 +31,12 @@ export default function NavigationManager() {
 		pathname.startsWith("/showcase");
 
 	return (
-		<div suppressHydrationWarning>
+		<header className="sticky top-0 z-50 w-full" suppressHydrationWarning>
 			{/* top navbar is rendered only on non-portfolio routes */}
 			{!isPortfolioRoute && <Navbar />}
 
 			{/* right side floating navbar is rendered only on portfolio routes */}
 			{isPortfolioRoute && <HeaderIcon />}
-		</div>
+		</header>
 	);
 }
