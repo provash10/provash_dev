@@ -1,0 +1,473 @@
+================================================================================
+          DIGITAL AGENCY & BUSINESS PLATFORM ARCHITECTURE SPECIFICATION
+================================================================================
+Project: Provash Digital Agency & Portfolio Ecosystem
+Standard: Programming Hero L2B7 / B7A7 Architecture Standard
+Author: AI Technical Architect
+Date: 2026-11-18
+Target Stack: Next.js 16 + React 19 + TypeScript + Bun + TanStack Query + 
+              Zod + Shadcn UI + Biome (Frontend)
+              Node.js + Express + TypeScript + Prisma + PostgreSQL (Backend)
+
+================================================================================
+1. PROJECT OVERVIEW & GOALS
+================================================================================
+1. Transformation Goal:
+   - Convert the current personal portfolio (provash_dev-main) into a modern, 
+     high-converting Digital Agency / Business Website.
+   - Core Services Offered:
+     * Full-Stack Web Application Development
+     * YouTube Automation (Content Strategy, Video Editing, Channel Management)
+     * Social Media Marketing (SMM, Paid Ads, Brand Growth)
+     * Technical SEO & Content Marketing
+     * 1-on-1 Strategy & Consulting
+
+2. Portfolio Preservation:
+   - The existing personal portfolio design, tech stack showcase, and project 
+     components will NOT be discarded.
+   - All existing portfolio assets and layouts will be migrated to a dedicated 
+     page route: `/portfolio` (and subroutes like `/portfolio/all-projects`, 
+     `/portfolio/featured-work`).
+   - The primary Navbar will feature a prominent "Portfolio" link allowing visitors 
+     and recruiters to inspect personal credentials anytime.
+
+3. Complete Architectural Upgrade:
+   - Frontend: Upgraded to TypeScript, Bun runtime, TanStack Query, Zod, 
+     Shadcn UI, and Biome (exact mirror of l2b7-project-ph-healthcare-frontend 
+     and b7a7-a6-developer-frontend).
+   - Backend: Dedicated modular API server powered by Express, TypeScript, 
+     Prisma ORM, and PostgreSQL, following the Level-2 PH Healthcare pattern.
+
+================================================================================
+2. COMPREHENSIVE TECH STACK SPECIFICATIONS
+================================================================================
+
+--------------------------------------------------------------------------------
+A. FRONTEND STACK (Agency + Portfolio)
+--------------------------------------------------------------------------------
+- Runtime & Package Manager: Bun (bun.lock)
+- Framework: Next.js 16 (App Router) + React 19
+- Language: TypeScript 5 (Strict type checking, tsconfig.json)
+- Linter & Code Formatter: Biome (biome.json) - Fast, modern ESLint/Prettier alternative
+- Styling: Tailwind CSS v4 + @tailwindcss/postcss
+- Component Library: Shadcn UI + @base-ui/react + Radix Primitives
+- Icons: Lucide React + React Icons
+- Server State & API Cache: @tanstack/react-query (v5)
+- Form Management: @tanstack/react-form + React Hook Form
+- Validation: Zod (v4 / latest)
+- HTTP Client: ofetch / axios / native fetch wrapper
+- Animations: tw-animate-css + Lucide animations
+
+--------------------------------------------------------------------------------
+B. BACKEND STACK (RESTful Modular API)
+--------------------------------------------------------------------------------
+- Runtime & Package Manager: Bun / Node.js
+- Framework: Express.js (v4/v5) with TypeScript
+- Language: TypeScript 5 (tsconfig.json)
+- Database & ORM: PostgreSQL with Prisma ORM
+- Request Validation: Zod schema validation middleware
+- Security & Auth: JWT (Access Token + Refresh Token), bcryptjs, Helmet, CORS
+- File Uploads: Multer + Cloudinary (or Supabase Storage)
+- Email Notifications: Nodemailer with EJS email templates
+- Error Handling: Centralized AppError + globalErrorHandler + catchAsync wrapper
+- Response Standard: Consistent JSON output format via sendResponse utility
+
+================================================================================
+3. MONOREPO / FOLDER STRUCTURE
+================================================================================
+
+root/
+│
+├── frontend/                        <-- Next.js 16 (TypeScript + Bun + Shadcn)
+│   ├── .next/
+│   ├── public/                      <-- Static assets, images, icons
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── (agency)/            <-- Business Route Group
+│   │   │   │   ├── layout.tsx       <-- Agency Header & Footer wrapper
+│   │   │   │   ├── page.tsx         <-- Agency Landing Page (Hero, Services, CTA)
+│   │   │   │   ├── services/
+│   │   │   │   │   ├── page.tsx     <-- All Agency Services list
+│   │   │   │   │   └── [slug]/
+│   │   │   │   │       └── page.tsx <-- Individual Service Detail & Booking
+│   │   │   │   ├── about/
+│   │   │   │   │   └── page.tsx     <-- About the Agency, Team & Vision
+│   │   │   │   ├── contact/
+│   │   │   │   │   └── page.tsx     <-- Agency Inquiries, Quote Request
+│   │   │   │   └── blog/
+│   │   │   │       ├── page.tsx     <-- Agency Insights & Tech Articles
+│   │   │   │       └── [slug]/
+│   │   │   │           └── page.tsx
+│   │   │   │
+│   │   │   ├── portfolio/           <-- DEDICATED PORTFOLIO ROUTE (Current site)
+│   │   │   │   ├── layout.tsx       <-- Portfolio Navbar & Layout
+│   │   │   │   ├── page.tsx         <-- Developer Portfolio Main Showcase
+│   │   │   │   ├── featured-work/
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── all-projects/
+│   │   │   │       └── page.tsx
+│   │   │   │
+│   │   │   ├── dashboard/           <-- (Phase 2) Admin & Client Portal
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── page.tsx
+│   │   │   │   ├── services/
+│   │   │   │   ├── inquiries/
+│   │   │   │   └── projects/
+│   │   │   │
+│   │   │   ├── globals.css          <-- Tailwind v4 styles
+│   │   │   └── layout.tsx           <-- Root layout (fonts, providers)
+│   │   │
+│   │   ├── components/
+│   │   │   ├── agency/              <-- Business / Agency Components
+│   │   │   │   ├── HeroSection.tsx
+│   │   │   │   ├── ServiceCard.tsx
+│   │   │   │   ├── ServiceGrid.tsx
+│   │   │   │   ├── WhyChooseUs.tsx
+│   │   │   │   ├── StatsBanner.tsx
+│   │   │   │   ├── PricingPlans.tsx
+│   │   │   │   ├── Testimonials.tsx
+│   │   │   │   └── ConsultationForm.tsx
+│   │   │   │
+│   │   │   ├── portfolio/           <-- Migrated Portfolio Components
+│   │   │   │   ├── MainBanner.tsx
+│   │   │   │   ├── TechIcons.tsx
+│   │   │   │   ├── ProjectCards.tsx
+│   │   │   │   ├── ExperienceStats.tsx
+│   │   │   │   └── Credentials.tsx
+│   │   │   │
+│   │   │   ├── shared/              <-- Shared UI Elements
+│   │   │   │   ├── Navbar.tsx
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── SectionHeading.tsx
+│   │   │   │   ├── FloatingWhatsApp.tsx
+│   │   │   │   └── FloatingTelegram.tsx
+│   │   │   │
+│   │   │   └── ui/                  <-- Shadcn UI primitives (button, dialog, etc.)
+│   │   │
+│   │   ├── hooks/                   <-- Custom React Hooks
+│   │   ├── lib/                     <-- Utility functions, ofetch client, cn()
+│   │   ├── providers/               <-- QueryProvider, ThemeProvider
+│   │   ├── schemas/                 <-- Zod validation schemas for client forms
+│   │   ├── services/                <-- TanStack Query API hooks
+│   │   └── types/                   <-- TypeScript interfaces & DTOs
+│   │
+│   ├── biome.json                   <-- Biome configuration
+│   ├── bun.lock                     <-- Bun lockfile
+│   ├── components.json              <-- Shadcn configuration
+│   ├── next.config.ts               <-- Next.js config
+│   ├── package.json
+│   ├── postcss.config.mjs
+│   └── tsconfig.json
+│
+└── backend/                         <-- Express.js + Prisma + TypeScript API
+    ├── prisma/
+    │   ├── schema.prisma            <-- Database schema
+    │   └── migrations/
+    ├── src/
+    │   ├── app.ts                   <-- Express application configuration
+    │   ├── server.ts                <-- Server entry point & listener
+    │   │
+    │   └── app/
+    │       ├── config/
+    │       │   └── index.ts         <-- Environment variable loader
+    │       ├── errors/
+    │       │   └── AppError.ts      <-- Custom error class
+    │       ├── interfaces/
+    │       │   ├── common.ts
+    │       │   └── error.ts
+    │       ├── lib/
+    │       │   ├── prisma.ts        <-- Prisma singleton client
+    │       │   ├── nodemailer.ts    <-- Mailer setup
+    │       │   └── cloudinary.ts    <-- Media upload
+    │       ├── middleware/
+    │       │   ├── checkAuth.ts     <-- JWT role authentication
+    │       │   ├── validateRequest.ts<-- Zod request validator
+    │       │   ├── globalErrorHandler.ts
+    │       │   └── notFound.ts
+    │       ├── templates/           <-- EJS Email Templates
+    │       │   ├── new-inquiry.ejs
+    │       │   └── client-welcome.ejs
+    │       ├── utils/
+    │       │   ├── catchAsync.ts    <-- Async wrapper
+    │       │   ├── sendResponse.ts  <-- Standardized JSON response
+    │       │   └── jwt.ts           <-- Token generator & verifier
+    │       │
+    │       └── module/              <-- Modular Domain Architecture
+    │           ├── auth/
+    │           │   ├── auth.controller.ts
+    │           │   ├── auth.interface.ts
+    │           │   ├── auth.route.ts
+    │           │   ├── auth.service.ts
+    │           │   └── auth.validation.ts
+    │           ├── user/
+    │           │   ├── user.controller.ts
+    │           │   ├── user.interface.ts
+    │           │   ├── user.route.ts
+    │           │   ├── user.service.ts
+    │           │   └── user.validation.ts
+    │           ├── service/         <-- Agency Services (Web Dev, YT, SMM)
+    │           │   ├── service.controller.ts
+    │           │   ├── service.interface.ts
+    │           │   ├── service.route.ts
+    │           │   ├── service.service.ts
+    │           │   └── service.validation.ts
+    │           ├── inquiry/         <-- Lead Generation & Consultation Bookings
+    │           │   ├── inquiry.controller.ts
+    │           │   ├── inquiry.interface.ts
+    │           │   ├── inquiry.route.ts
+    │           │   ├── inquiry.service.ts
+    │           │   └── inquiry.validation.ts
+    │           ├── portfolio/       <-- Portfolio Projects & Showcase Items
+    │           │   ├── portfolio.controller.ts
+    │           │   ├── portfolio.interface.ts
+    │           │   ├── portfolio.route.ts
+    │           │   ├── portfolio.service.ts
+    │           │   └── portfolio.validation.ts
+    │           └── testimonial/     <-- Client Reviews & Ratings
+    │               ├── testimonial.controller.ts
+    │               ├── testimonial.interface.ts
+    │               ├── testimonial.route.ts
+    │               ├── testimonial.service.ts
+    │               └── testimonial.validation.ts
+    │
+    ├── .env
+    ├── .env.example
+    ├── biome.json
+    ├── package.json
+    └── tsconfig.json
+
+================================================================================
+4. DATABASE MODEL SPECIFICATION (Prisma Schema)
+================================================================================
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  CLIENT
+}
+
+enum ServiceCategory {
+  WEB_DEVELOPMENT
+  YOUTUBE_AUTOMATION
+  SOCIAL_MEDIA_MARKETING
+  SEO_OPTIMIZATION
+  STRATEGY_CONSULTING
+}
+
+enum InquiryStatus {
+  PENDING
+  IN_PROGRESS
+  CONTACTED
+  RESOLVED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(CLIENT)
+  phone     String?
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  inquiries Inquiry[]
+}
+
+model Service {
+  id          String          @id @default(uuid())
+  title       String
+  slug        String          @unique
+  category    ServiceCategory
+  shortDesc   String
+  fullDesc    String          @db.Text
+  icon        String?
+  coverImage  String?
+  features    String[]        // Array of bullet points/features
+  startingPrice Decimal?      @db.Decimal(10, 2)
+  isFeatured  Boolean         @default(false)
+  isActive    Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  inquiries   Inquiry[]
+}
+
+model PortfolioProject {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  category    String   // e.g. "Full-Stack Web", "SaaS", "Automation"
+  thumbnail   String
+  gallery     String[] // Additional screenshots
+  liveUrl     String?
+  githubClient String?
+  githubServer String?
+  technologies String[] // e.g. ["Next.js", "TypeScript", "Prisma", "PostgreSQL"]
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Inquiry {
+  id          String        @id @default(uuid())
+  name        String
+  email       String
+  phone       String?
+  serviceId   String?
+  service     Service?      @relation(fields: [serviceId], references: [id])
+  userId      String?
+  user        User?         @relation(fields: [userId], references: [id])
+  budget      String?
+  timeline    String?
+  message     String        @db.Text
+  status      InquiryStatus @default(PENDING)
+  notes       String?       @db.Text // Admin internal notes
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(uuid())
+  clientName  String
+  clientRole  String   // e.g. "Founder, TechCorp"
+  clientAvatar String?
+  companyName String?
+  rating      Int      @default(5)
+  feedback    String   @db.Text
+  serviceType String?
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+================================================================================
+5. REST API ENDPOINTS SPECIFICATION
+================================================================================
+
+1. Authentication Module (`/api/v1/auth`):
+   - POST /auth/login               -> Sign in user/admin, returns JWT tokens
+   - POST /auth/register            -> Sign up client
+   - POST /auth/refresh-token       -> Issue new access token
+   - POST /auth/forgot-password     -> Send reset OTP/link via email
+   - POST /auth/reset-password      -> Reset credentials
+
+2. Services Module (`/api/v1/services`):
+   - GET    /services               -> Public: List all active services (filterable)
+   - GET    /services/:slug         -> Public: Get detailed service by slug
+   - POST   /services               -> Admin: Create new service offering
+   - PATCH  /services/:id           -> Admin: Update service details
+   - DELETE /services/:id           -> Admin: Deactivate/delete service
+
+3. Portfolio Module (`/api/v1/portfolio`):
+   - GET    /portfolio              -> Public: List all portfolio projects
+   - GET    /portfolio/featured     -> Public: Get featured projects for homepage teaser
+   - GET    /portfolio/:slug        -> Public: Get project case study
+   - POST   /portfolio              -> Admin: Add new portfolio project
+   - PATCH  /portfolio/:id          -> Admin: Update project
+   - DELETE /portfolio/:id          -> Admin: Remove project
+
+4. Inquiries / Leads Module (`/api/v1/inquiries`):
+   - POST   /inquiries              -> Public: Submit client consultation / quote form
+   - GET    /inquiries              -> Admin: List all client leads with pagination & filters
+   - GET    /inquiries/:id          -> Admin: View full inquiry details
+   - PATCH  /inquiries/:id/status   -> Admin: Update status (PENDING, RESOLVED, etc.)
+   - DELETE /inquiries/:id          -> Admin: Delete spam / invalid lead
+
+5. Testimonials Module (`/api/v1/testimonials`):
+   - GET    /testimonials           -> Public: List verified client reviews
+   - POST   /testimonials           -> Admin: Add client testimonial
+   - PATCH  /testimonials/:id       -> Admin: Edit testimonial
+   - DELETE /testimonials/:id       -> Admin: Delete review
+
+================================================================================
+6. FRONTEND DESIGN & ROUTING PLAN
+================================================================================
+
+1. Agency Landing Page (`/`):
+   - Hero Section:
+     * High-impact headline: "Scalable Web Applications, YouTube Automation & High-ROI Marketing"
+     * Clear CTA: "Book a Strategy Call" + "Explore Services"
+   - Agency Capabilities / Services Showcase:
+     * Interactive tabs or cards for:
+       1) Full-Stack Development (React, Next.js, Node.js, Cloud)
+       2) YouTube Automation (Topic Research, Scripting, Production, SEO)
+       3) Social Media Marketing (Funnel Strategy, Ad Campaigns, Brand Growth)
+   - Why Partner With Us:
+     * Metric badges: Fast turnaround, clean code standard, transparent analytics
+   - Portfolio Teaser ("Featured Work"):
+     * 3-4 top project highlights with live demo badges
+     * Clear button: "View Complete Developer Portfolio" -> links to `/portfolio`
+   - Client Reviews & Social Proof:
+     * Testimonial slider / grid
+   - Consultation / Quote Request Form:
+     * Interactive form connected to `/api/v1/inquiries` via TanStack Query
+
+2. Dedicated Portfolio Page (`/portfolio`):
+   - Navbar updates to indicate active Portfolio mode
+   - Retains the exact personality, credentials, tech stack icons, and achievements 
+     from the original `provash_dev-main`
+   - Sub-routes:
+     * `/portfolio` -> Overview & Master Showcase
+     * `/portfolio/featured-work` -> Deep dive into top applications
+     * `/portfolio/all-projects` -> Searchable & filterable project gallery
+
+3. Shared Navbar Design:
+   - Logo: Provash Agency / Studio
+   - Navigation Links:
+     * Home (/)
+     * Services (/services)
+     * Portfolio (/portfolio)  <-- Highlighted badge or distinct style
+     * About Us (/about)
+     * Insights / Blog (/blog)
+     * Contact (/contact)
+   - Right Side Action: "Hire Us" / "Get a Quote" (Triggers quick modal or scrolls to form)
+
+================================================================================
+7. IMPLEMENTATION ROADMAP (PHASED EXECUTION)
+================================================================================
+
+Phase 1: Project Structuring & Migration Setup
+- Create root `frontend` and `backend` directories.
+- Move existing `provash_dev-main` files into `frontend/`.
+- Initialize `backend/` with Bun/Node, TypeScript, Express, and Prisma.
+
+Phase 2: Frontend Modernization (TypeScript + Bun + TanStack + Biome)
+- Initialize `tsconfig.json` and convert `.jsx` components to `.tsx`.
+- Install modern dependencies: `@tanstack/react-query`, `zod`, `@base-ui/react`, 
+  `lucide-react`, `ofetch`.
+- Setup Biome configuration (`biome.json`) for high-speed linting/formatting.
+- Reorganize current portfolio page to `src/app/portfolio/page.tsx`.
+
+Phase 3: Backend Foundation (Level-2 Modular Architecture)
+- Setup Prisma schema with PostgreSQL models (User, Service, PortfolioProject, Inquiry, Testimonial).
+- Implement centralized utilities: `AppError`, `catchAsync`, `sendResponse`, `checkAuth`, `validateRequest`.
+- Build the core modules: `auth`, `service`, `portfolio`, `inquiry`, and `testimonial`.
+
+Phase 4: Agency Frontend Development
+- Build the Agency Landing Page (`src/app/page.tsx`) with modern agency components.
+- Develop dedicated pages for `/services`, `/contact`, and `/about`.
+- Integrate TanStack Query for dynamic data fetching (services, portfolio, inquiries).
+- Wire up the Consultation/Contact Form with Zod client validation.
+
+Phase 5: Verification & Quality Assurance
+- Run Biome checks and TypeScript type checks across both frontend and backend.
+- Verify smooth navigation between Agency Landing Page and `/portfolio`.
+- End-to-end testing of contact inquiry submission to database.
+
+================================================================================
+END OF SPECIFICATION
+================================================================================
