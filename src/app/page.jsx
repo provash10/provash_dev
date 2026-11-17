@@ -137,25 +137,25 @@ export default function HomePage() {
 								Full-Service Digital Agency & Engineering Studio
 							</div>
 
-							<h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight md:leading-tight">
+							<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug">
 								We Build High-Impact{" "}
-								<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
+								<span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-blue-300">
 									Web Applications,
 								</span>{" "}
 								YouTube Automation & Digital Growth.
 							</h1>
 
-							<p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+							<p className="text-slate-300 text-xs sm:text-sm md:text-base max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
 								From scalable full-stack software to revenue-generating YouTube
 								channels and data-driven marketing funnels, we provide end-to-end
 								solutions designed to accelerate your business.
 							</p>
 
-							{/* call to action buttons */}
-							<div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+							{/* call to action buttons with portfolio pill aesthetic */}
+							<div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
 								<Link
 									href="/#categories"
-									className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm md:text-base hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:scale-105 active:scale-95"
+									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-xs md:text-sm border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300"
 								>
 									Explore Services
 									<ArrowRight className="w-4 h-4" />
@@ -163,7 +163,7 @@ export default function HomePage() {
 
 								<Link
 									href="/portfolio"
-									className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900/90 text-cyan-300 font-bold text-sm md:text-base border border-cyan-500/40 hover:bg-slate-800 hover:border-cyan-300 transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900/90 text-cyan-300 hover:text-white font-bold text-xs md:text-sm border border-cyan-500/50 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 backdrop-blur-md"
 								>
 									<Layers className="w-4 h-4" />
 									View Developer Portfolio
@@ -171,25 +171,25 @@ export default function HomePage() {
 
 								<Link
 									href="/#consultation"
-									className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 text-slate-200 font-semibold text-sm md:text-base border border-slate-700 hover:bg-slate-700 transition-all duration-300"
+									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-slate-900 via-blue-950/80 to-slate-900 hover:from-cyan-700 hover:to-blue-700 text-slate-200 hover:text-white font-semibold text-xs md:text-sm border border-slate-700/80 hover:border-cyan-400 shadow-[0_0_10px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
 								>
 									Get a Free Quote
 								</Link>
 							</div>
 
 							{/* quick feature highlights */}
-							<div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 text-xs md:text-sm text-slate-400">
-								<div className="flex items-center gap-2">
-									<ShieldCheck className="w-4 h-4 text-emerald-400" />
+							<div className="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 text-xs text-slate-300">
+								<div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800">
+									<ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
 									<span>Enterprise-Grade Code</span>
 								</div>
-								<div className="flex items-center gap-2">
-									<Zap className="w-4 h-4 text-cyan-400" />
+								<div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800">
+									<Zap className="w-3.5 h-3.5 text-cyan-400" />
 									<span>Ultra-Fast Delivery</span>
 								</div>
-								<div className="flex items-center gap-2">
-									<CheckCircle2 className="w-4 h-4 text-teal-400" />
-									<span>Guaranteed ROI & Support</span>
+								<div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800">
+									<CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
+									<span>Guaranteed Support</span>
 								</div>
 							</div>
 						</div>
@@ -214,7 +214,7 @@ export default function HomePage() {
 				{/* compact category row with logo, title and down arrow */}
 				<section id="categories" className="space-y-8 scroll-mt-24">
 					<div className="text-center max-w-3xl mx-auto space-y-2">
-						<span className="text-xs font-bold uppercase tracking-wider text-cyan-400 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30">
+						<span className="text-xs font-bold uppercase tracking-wider text-cyan-300 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
 							Explore What We Do
 						</span>
 						<h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
@@ -225,7 +225,7 @@ export default function HomePage() {
 						</p>
 					</div>
 
-					{/* 4 items in one row with items-start for clean expansion */}
+					{/* 4 items in one row with portfolio glassmorphic aesthetic */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-start">
 						{servicesData.map((service) => {
 							const isOpen = expandedId === service.id;
@@ -234,8 +234,8 @@ export default function HomePage() {
 									key={service.id}
 									className={`rounded-2xl transition-all duration-300 overflow-hidden flex flex-col ${
 										isOpen
-											? "border border-cyan-400 bg-slate-900 shadow-[0_0_25px_rgba(6,182,212,0.2)]"
-											: "border border-slate-800 bg-slate-900/80 hover:border-slate-700 hover:bg-slate-900 shadow-md"
+											? "border-2 border-cyan-400 bg-gradient-to-b from-[#0f2a5c] to-[#08132b] shadow-[0_0_30px_rgba(6,182,212,0.35)]"
+											: "border border-cyan-500/25 bg-[#0d1527]/90 hover:border-cyan-400/70 hover:bg-[#0e1d38] shadow-[0_0_15px_rgba(6,182,212,0.12)] hover:shadow-[0_0_25px_rgba(6,182,212,0.25)] backdrop-blur-md"
 									}`}
 								>
 									{/* compact header: strictly logo + title + down arrow */}
@@ -246,17 +246,17 @@ export default function HomePage() {
 										aria-expanded={isOpen}
 									>
 										<div className="flex items-center gap-3 min-w-0">
-											<div className="p-2.5 rounded-xl bg-slate-800/90 border border-slate-700/80 shadow group-hover:scale-105 transition-transform flex-shrink-0">
+											<div className="p-2.5 rounded-xl bg-cyan-950/70 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300 flex-shrink-0">
 												{service.icon}
 											</div>
-											<h3 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors truncate">
+											<h3 className="text-sm font-bold text-cyan-200 group-hover:text-white transition-colors truncate">
 												{service.title}
 											</h3>
 										</div>
 
 										<div
-											className={`p-1.5 rounded-full bg-slate-800/80 text-slate-400 flex-shrink-0 transition-transform duration-300 ${
-												isOpen ? "rotate-180 text-cyan-400 bg-cyan-950/80" : ""
+											className={`p-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 flex-shrink-0 transition-transform duration-300 ${
+												isOpen ? "rotate-180 text-white bg-cyan-500/30 border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.5)]" : "group-hover:border-cyan-400"
 											}`}
 										>
 											<ChevronDown className="w-4 h-4" />
@@ -265,13 +265,13 @@ export default function HomePage() {
 
 									{/* expandable detailed view */}
 									{isOpen && (
-										<div className="p-4 pt-0 border-t border-slate-800/80 space-y-4 animate-in fade-in duration-200">
+										<div className="p-4 pt-0 border-t border-cyan-500/30 space-y-4 animate-in fade-in duration-200">
 											<p className="text-slate-300 text-xs leading-relaxed pt-3">
 												{service.description}
 											</p>
 
 											<div className="space-y-2">
-												<span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+												<span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">
 													Key Deliverables
 												</span>
 												<div className="space-y-1.5">
@@ -290,7 +290,7 @@ export default function HomePage() {
 											<div className="pt-2">
 												<Link
 													href="/#pricing"
-													className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+													className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 hover:text-white border border-cyan-500/40 font-bold text-xs shadow-[0_0_10px_rgba(6,182,212,0.25)] transition-all duration-200"
 												>
 													<span>Select Service Plan</span>
 													<ArrowRight className="w-3.5 h-3.5" />
@@ -307,11 +307,14 @@ export default function HomePage() {
 				{/* pricing plans and online payment section */}
 				<PricingAndPayment />
 
-				{/* portfolio showcase teaser banner */}
-				<section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950 via-slate-900 to-slate-950 border border-cyan-500/40 p-8 md:p-12 shadow-2xl">
-					<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+				{/* portfolio showcase teaser banner with MainBanner styling */}
+				<section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b1b3d] via-[#0f2a5c] to-[#08132b] border border-slate-800 border-t-2 border-r-2 border-t-cyan-400/40 border-r-cyan-400/40 p-8 md:p-12 shadow-[0_0_35px_rgba(6,182,212,0.25)]">
+					<div className="absolute -left-10 -top-10 w-72 h-72 bg-teal-600/10 rounded-full blur-3xl pointer-events-none" />
+					<div className="absolute -right-10 -bottom-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
+					<div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
 						<div className="space-y-3 text-center lg:text-left max-w-2xl">
-							<span className="text-xs font-bold uppercase tracking-wider text-cyan-400 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30">
+							<span className="text-xs font-bold uppercase tracking-wider text-cyan-300 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.2)]">
 								Personal Works & Credentials
 							</span>
 							<h2 className="text-2xl md:text-3xl font-extrabold text-white">
@@ -326,21 +329,24 @@ export default function HomePage() {
 
 						<Link
 							href="/portfolio"
-							className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold text-base transition-all duration-300 shadow-lg shadow-cyan-400/25 hover:scale-105 active:scale-95 flex-shrink-0"
+							className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-sm border border-cyan-300/60 shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300 flex-shrink-0"
 						>
 							Explore Full Portfolio
-							<ArrowRight className="w-5 h-5" />
+							<ArrowRight className="w-4 h-4" />
 						</Link>
 					</div>
 				</section>
 
-				{/* client testimonials */}
+				{/* client testimonials with ServiceCard aesthetic */}
 				<section className="space-y-8">
 					<div className="text-center max-w-2xl mx-auto space-y-2">
+						<span className="text-xs font-bold uppercase tracking-wider text-cyan-300 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.2)]">
+							Client Reviews
+						</span>
 						<h2 className="text-2xl md:text-3xl font-extrabold text-white">
 							What Our Clients Say
 						</h2>
-						<p className="text-slate-400 text-sm">
+						<p className="text-slate-400 text-xs md:text-sm">
 							Trusted by creators, startups, and established enterprises globally.
 						</p>
 					</div>
@@ -349,30 +355,36 @@ export default function HomePage() {
 						{testimonialsData.map((item, idx) => (
 							<div
 								key={idx}
-								className="rounded-2xl bg-slate-900/60 border border-slate-800 p-6 flex flex-col justify-between space-y-4 shadow-lg hover:border-slate-700 transition-colors"
+								className="rounded-2xl bg-[#0d1527]/90 backdrop-blur-xl border border-cyan-500/25 p-6 flex flex-col justify-between space-y-4 shadow-[0_0_20px_rgba(6,182,212,0.12)] hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.25)] transition-all duration-300"
 							>
-								<p className="text-slate-300 text-sm leading-relaxed italic">
+								<p className="text-slate-300 text-xs md:text-sm leading-relaxed italic">
 									"{item.quote}"
 								</p>
-								<div className="pt-4 border-t border-slate-800/80">
-									<h4 className="text-white font-bold text-sm">{item.author}</h4>
-									<p className="text-cyan-400 text-xs">{item.role}</p>
+								<div className="pt-4 border-t border-cyan-500/20">
+									<h4 className="text-cyan-200 font-bold text-sm">{item.author}</h4>
+									<p className="text-slate-400 text-xs">{item.role}</p>
 								</div>
 							</div>
 						))}
 					</div>
 				</section>
 
-				{/* quote and consultation form */}
+				{/* quote and consultation form with portfolio MainBanner glass aesthetic */}
 				<section
 					id="consultation"
-					className="rounded-3xl bg-slate-900/80 border border-slate-800 p-8 md:p-12 space-y-8 scroll-mt-20 max-w-4xl mx-auto"
+					className="rounded-3xl bg-gradient-to-br from-[#0b1b3d] via-[#0f2a5c] to-[#08132b] border border-slate-800 border-t-2 border-r-2 border-t-cyan-400/30 border-r-cyan-400/30 p-6 md:p-10 space-y-8 scroll-mt-24 max-w-4xl mx-auto shadow-[0_0_35px_rgba(6,182,212,0.2)] relative overflow-hidden"
 				>
-					<div className="text-center space-y-2">
+					<div className="absolute -left-10 -top-10 w-72 h-72 bg-teal-600/5 rounded-full blur-3xl pointer-events-none" />
+					<div className="absolute -right-10 -bottom-10 w-72 h-72 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+
+					<div className="relative z-10 text-center space-y-2">
+						<span className="text-xs font-bold uppercase tracking-wider text-cyan-300 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.2)]">
+							Get In Touch
+						</span>
 						<h2 className="text-2xl md:text-3xl font-extrabold text-white">
 							Start Your Project Consultation
 						</h2>
-						<p className="text-slate-400 text-sm">
+						<p className="text-slate-300 text-xs md:text-sm">
 							Tell us about your requirements. We typically respond within 12
 							hours with a detailed proposal.
 						</p>
@@ -381,11 +393,11 @@ export default function HomePage() {
 					<form
 						action="https://formspree.io/f/mqaeeyzq"
 						method="POST"
-						className="space-y-4"
+						className="relative z-10 space-y-4"
 					>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<div>
-								<label className="block text-xs font-semibold text-slate-300 mb-1">
+								<label className="block text-xs font-semibold text-slate-300 mb-1.5">
 									Your Name
 								</label>
 								<input
@@ -393,11 +405,11 @@ export default function HomePage() {
 									name="name"
 									required
 									placeholder="e.g. Alex Morgan"
-									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/70 border border-cyan-500/30 text-white text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 								/>
 							</div>
 							<div>
-								<label className="block text-xs font-semibold text-slate-300 mb-1">
+								<label className="block text-xs font-semibold text-slate-300 mb-1.5">
 									Your Email
 								</label>
 								<input
@@ -405,41 +417,41 @@ export default function HomePage() {
 									name="email"
 									required
 									placeholder="e.g. alex@example.com"
-									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/70 border border-cyan-500/30 text-white text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 								/>
 							</div>
 						</div>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 							<div>
-								<label className="block text-xs font-semibold text-slate-300 mb-1">
+								<label className="block text-xs font-semibold text-slate-300 mb-1.5">
 									Service Needed
 								</label>
 								<select
 									name="service"
-									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/70 border border-cyan-500/30 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 								>
-									<option value="Web Development">Full-Stack Web Development</option>
-									<option value="YouTube Automation">YouTube Automation</option>
-									<option value="Social Media Marketing">Social Media Marketing</option>
-									<option value="Technical Consulting">Technical Consulting & SEO</option>
+									<option value="Web Development" className="bg-slate-900">Full-Stack Web Development</option>
+									<option value="YouTube Automation" className="bg-slate-900">YouTube Automation</option>
+									<option value="Social Media Marketing" className="bg-slate-900">Social Media Marketing</option>
+									<option value="Technical Consulting" className="bg-slate-900">Technical Consulting & SEO</option>
 								</select>
 							</div>
 							<div>
-								<label className="block text-xs font-semibold text-slate-300 mb-1">
+								<label className="block text-xs font-semibold text-slate-300 mb-1.5">
 									Approximate Budget
 								</label>
 								<input
 									type="text"
 									name="budget"
 									placeholder="e.g. $500 - $2,000"
-									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/70 border border-cyan-500/30 text-white text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 								/>
 							</div>
 						</div>
 
 						<div>
-							<label className="block text-xs font-semibold text-slate-300 mb-1">
+							<label className="block text-xs font-semibold text-slate-300 mb-1.5">
 								Project Description & Timeline
 							</label>
 							<textarea
@@ -447,13 +459,13 @@ export default function HomePage() {
 								rows={4}
 								required
 								placeholder="Provide details about your project goals and preferred deadline..."
-								className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+								className="w-full px-4 py-2.5 rounded-xl bg-slate-950/70 border border-cyan-500/30 text-white text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 							/>
 						</div>
 
 						<button
 							type="submit"
-							className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-cyan-500/25 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+							className="w-full py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
 						>
 							<Send className="w-4 h-4" />
 							Submit Consultation Request

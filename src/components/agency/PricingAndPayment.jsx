@@ -127,46 +127,46 @@ export default function PricingAndPayment() {
 		<section id="pricing" className="space-y-12 scroll-mt-20">
 			{/* section header */}
 			<div className="text-center max-w-3xl mx-auto space-y-3">
-				<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold">
+				<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_12px_rgba(6,182,212,0.25)]">
 					<CreditCard className="w-3.5 h-3.5" />
 					Transparent Pricing & Instant Checkout
 				</div>
-				<h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
+				<h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
 					Predictable Pricing, Exceptional Results
 				</h2>
-				<p className="text-slate-400 text-sm md:text-base">
+				<p className="text-slate-400 text-xs md:text-sm">
 					Select an all-inclusive package tailored to your goals. We accept
 					bKash, Nagad, Visa, Mastercard, and international bank transfers.
 				</p>
 			</div>
 
-			{/* plans grid */}
+			{/* plans grid with portfolio aesthetic */}
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 				{plansData.map((plan) => (
 					<div
 						key={plan.id}
-						className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
+						className={`relative rounded-3xl p-6 md:p-8 flex flex-col justify-between transition-all duration-300 ${
 							plan.popular
-								? "bg-slate-900 border-2 border-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.2)] md:-translate-y-2"
-								: "bg-slate-900/60 border border-slate-800 hover:border-slate-700 shadow-xl"
+								? "bg-gradient-to-br from-[#0c1e42] via-[#0d2857] to-[#0a1835] border-2 border-cyan-400 shadow-[0_0_35px_rgba(6,182,212,0.35)] md:-translate-y-2"
+								: "bg-[#0d1527]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.12)] hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]"
 						}`}
 					>
 						{plan.popular && (
-							<div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 text-xs font-black uppercase tracking-wider shadow-md">
+							<div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 text-xs font-extrabold uppercase tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.6)]">
 								{plan.badge}
 							</div>
 						)}
 
 						<div className="space-y-6">
 							<div>
-								<h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-								<p className="text-slate-400 text-xs leading-relaxed min-h-[36px]">
+								<h3 className="text-xl font-bold text-cyan-200 mb-2">{plan.name}</h3>
+								<p className="text-slate-300 text-xs leading-relaxed min-h-[36px]">
 									{plan.description}
 								</p>
 							</div>
 
 							<div className="flex items-baseline gap-2">
-								<span className="text-3xl md:text-4xl font-black text-white">
+								<span className="text-3xl md:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
 									{plan.priceBDT}
 								</span>
 								<span className="text-slate-400 text-sm font-semibold">
@@ -174,7 +174,7 @@ export default function PricingAndPayment() {
 								</span>
 							</div>
 
-							<div className="space-y-3 pt-4 border-t border-slate-800">
+							<div className="space-y-3 pt-4 border-t border-cyan-500/20">
 								{plan.features.map((feature, idx) => (
 									<div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
 										<Check className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
@@ -190,10 +190,10 @@ export default function PricingAndPayment() {
 									setSelectedPlan(plan);
 									setPaymentSuccess(null);
 								}}
-								className={`w-full py-3 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer ${
+								className={`w-full py-3 rounded-full font-bold text-sm transition-all duration-300 cursor-pointer ${
 									plan.popular
-										? "bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 hover:from-cyan-300 hover:to-blue-400 shadow-lg shadow-cyan-400/20"
-										: "bg-slate-800 hover:bg-slate-700 text-white border border-slate-700"
+										? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
+										: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
 								}`}
 							>
 								{plan.buttonText}
@@ -204,22 +204,22 @@ export default function PricingAndPayment() {
 			</div>
 
 			{/* payment options badges */}
-			<div className="rounded-2xl bg-slate-900/40 border border-slate-800/80 p-6 flex flex-wrap items-center justify-between gap-4 text-slate-400 text-xs">
+			<div className="rounded-2xl bg-[#0d1527]/90 backdrop-blur-md border border-cyan-500/25 p-5 flex flex-wrap items-center justify-between gap-4 text-slate-300 text-xs shadow-[0_0_20px_rgba(6,182,212,0.1)]">
 				<div className="flex items-center gap-3">
 					<ShieldCheck className="w-5 h-5 text-emerald-400" />
 					<span>100% Secure Encrypted Payment Gateway Integration</span>
 				</div>
-				<div className="flex items-center gap-4 text-slate-300 font-semibold">
-					<span className="px-3 py-1 rounded-md bg-pink-950/60 text-pink-400 border border-pink-700/40 font-bold">
+				<div className="flex items-center gap-3 text-slate-200 font-semibold">
+					<span className="px-3 py-1 rounded-full bg-pink-950/70 text-pink-300 border border-pink-500/40 font-bold">
 						bKash
 					</span>
-					<span className="px-3 py-1 rounded-md bg-orange-950/60 text-orange-400 border border-orange-700/40 font-bold">
+					<span className="px-3 py-1 rounded-full bg-orange-950/70 text-orange-300 border border-orange-500/40 font-bold">
 						Nagad
 					</span>
-					<span className="px-3 py-1 rounded-md bg-blue-950/60 text-blue-400 border border-blue-700/40 font-bold">
+					<span className="px-3 py-1 rounded-full bg-blue-950/70 text-blue-300 border border-blue-500/40 font-bold">
 						Visa / Mastercard
 					</span>
-					<span className="px-3 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700 font-bold">
+					<span className="px-3 py-1 rounded-full bg-cyan-950/70 text-cyan-300 border border-cyan-500/40 font-bold">
 						Bank Transfer
 					</span>
 				</div>
@@ -228,24 +228,24 @@ export default function PricingAndPayment() {
 			{/* checkout modal */}
 			{selectedPlan && (
 				<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-					<div className="relative w-full max-w-lg rounded-3xl bg-slate-900 border border-cyan-500/40 p-6 md:p-8 shadow-2xl space-y-6 text-white max-h-[90vh] overflow-y-auto">
+					<div className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-[#0b1b3d] via-[#0f2a5c] to-[#08132b] border border-cyan-400 p-6 md:p-8 shadow-[0_0_45px_rgba(6,182,212,0.4)] space-y-6 text-white max-h-[90vh] overflow-y-auto">
 						<button
 							onClick={() => setSelectedPlan(null)}
-							className="absolute top-5 right-5 text-slate-400 hover:text-white p-1 rounded-full bg-slate-800 border border-slate-700 cursor-pointer"
+							className="absolute top-5 right-5 text-slate-400 hover:text-white p-1 rounded-full bg-slate-900 border border-cyan-500/40 cursor-pointer"
 						>
 							<X className="w-5 h-5" />
 						</button>
 
 						<div>
-							<span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">
+							<span className="text-xs font-bold text-cyan-300 uppercase tracking-wider">
 								Checkout & Payment
 							</span>
-							<h3 className="text-xl md:text-2xl font-black mt-1">
+							<h3 className="text-xl md:text-2xl font-black mt-1 text-white">
 								{selectedPlan.name}
 							</h3>
-							<p className="text-slate-400 text-xs mt-1">
+							<p className="text-slate-300 text-xs mt-1">
 								Total Payable:{" "}
-								<strong className="text-white text-sm">
+								<strong className="text-cyan-300 text-sm">
 									{selectedPlan.priceBDT} ({selectedPlan.priceUSD})
 								</strong>
 							</p>
