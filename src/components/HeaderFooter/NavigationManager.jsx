@@ -1,14 +1,28 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import React from "react";
-import HeaderIcon from "./HeaderIcon/HeaderIcon";
-import Navbar from "./Navbar/Navbar";
+import React, { useEffect, useState } from "react";
+
+// dynamic imports with ssr false to prevent browser extension attribute mismatch
+const Navbar = dynamic(() => import("./Navbar/Navbar"), { ssr: false });
+const HeaderIcon = dynamic(() => import("./HeaderIcon/HeaderIcon"), {
+	ssr: false,
+});
 
 // conditional navigation manager based on route
 export default function NavigationManager() {
 	// console.log("navigation manager active route check")
 	const pathname = usePathname();
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) {
+		return null;
+	}
 
 	// check if route is portfolio or portfolio dependent
 	const isPortfolioRoute =
@@ -17,12 +31,12 @@ export default function NavigationManager() {
 		pathname.startsWith("/showcase");
 
 	return (
-		<>
+		<div suppressHydrationWarning>
 			{/* top navbar is rendered only on non-portfolio routes */}
 			{!isPortfolioRoute && <Navbar />}
 
 			{/* right side floating navbar is rendered only on portfolio routes */}
 			{isPortfolioRoute && <HeaderIcon />}
-		</>
+		</div>
 	);
 }
