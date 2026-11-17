@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import { FaYoutube } from "react-icons/fa";
 import {
 	Code2,
-	Youtube,
 	TrendingUp,
 	Sparkles,
 	ArrowRight,
@@ -33,7 +33,7 @@ const servicesData = [
 	},
 	{
 		id: "yt-auto",
-		icon: <Youtube className="w-8 h-8 text-red-400" />,
+		icon: <FaYoutube className="w-8 h-8 text-red-400" />,
 		title: "YouTube Automation",
 		category: "CONTENT & GROWTH",
 		description:
