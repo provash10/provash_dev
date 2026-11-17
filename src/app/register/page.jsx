@@ -40,10 +40,22 @@ export default function RegisterPage() {
 				return;
 			}
 
+			// store authentication session and user state
+			if (data.data) {
+				if (data.data.accessToken) {
+					localStorage.setItem("provash_agency_token", data.data.accessToken);
+				}
+				if (data.data.user) {
+					localStorage.setItem(
+						"provash_agency_user",
+						JSON.stringify(data.data.user),
+					);
+				}
+			}
+
 			setSuccess(true);
-			setTimeout(() => {
-				router.push("/login");
-			}, 1500);
+			// redirect directly to home page
+			window.location.href = "/";
 		} catch (_err) {
 			// console.log("registration connection error", _err)
 			setError("Failed to connect to authentication server. Please check backend.");
@@ -75,7 +87,7 @@ export default function RegisterPage() {
 				{success && (
 					<div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs">
 						<CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-						<span>Account created successfully! Redirecting to login...</span>
+						<span>Account created successfully! Redirecting to home page...</span>
 					</div>
 				)}
 
