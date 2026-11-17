@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/HeaderFooter/Navbar/Navbar";
-import HeaderIcon from "@/components/HeaderFooter/HeaderIcon/HeaderIcon";
+import NavigationManager from "@/components/HeaderFooter/NavigationManager";
 import QueryProvider from "@/providers/QueryProvider";
 
 const geistSans = Geist({
@@ -36,8 +35,7 @@ export default function RootLayout({ children }) {
 				suppressHydrationWarning
 			>
 				<QueryProvider>
-					<Navbar />
-					<HeaderIcon />
+					<NavigationManager />
 					<main className="px-3 md:px-6 py-4 flex-1">{children}</main>
 				</QueryProvider>
 			</body>
