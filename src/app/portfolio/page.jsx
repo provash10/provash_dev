@@ -20,7 +20,7 @@ const MainBanner = dynamic(
 const PortfolioPage = () => {
 	// console.log("rendering portfolio showcase page")
 	return (
-		<div className="w-full max-w-7xl mx-auto px-3 md:px-6 py-4" suppressHydrationWarning>
+		<div className="w-full min-h-screen" suppressHydrationWarning>
 			<MainBanner />
 		</div>
 	);

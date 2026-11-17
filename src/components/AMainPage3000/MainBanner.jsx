@@ -9,7 +9,7 @@ import ActionButtons from '../ActionButtons/ActionButtons';
 
 const MainBanner = () => {
     return (
-        <div className='bg-gradient-to-br from-[#0b1b3d] via-[#0f2a5c] to-[#08132b] px-2 md:px-4 py-4 md:py-6 rounded-3xl border border-slate-900 shadow-2xl relative overflow-hidden'>
+        <div className='w-full min-h-screen bg-gradient-to-br from-[#0b1b3d] via-[#0f2a5c] to-[#08132b] px-4 sm:px-6 md:px-10 lg:px-16 py-6 md:py-10 shadow-2xl relative overflow-hidden'>
             {/* Background glowing blobs for Deep Ocean Blue & Steel Teal aesthetics */}
             <div className='absolute -left-10 -top-10 w-72 h-72 bg-teal-600/5 rounded-full blur-3xl pointer-events-none' />
             <div className='absolute -right-10 -bottom-10 w-72 h-72 bg-blue-600/5 rounded-full blur-3xl pointer-events-none' />
