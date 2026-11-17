@@ -124,69 +124,86 @@ export default function HomePage() {
 	return (
 		<div className="w-full space-y-16 md:space-y-24 pb-16">
 			{/* full width hero banner flush with navbar */}
-			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-10 pb-16 md:pt-16 md:pb-24 px-4 sm:px-6 lg:px-8 text-center shadow-2xl">
+			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-14 md:pt-14 md:pb-20 px-4 sm:px-6 lg:px-8 shadow-2xl">
 				<div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-				<div className="relative z-10 max-w-5xl mx-auto space-y-6">
-					<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
-						<Sparkles className="w-4 h-4 text-cyan-400" />
-						Full-Service Digital Agency & Engineering Studio
-					</div>
+				<div className="relative z-10 max-w-7xl mx-auto">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+						{/* left column: headline, description & cta */}
+						<div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+							<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
+								<Sparkles className="w-4 h-4 text-cyan-400" />
+								Full-Service Digital Agency & Engineering Studio
+							</div>
 
-					<h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight md:leading-tight">
-						We Build High-Impact{" "}
-						<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
-							Web Applications,
-						</span>{" "}
-						YouTube Automation & Digital Growth.
-					</h1>
+							<h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight md:leading-tight">
+								We Build High-Impact{" "}
+								<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
+									Web Applications,
+								</span>{" "}
+								YouTube Automation & Digital Growth.
+							</h1>
 
-					<p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-						From scalable full-stack software to revenue-generating YouTube
-						channels and data-driven marketing funnels, we provide end-to-end
-						solutions designed to accelerate your business.
-					</p>
+							<p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+								From scalable full-stack software to revenue-generating YouTube
+								channels and data-driven marketing funnels, we provide end-to-end
+								solutions designed to accelerate your business.
+							</p>
 
-					{/* call to action buttons */}
-					<div className="flex flex-wrap items-center justify-center gap-4 pt-3">
-						<Link
-							href="/#categories"
-							className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm md:text-base hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:scale-105 active:scale-95"
-						>
-							Explore Services
-							<ArrowRight className="w-4 h-4" />
-						</Link>
+							{/* call to action buttons */}
+							<div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+								<Link
+									href="/#categories"
+									className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm md:text-base hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:scale-105 active:scale-95"
+								>
+									Explore Services
+									<ArrowRight className="w-4 h-4" />
+								</Link>
 
-						<Link
-							href="/portfolio"
-							className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900/90 text-cyan-300 font-bold text-sm md:text-base border border-cyan-500/40 hover:bg-slate-800 hover:border-cyan-300 transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
-						>
-							<Layers className="w-4 h-4" />
-							View Developer Portfolio
-						</Link>
+								<Link
+									href="/portfolio"
+									className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900/90 text-cyan-300 font-bold text-sm md:text-base border border-cyan-500/40 hover:bg-slate-800 hover:border-cyan-300 transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+								>
+									<Layers className="w-4 h-4" />
+									View Developer Portfolio
+								</Link>
 
-						<Link
-							href="/#consultation"
-							className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 text-slate-200 font-semibold text-sm md:text-base border border-slate-700 hover:bg-slate-700 transition-all duration-300"
-						>
-							Get a Free Quote
-						</Link>
-					</div>
+								<Link
+									href="/#consultation"
+									className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 text-slate-200 font-semibold text-sm md:text-base border border-slate-700 hover:bg-slate-700 transition-all duration-300"
+								>
+									Get a Free Quote
+								</Link>
+							</div>
 
-					{/* quick feature highlights */}
-					<div className="pt-6 border-t border-slate-800/60 flex flex-wrap items-center justify-center gap-6 md:gap-12 text-xs md:text-sm text-slate-400">
-						<div className="flex items-center gap-2">
-							<ShieldCheck className="w-4 h-4 text-emerald-400" />
-							<span>Enterprise-Grade Code</span>
+							{/* quick feature highlights */}
+							<div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8 text-xs md:text-sm text-slate-400">
+								<div className="flex items-center gap-2">
+									<ShieldCheck className="w-4 h-4 text-emerald-400" />
+									<span>Enterprise-Grade Code</span>
+								</div>
+								<div className="flex items-center gap-2">
+									<Zap className="w-4 h-4 text-cyan-400" />
+									<span>Ultra-Fast Delivery</span>
+								</div>
+								<div className="flex items-center gap-2">
+									<CheckCircle2 className="w-4 h-4 text-teal-400" />
+									<span>Guaranteed ROI & Support</span>
+								</div>
+							</div>
 						</div>
-						<div className="flex items-center gap-2">
-							<Zap className="w-4 h-4 text-cyan-400" />
-							<span>Ultra-Fast Delivery</span>
-						</div>
-						<div className="flex items-center gap-2">
-							<CheckCircle2 className="w-4 h-4 text-teal-400" />
-							<span>Guaranteed ROI & Support</span>
+
+						{/* right column: hero illustration image */}
+						<div className="lg:col-span-5 flex justify-center relative">
+							<div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-purple-500/10 rounded-full blur-3xl scale-95 pointer-events-none" />
+							<div className="relative z-10 w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
+								<img
+									src="/img/hero-provash.png"
+									alt="Provash - Founder & Lead Full-Stack Engineer"
+									className="w-full h-full object-contain filter drop-shadow-[0_10px_35px_rgba(6,182,212,0.35)] hover:scale-105 transition-transform duration-500"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
