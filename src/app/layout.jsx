@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
 			>
 				<QueryProvider>
 					<NavigationManager />
-					<main className="px-3 md:px-6 py-4 flex-1">{children}</main>
+					<main className="flex-1 w-full">{children}</main>
 				</QueryProvider>
 			</body>
 		</html>

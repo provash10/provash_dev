@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
+import React, { useState } from "react";
 import { FaYoutube } from "react-icons/fa";
-import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import {
 	Code2,
 	TrendingUp,
@@ -12,14 +13,16 @@ import {
 	ShieldCheck,
 	Zap,
 	Send,
+	ChevronDown,
 } from "lucide-react";
+import PricingAndPayment from "@/components/agency/PricingAndPayment";
 
 // digital agency services catalogue
 const servicesData = [
 	{
 		id: "web-dev",
-		icon: <Code2 className="w-8 h-8 text-cyan-400" />,
-		title: "Full-Stack Web Development",
+		icon: <Code2 className="w-6 h-6 text-cyan-400" />,
+		title: "Web Development",
 		category: "WEB DEVELOPMENT",
 		description:
 			"Production-grade, fast SSR web applications built with Next.js, React, Node.js, and clean modular architecture.",
@@ -34,7 +37,7 @@ const servicesData = [
 	},
 	{
 		id: "yt-auto",
-		icon: <FaYoutube className="w-8 h-8 text-red-400" />,
+		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
 		title: "YouTube Automation",
 		category: "CONTENT & GROWTH",
 		description:
@@ -50,7 +53,7 @@ const servicesData = [
 	},
 	{
 		id: "smm-growth",
-		icon: <TrendingUp className="w-8 h-8 text-emerald-400" />,
+		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
 		title: "Social Media Marketing",
 		category: "PAID ADS & ORGANIC",
 		description:
@@ -66,8 +69,8 @@ const servicesData = [
 	},
 	{
 		id: "tech-consulting",
-		icon: <Sparkles className="w-8 h-8 text-purple-400" />,
-		title: "Technical Strategy & SEO",
+		icon: <Sparkles className="w-6 h-6 text-purple-400" />,
+		title: "Technical SEO & Strategy",
 		category: "CONSULTING & AUDITS",
 		description:
 			"Comprehensive digital audits, SEO architecture, performance optimizations, and tailored growth roadmaps.",
@@ -111,20 +114,27 @@ const testimonialsData = [
 export default function HomePage() {
 	// console.log("rendering agency business home page")
 
-	return (
-		<div className="w-full max-w-7xl mx-auto space-y-16 md:space-y-24 py-4 md:py-8">
-			{/* hero section */}
-			<section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#071329] via-[#0c1f42] to-[#050d1a] border border-slate-800/80 p-8 md:p-14 text-center shadow-2xl">
-				<div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-				<div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+	// state for open service details
+	const [expandedId, setExpandedId] = useState(null);
 
-				<div className="relative z-10 max-w-4xl mx-auto space-y-6">
-					<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
+	const toggleExpand = (id) => {
+		setExpandedId(expandedId === id ? null : id);
+	};
+
+	return (
+		<div className="w-full space-y-16 md:space-y-24 pb-16">
+			{/* full width hero banner flush with navbar */}
+			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-10 pb-16 md:pt-16 md:pb-24 px-4 sm:px-6 lg:px-8 text-center shadow-2xl">
+				<div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
+				<div className="relative z-10 max-w-5xl mx-auto space-y-6">
+					<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
 						<Sparkles className="w-4 h-4 text-cyan-400" />
 						Full-Service Digital Agency & Engineering Studio
 					</div>
 
-					<h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight md:leading-tight">
+					<h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight md:leading-tight">
 						We Build High-Impact{" "}
 						<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
 							Web Applications,
@@ -132,16 +142,16 @@ export default function HomePage() {
 						YouTube Automation & Digital Growth.
 					</h1>
 
-					<p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+					<p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
 						From scalable full-stack software to revenue-generating YouTube
 						channels and data-driven marketing funnels, we provide end-to-end
 						solutions designed to accelerate your business.
 					</p>
 
 					{/* call to action buttons */}
-					<div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+					<div className="flex flex-wrap items-center justify-center gap-4 pt-3">
 						<Link
-							href="/#services"
+							href="/#categories"
 							className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm md:text-base hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:scale-105 active:scale-95"
 						>
 							Explore Services
@@ -165,7 +175,7 @@ export default function HomePage() {
 					</div>
 
 					{/* quick feature highlights */}
-					<div className="pt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-6 md:gap-12 text-xs md:text-sm text-slate-400">
+					<div className="pt-6 border-t border-slate-800/60 flex flex-wrap items-center justify-center gap-6 md:gap-12 text-xs md:text-sm text-slate-400">
 						<div className="flex items-center gap-2">
 							<ShieldCheck className="w-4 h-4 text-emerald-400" />
 							<span>Enterprise-Grade Code</span>
@@ -182,229 +192,258 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* services section */}
-			<section id="services" className="space-y-10 scroll-mt-20">
-				<div className="text-center max-w-3xl mx-auto space-y-3">
-					<h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
-						Our Core Agency Services
-					</h2>
-					<p className="text-slate-400 text-sm md:text-base">
-						Specialized solutions crafted to bring technical excellence, audience
-						attention, and commercial success to your brand.
-					</p>
-				</div>
-
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-					{servicesData.map((service) => (
-						<div
-							key={service.id}
-							className={`relative overflow-hidden rounded-2xl bg-slate-900/60 backdrop-blur-md border ${service.border} p-6 md:p-8 flex flex-col justify-between hover:scale-[1.02] transition-all duration-300 shadow-xl group`}
-						>
-							<div
-								className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
-							/>
-
-							<div className="relative z-10 space-y-4">
-								<div className="flex items-center justify-between">
-									<div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700/80 shadow-md">
-										{service.icon}
-									</div>
-									<span className="text-[11px] font-bold tracking-wider text-slate-400 px-3 py-1 rounded-full bg-slate-800/60 border border-slate-700">
-										{service.category}
-									</span>
-								</div>
-
-								<h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-									{service.title}
-								</h3>
-
-								<p className="text-slate-300 text-sm leading-relaxed">
-									{service.description}
-								</p>
-
-								<div className="space-y-2 pt-2">
-									{service.features.map((feature, idx) => (
-										<div
-											key={idx}
-											className="flex items-center gap-2.5 text-xs md:text-sm text-slate-300"
-										>
-											<CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-											<span>{feature}</span>
-										</div>
-									))}
-								</div>
-							</div>
-
-							<div className="relative z-10 pt-6 mt-4 border-t border-slate-800/60 flex items-center justify-between">
-								<Link
-									href="/contact"
-									className="inline-flex items-center gap-1.5 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors group-hover:translate-x-1 duration-200"
-								>
-									Request Service
-									<ArrowRight className="w-4 h-4" />
-								</Link>
-							</div>
-						</div>
-					))}
-				</div>
-			</section>
-
-			{/* pricing plans and online payment section */}
-			<PricingAndPayment />
-
-			{/* portfolio showcase teaser banner */}
-			<section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950 via-slate-900 to-slate-950 border border-cyan-500/40 p-8 md:p-12 shadow-2xl">
-				<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-					<div className="space-y-3 text-center lg:text-left max-w-2xl">
+			{/* main content container with max-w */}
+			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24">
+				{/* compact category row with logo, title and down arrow */}
+				<section id="categories" className="space-y-8 scroll-mt-24">
+					<div className="text-center max-w-3xl mx-auto space-y-2">
 						<span className="text-xs font-bold uppercase tracking-wider text-cyan-400 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30">
-							Personal Works & Credentials
+							Explore What We Do
 						</span>
-						<h2 className="text-2xl md:text-3xl font-extrabold text-white">
-							Looking for Provash’s Personal Projects & Tech Stack?
+						<h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+							Our Core Service Categories
 						</h2>
-						<p className="text-slate-300 text-sm leading-relaxed">
-							Our founder’s full developer portfolio, interactive tech stack
-							experience, statistics, and GitHub repositories are preserved and
-							accessible with a single click.
+						<p className="text-slate-400 text-xs md:text-sm">
+							Click on any category to view full technical features, scope, and deliverables.
 						</p>
 					</div>
 
-					<Link
-						href="/portfolio"
-						className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold text-base transition-all duration-300 shadow-lg shadow-cyan-400/25 hover:scale-105 active:scale-95 flex-shrink-0"
-					>
-						Explore Full Portfolio
-						<ArrowRight className="w-5 h-5" />
-					</Link>
-				</div>
-			</section>
+					{/* 4 items in one row with items-start for clean expansion */}
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-start">
+						{servicesData.map((service) => {
+							const isOpen = expandedId === service.id;
+							return (
+								<div
+									key={service.id}
+									className={`rounded-2xl transition-all duration-300 overflow-hidden flex flex-col ${
+										isOpen
+											? "border border-cyan-400 bg-slate-900 shadow-[0_0_25px_rgba(6,182,212,0.2)]"
+											: "border border-slate-800 bg-slate-900/80 hover:border-slate-700 hover:bg-slate-900 shadow-md"
+									}`}
+								>
+									{/* compact header: strictly logo + title + down arrow */}
+									<button
+										type="button"
+										onClick={() => toggleExpand(service.id)}
+										className="w-full p-4 flex items-center justify-between gap-3 text-left cursor-pointer group transition-colors"
+										aria-expanded={isOpen}
+									>
+										<div className="flex items-center gap-3 min-w-0">
+											<div className="p-2.5 rounded-xl bg-slate-800/90 border border-slate-700/80 shadow group-hover:scale-105 transition-transform flex-shrink-0">
+												{service.icon}
+											</div>
+											<h3 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors truncate">
+												{service.title}
+											</h3>
+										</div>
 
-			{/* client testimonials */}
-			<section className="space-y-8">
-				<div className="text-center max-w-2xl mx-auto space-y-2">
-					<h2 className="text-2xl md:text-3xl font-extrabold text-white">
-						What Our Clients Say
-					</h2>
-					<p className="text-slate-400 text-sm">
-						Trusted by creators, startups, and established enterprises globally.
-					</p>
-				</div>
+										<div
+											className={`p-1.5 rounded-full bg-slate-800/80 text-slate-400 flex-shrink-0 transition-transform duration-300 ${
+												isOpen ? "rotate-180 text-cyan-400 bg-cyan-950/80" : ""
+											}`}
+										>
+											<ChevronDown className="w-4 h-4" />
+										</div>
+									</button>
 
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					{testimonialsData.map((item, idx) => (
-						<div
-							key={idx}
-							className="rounded-2xl bg-slate-900/60 border border-slate-800 p-6 flex flex-col justify-between space-y-4 shadow-lg hover:border-slate-700 transition-colors"
-						>
-							<p className="text-slate-300 text-sm leading-relaxed italic">
-								"{item.quote}"
+									{/* expandable detailed view */}
+									{isOpen && (
+										<div className="p-4 pt-0 border-t border-slate-800/80 space-y-4 animate-in fade-in duration-200">
+											<p className="text-slate-300 text-xs leading-relaxed pt-3">
+												{service.description}
+											</p>
+
+											<div className="space-y-2">
+												<span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+													Key Deliverables
+												</span>
+												<div className="space-y-1.5">
+													{service.features.map((feature, idx) => (
+														<div
+															key={idx}
+															className="flex items-center gap-2 text-xs text-slate-300"
+														>
+															<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+															<span>{feature}</span>
+														</div>
+													))}
+												</div>
+											</div>
+
+											<div className="pt-2">
+												<Link
+													href="/#pricing"
+													className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+												>
+													<span>Select Service Plan</span>
+													<ArrowRight className="w-3.5 h-3.5" />
+												</Link>
+											</div>
+										</div>
+									)}
+								</div>
+							);
+						})}
+					</div>
+				</section>
+
+				{/* pricing plans and online payment section */}
+				<PricingAndPayment />
+
+				{/* portfolio showcase teaser banner */}
+				<section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950 via-slate-900 to-slate-950 border border-cyan-500/40 p-8 md:p-12 shadow-2xl">
+					<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+						<div className="space-y-3 text-center lg:text-left max-w-2xl">
+							<span className="text-xs font-bold uppercase tracking-wider text-cyan-400 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30">
+								Personal Works & Credentials
+							</span>
+							<h2 className="text-2xl md:text-3xl font-extrabold text-white">
+								Looking for Provash’s Personal Projects & Tech Stack?
+							</h2>
+							<p className="text-slate-300 text-sm leading-relaxed">
+								Our founder’s full developer portfolio, interactive tech stack
+								experience, statistics, and GitHub repositories are preserved and
+								accessible with a single click.
 							</p>
-							<div className="pt-4 border-t border-slate-800/80">
-								<h4 className="text-white font-bold text-sm">{item.author}</h4>
-								<p className="text-cyan-400 text-xs">{item.role}</p>
+						</div>
+
+						<Link
+							href="/portfolio"
+							className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold text-base transition-all duration-300 shadow-lg shadow-cyan-400/25 hover:scale-105 active:scale-95 flex-shrink-0"
+						>
+							Explore Full Portfolio
+							<ArrowRight className="w-5 h-5" />
+						</Link>
+					</div>
+				</section>
+
+				{/* client testimonials */}
+				<section className="space-y-8">
+					<div className="text-center max-w-2xl mx-auto space-y-2">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-white">
+							What Our Clients Say
+						</h2>
+						<p className="text-slate-400 text-sm">
+							Trusted by creators, startups, and established enterprises globally.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+						{testimonialsData.map((item, idx) => (
+							<div
+								key={idx}
+								className="rounded-2xl bg-slate-900/60 border border-slate-800 p-6 flex flex-col justify-between space-y-4 shadow-lg hover:border-slate-700 transition-colors"
+							>
+								<p className="text-slate-300 text-sm leading-relaxed italic">
+									"{item.quote}"
+								</p>
+								<div className="pt-4 border-t border-slate-800/80">
+									<h4 className="text-white font-bold text-sm">{item.author}</h4>
+									<p className="text-cyan-400 text-xs">{item.role}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</section>
+
+				{/* quote and consultation form */}
+				<section
+					id="consultation"
+					className="rounded-3xl bg-slate-900/80 border border-slate-800 p-8 md:p-12 space-y-8 scroll-mt-20 max-w-4xl mx-auto"
+				>
+					<div className="text-center space-y-2">
+						<h2 className="text-2xl md:text-3xl font-extrabold text-white">
+							Start Your Project Consultation
+						</h2>
+						<p className="text-slate-400 text-sm">
+							Tell us about your requirements. We typically respond within 12
+							hours with a detailed proposal.
+						</p>
+					</div>
+
+					<form
+						action="https://formspree.io/f/mqaeeyzq"
+						method="POST"
+						className="space-y-4"
+					>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-xs font-semibold text-slate-300 mb-1">
+									Your Name
+								</label>
+								<input
+									type="text"
+									name="name"
+									required
+									placeholder="e.g. Alex Morgan"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+								/>
+							</div>
+							<div>
+								<label className="block text-xs font-semibold text-slate-300 mb-1">
+									Your Email
+								</label>
+								<input
+									type="email"
+									name="email"
+									required
+									placeholder="e.g. alex@example.com"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+								/>
 							</div>
 						</div>
-					))}
-				</div>
-			</section>
 
-			{/* quote and consultation form */}
-			<section
-				id="consultation"
-				className="rounded-3xl bg-slate-900/80 border border-slate-800 p-8 md:p-12 space-y-8 scroll-mt-20 max-w-4xl mx-auto"
-			>
-				<div className="text-center space-y-2">
-					<h2 className="text-2xl md:text-3xl font-extrabold text-white">
-						Start Your Project Consultation
-					</h2>
-					<p className="text-slate-400 text-sm">
-						Tell us about your requirements. We typically respond within 12
-						hours with a detailed proposal.
-					</p>
-				</div>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-xs font-semibold text-slate-300 mb-1">
+									Service Needed
+								</label>
+								<select
+									name="service"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+								>
+									<option value="Web Development">Full-Stack Web Development</option>
+									<option value="YouTube Automation">YouTube Automation</option>
+									<option value="Social Media Marketing">Social Media Marketing</option>
+									<option value="Technical Consulting">Technical Consulting & SEO</option>
+								</select>
+							</div>
+							<div>
+								<label className="block text-xs font-semibold text-slate-300 mb-1">
+									Approximate Budget
+								</label>
+								<input
+									type="text"
+									name="budget"
+									placeholder="e.g. $500 - $2,000"
+									className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
+								/>
+							</div>
+						</div>
 
-				<form
-					action="https://formspree.io/f/mqaeeyzq"
-					method="POST"
-					className="space-y-4"
-				>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						<div>
 							<label className="block text-xs font-semibold text-slate-300 mb-1">
-								Your Name
+								Project Description & Timeline
 							</label>
-							<input
-								type="text"
-								name="name"
+							<textarea
+								name="message"
+								rows={4}
 								required
-								placeholder="e.g. Alex Morgan"
+								placeholder="Provide details about your project goals and preferred deadline..."
 								className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
 							/>
 						</div>
-						<div>
-							<label className="block text-xs font-semibold text-slate-300 mb-1">
-								Your Email
-							</label>
-							<input
-								type="email"
-								name="email"
-								required
-								placeholder="e.g. alex@example.com"
-								className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
-							/>
-						</div>
-					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div>
-							<label className="block text-xs font-semibold text-slate-300 mb-1">
-								Service Needed
-							</label>
-							<select
-								name="service"
-								className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-300 text-sm focus:outline-none focus:border-cyan-400 transition-colors"
-							>
-								<option value="Web Development">Full-Stack Web Development</option>
-								<option value="YouTube Automation">YouTube Automation</option>
-								<option value="Social Media Marketing">Social Media Marketing</option>
-								<option value="Technical Consulting">Technical Consulting & SEO</option>
-							</select>
-						</div>
-						<div>
-							<label className="block text-xs font-semibold text-slate-300 mb-1">
-								Approximate Budget
-							</label>
-							<input
-								type="text"
-								name="budget"
-								placeholder="e.g. $500 - $2,000"
-								className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
-							/>
-						</div>
-					</div>
-
-					<div>
-						<label className="block text-xs font-semibold text-slate-300 mb-1">
-							Project Description & Timeline
-						</label>
-						<textarea
-							name="message"
-							rows={4}
-							required
-							placeholder="Provide details about your project goals and preferred deadline..."
-							className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-400 transition-colors"
-						/>
-					</div>
-
-					<button
-						type="submit"
-						className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-cyan-500/25 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
-					>
-						<Send className="w-4 h-4" />
-						Submit Consultation Request
-					</button>
-				</form>
-			</section>
+						<button
+							type="submit"
+							className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-cyan-500/25 cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+						>
+							<Send className="w-4 h-4" />
+							Submit Consultation Request
+						</button>
+					</form>
+				</section>
+			</div>
 		</div>
 	);
 }
