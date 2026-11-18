@@ -1491,30 +1491,6 @@ export default function AgencyHome() {
 							</div>
 						))}
 					</div>
-
-					{/* full developer portfolio banner teaser */}
-					<div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#071329] via-[#0d2247] to-[#071329] border-2 border-cyan-500/40 p-8 md:p-10 shadow-[0_0_35px_rgba(6,182,212,0.25)] flex flex-col lg:flex-row items-center justify-between gap-6">
-						<div className="space-y-2 text-center lg:text-left">
-							<span className="text-xs font-bold uppercase tracking-wider text-cyan-300 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40">
-								Developer Showcase
-							</span>
-							<h3 className="text-xl md:text-2xl font-extrabold text-white">
-								Want to see Provash’s Personal Projects, Tech Stack & Repositories?
-							</h3>
-							<p className="text-slate-300 text-xs md:text-sm max-w-2xl">
-								Our founder’s full interactive portfolio, skills breakdown, experience timeline, and open-source contributions are fully available.
-							</p>
-						</div>
-
-						<Link
-							href="/portfolio"
-							className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-sm border border-cyan-300/60 shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300 flex-shrink-0"
-						>
-							<Layers className="w-4 h-4" />
-							<span>Open Full Developer Portfolio</span>
-							<ArrowRight className="w-4 h-4" />
-						</Link>
-					</div>
 				</section>
 
 				{/* pricing plans and instant checkout section */}
