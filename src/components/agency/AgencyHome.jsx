@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaYoutube } from "react-icons/fa";
+import { FaYoutube, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import {
 	Code2,
 	TrendingUp,
@@ -31,6 +31,9 @@ import {
 	Server,
 	Database,
 	Laptop,
+	Share2,
+	ThumbsUp,
+	UserPlus,
 } from "lucide-react";
 import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
@@ -172,6 +175,106 @@ const webDevOptions = [
 	},
 ];
 
+// social media and channel growth three primary packages
+const socialMediaGrowthOptions = [
+	{
+		id: "youtube-setup",
+		optionNumber: "Option 1",
+		title: "YouTube Channel Setup & Monetization",
+		subtitle: "Complete Brand Channel, 4K Art, SEO & Verification",
+		badge: "High Retention & SEO",
+		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
+		description:
+			"Complete YouTube channel creation from scratch. Custom 4K banner and avatar design, phone verification, high-ranking SEO tags and keywords, watermark, upload defaults, playlist structuring, and monetization compliance.",
+		platforms: [
+			"YouTube Studio",
+			"4K Banner & Logo",
+			"Channel SEO Tags",
+			"Verification Setup",
+			"Monetization Readiness",
+			"Upload Defaults",
+		],
+		deliverables: [
+			"Professional channel creation & phone number verification",
+			"Custom high-converting channel banner, logo & watermark",
+			"Complete channel SEO: high-search keywords, tags & description",
+			"Upload defaults, community tab & playlist structuring",
+			"Monetization eligibility roadmap & copyright-safe guidelines",
+			"One-on-one strategy session on viral titles & thumbnail design",
+		],
+		priceBDT: "৳5,000",
+		priceUSD: "$50",
+		gradient: "from-red-500/20 via-pink-500/10 to-transparent",
+		border: "border-red-500/30 hover:border-red-400",
+		glow: "shadow-[0_0_25px_rgba(239,68,68,0.2)]",
+		popular: false,
+	},
+	{
+		id: "facebook-setup",
+		optionNumber: "Option 2",
+		title: "Facebook Page & Meta Business Setup",
+		subtitle: "Official Brand Page, Auto-Responder & Meta Suite",
+		badge: "Verified Business Setup",
+		icon: <FaFacebook className="w-6 h-6 text-blue-400" />,
+		description:
+			"Professional Facebook business page creation and Meta Business Suite configuration. Custom cover banner and profile branding, custom username/URL, WhatsApp button integration, auto-responder chat bot, and Meta pixel setup.",
+		platforms: [
+			"Meta Business Suite",
+			"Custom Page URL",
+			"WhatsApp Business",
+			"Auto-Responder Bot",
+			"Meta Pixel",
+			"Action CTA Button",
+		],
+		deliverables: [
+			"Official business page creation with optimized category & bio",
+			"Custom high-resolution banner cover & branded profile logo",
+			"Meta Business Suite & WhatsApp Business direct button link",
+			"Instant auto-reply chat bot & FAQ messaging configuration",
+			"Custom vanities URL / username registration (@yourbrand)",
+			"Meta Pixel tracking code setup for future ad retargeting",
+		],
+		priceBDT: "৳5,000",
+		priceUSD: "$50",
+		gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
+		border: "border-blue-500/30 hover:border-blue-400",
+		glow: "shadow-[0_0_25px_rgba(59,130,246,0.2)]",
+		popular: false,
+	},
+	{
+		id: "growth-sales",
+		optionNumber: "Option 3",
+		title: "Followers, Subscribers & Monetization Boost",
+		subtitle: "Real Audience, Watch Time & Multi-Platform Growth",
+		badge: "Most Popular / Fast Growth",
+		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
+		description:
+			"Fast-track your audience growth across YouTube, Facebook, Instagram, TikTok, and Telegram. High-retention subscribers, 4,000 watch hours packages, Facebook page likes/followers, Instagram active followers, and monetization eligibility fulfillment.",
+		platforms: [
+			"YouTube Subscribers",
+			"4000 Watch Hours",
+			"Facebook Followers",
+			"Instagram Growth",
+			"TikTok Audience",
+			"Aged Channels & Pages",
+		],
+		deliverables: [
+			"Real & high-retention YouTube subscribers (1,000+ packages)",
+			"4,000 YouTube public watch hours for instant YPP monetization",
+			"Facebook page followers & active post likes (10,000+ packages)",
+			"Instagram targeted followers & post engagement boost",
+			"Safe, policy-compliant delivery with lifetime non-drop warranty",
+			"Turnkey monetized channels & aged pages available upon request",
+		],
+		priceBDT: "৳8,000",
+		priceUSD: "$80",
+		gradient: "from-emerald-500/20 via-teal-500/15 to-transparent",
+		border: "border-emerald-400/50 hover:border-emerald-300",
+		glow: "shadow-[0_0_35px_rgba(16,185,129,0.3)]",
+		popular: true,
+	},
+];
+
 // complete enterprise tech stack breakdown matching frontend and backend specification
 const enterpriseTechStack = [
 	{
@@ -236,61 +339,6 @@ const enterpriseTechStack = [
 			{ name: "Stripe & Cards", role: "Global Credit/Debit Card Processing" },
 			{ name: "Beekeeper Studio", role: "Database GUI Inspection & SQL Audits" },
 		],
-	},
-];
-
-// complementary digital growth services
-const complementaryServices = [
-	{
-		id: "yt-auto",
-		title: "YouTube Channel Automation & Ops",
-		category: "CONTENT & AUDIENCE",
-		badge: "High Retention",
-		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
-		description:
-			"End-to-end channel creation, high-retention scripting, voiceover sync, cinematic 4K editing, and click-worthy thumbnail packaging.",
-		deliverables: [
-			"High-CPM Niche & Competitor Keyword Research",
-			"Engaging Viral Storyboarding & Hook Scriptwriting",
-			"Cinematic 4K Video Editing & Dynamic Sound Design",
-			"High-CTR Thumbnails & Metadata SEO Optimization",
-		],
-		gradient: "from-red-500/20 via-pink-600/10 to-transparent",
-		border: "border-red-500/30 hover:border-red-400",
-	},
-	{
-		id: "smm-growth",
-		title: "Social Media Marketing & Paid Ads",
-		category: "GROWTH MARKETING",
-		badge: "High ROI",
-		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
-		description:
-			"Targeted advertising funnels, conversion optimization, and brand scaling across Meta Ads, Google Ads, and LinkedIn.",
-		deliverables: [
-			"High-ROI Meta & Google Ad Campaign Strategy",
-			"Customer Journey & Multi-Step Sales Funnel Design",
-			"Audience Retargeting & Advanced Pixel Tracking",
-			"A/B Creative Testing & Ad Copy Optimization",
-		],
-		gradient: "from-emerald-500/20 via-teal-600/10 to-transparent",
-		border: "border-emerald-500/30 hover:border-emerald-400",
-	},
-	{
-		id: "tech-seo",
-		title: "Technical SEO & CRO Optimization",
-		category: "SEARCH & AUDITS",
-		badge: "Core Vitals",
-		icon: <Target className="w-6 h-6 text-purple-400" />,
-		description:
-			"Comprehensive digital audits, Google Core Web Vitals optimization, schema architecture, and conversion rate engineering.",
-		deliverables: [
-			"Google Core Web Vitals & Sub-Second Speed Optimization",
-			"Technical On-Page, Schema & Semantic Structure",
-			"Keyword Research & Search Intent Mapping",
-			"Conversion Rate Optimization Heatmap Audits",
-		],
-		gradient: "from-purple-500/20 via-indigo-600/10 to-transparent",
-		border: "border-purple-500/30 hover:border-purple-400",
 	},
 ];
 
@@ -406,12 +454,12 @@ const faqItems = [
 		a: "We offer three specialized options: Option 1: Frontend Development (React 19, Next.js 16, Tailwind v4 UI/UX), Option 2: Backend Development (Node.js, Express, PostgreSQL, Prisma APIs), and Option 3: Full-Stack Development (Complete turnkey application with client UI, admin dashboard, auth, and online payments).",
 	},
 	{
-		q: "How long does it take to complete a web project?",
-		a: "Standard MVP frontends or API microservices take 5 to 7 days. Full-featured SaaS or multi-page custom applications with database and payment integrations generally take 2 to 4 weeks depending on feature requirements.",
+		q: "What is included in YouTube & Facebook Setup services?",
+		a: "We provide end-to-end channel and page setups: custom 4K banner and logo design, phone verification, high-ranking SEO tags, auto-reply chat bots, WhatsApp Business linking, and complete monetization eligibility guidelines.",
 	},
 	{
-		q: "Do you provide ongoing support after project launch?",
-		a: "Yes! Every project includes complimentary post-launch support and maintenance. We handle updates, security patches, performance monitoring, and continuous scaling.",
+		q: "Are the followers, subscribers, and watch hours safe and non-drop?",
+		a: "Yes! All audience packages (YouTube subscribers, 4,000 watch hours, Facebook followers, Instagram followers) are delivered safely complying with platform guidelines, accompanied by lifetime non-drop warranty.",
 	},
 	{
 		q: "What payment methods do you accept?",
@@ -426,6 +474,9 @@ export default function AgencyHome() {
 	// web development tab filter state
 	const [activeWebTab, setActiveWebTab] = useState("all");
 
+	// social media growth tab filter state
+	const [activeSocialTab, setActiveSocialTab] = useState("all");
+
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
 
@@ -438,6 +489,12 @@ export default function AgencyHome() {
 		activeWebTab === "all"
 			? webDevOptions
 			: webDevOptions.filter((opt) => opt.id === activeWebTab);
+
+	// filter social media options if tab is active
+	const filteredSocialMedia =
+		activeSocialTab === "all"
+			? socialMediaGrowthOptions
+			: socialMediaGrowthOptions.filter((opt) => opt.id === activeSocialTab);
 
 	return (
 		<div className="w-full space-y-16 md:space-y-24 bg-[#050b17] text-white" suppressHydrationWarning>
@@ -553,7 +610,7 @@ export default function AgencyHome() {
 			{/* main content container with max-w */}
 			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24" suppressHydrationWarning>
 				{/* services section positioned right below banner as requested */}
-				<section id="services" className="space-y-12 scroll-mt-24">
+				<section id="services" className="space-y-16 scroll-mt-24">
 					{/* section header */}
 					<div className="text-center max-w-3xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
@@ -564,11 +621,11 @@ export default function AgencyHome() {
 							Our Exclusive Services
 						</h2>
 						<p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl mx-auto">
-							From modular frontend and backend engineering to full turnkey SaaS platforms and media automation, select the exact service tailored to your goals.
+							From modular frontend and backend engineering to YouTube channel setup, Facebook business pages, audience scaling, and turnkey SaaS applications.
 						</p>
 					</div>
 
-					{/* web development spotlight header with three options */}
+					{/* 1. web development solutions section with three options */}
 					<div className="space-y-6">
 						<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
 							<div>
@@ -743,54 +800,130 @@ export default function AgencyHome() {
 						</div>
 					</div>
 
-					{/* complementary growth services youtube smm seo */}
-					<div className="space-y-6 pt-6">
-						<div className="pb-2 border-b border-cyan-500/20">
-							<div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
-								<Sparkles className="w-4 h-4" />
-								<span>AUDIENCE & REVENUE ACCELERATION</span>
+					{/* 2. social media and channel growth solutions right after web development */}
+					<div className="space-y-6 pt-4">
+						<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
+							<div>
+								<div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+									<Share2 className="w-4 h-4" />
+									<span>AUDIENCE & BRAND ACCELERATION</span>
+								</div>
+								<h3 className="text-xl sm:text-2xl font-black text-white mt-1">
+									Social Media & Channel Growth Solutions
+								</h3>
+								<p className="text-slate-400 text-xs mt-1">
+									Turnkey YouTube channel setup, verified Facebook business pages, real followers, subscribers, and watch time packages.
+								</p>
 							</div>
-							<h3 className="text-xl sm:text-2xl font-black text-white mt-1">
-								Media Automation & Growth Services
-							</h3>
+
+							{/* interactive social options pill switcher */}
+							<div className="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-slate-950/80 border border-cyan-500/30 backdrop-blur-md">
+								<button
+									type="button"
+									onClick={() => setActiveSocialTab("all")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeSocialTab === "all"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									All 3 Packages
+								</button>
+								<button
+									type="button"
+									onClick={() => setActiveSocialTab("youtube-setup")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeSocialTab === "youtube-setup"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									1. YouTube Setup
+								</button>
+								<button
+									type="button"
+									onClick={() => setActiveSocialTab("facebook-setup")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeSocialTab === "facebook-setup"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									2. Facebook Page
+								</button>
+								<button
+									type="button"
+									onClick={() => setActiveSocialTab("growth-sales")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeSocialTab === "growth-sales"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									3. Followers & Subscribers
+								</button>
+							</div>
 						</div>
 
+						{/* social media three cards grid */}
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-							{complementaryServices.map((service) => (
+							{filteredSocialMedia.map((pkg) => (
 								<div
-									key={service.id}
-									className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${service.border} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
+									key={pkg.id}
+									className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${pkg.border} ${pkg.glow} transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
 								>
-									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${service.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
+									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${pkg.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
 
 									<div className="relative z-10 space-y-4">
 										<div className="flex items-center justify-between">
 											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
-												{service.icon}
+												{pkg.icon}
 											</div>
-											<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
-												{service.badge}
+											<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+												{pkg.badge}
 											</span>
 										</div>
 
 										<div>
-											<span className="text-[10px] text-cyan-400/80 uppercase tracking-widest font-bold">
-												{service.category}
+											<span className="text-[10px] text-cyan-400 font-extrabold uppercase tracking-widest">
+												{pkg.optionNumber}
 											</span>
-											<h4 className="text-lg sm:text-xl font-bold text-white mt-0.5 group-hover:text-cyan-200 transition-colors">
-												{service.title}
+											<h4 className="text-xl font-bold text-white mt-0.5 group-hover:text-cyan-200 transition-colors">
+												{pkg.title}
 											</h4>
+											<p className="text-[11px] text-slate-400 font-medium">
+												{pkg.subtitle}
+											</p>
 											<p className="text-slate-300 text-xs leading-relaxed mt-2.5">
-												{service.description}
+												{pkg.description}
 											</p>
 										</div>
 
+										{/* platforms / features pills */}
 										<div className="space-y-1.5 pt-2">
 											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
-												Deliverables
+												Supported Channels & Tools
+											</span>
+											<div className="flex flex-wrap gap-1.5">
+												{pkg.platforms.map((platform, i) => (
+													<span
+														key={i}
+														className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-950 border border-cyan-500/20 text-slate-300 font-medium"
+													>
+														{platform}
+													</span>
+												))}
+											</div>
+										</div>
+
+										{/* deliverables list */}
+										<div className="space-y-1.5 pt-2">
+											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+												<CheckCheck className="w-3.5 h-3.5 text-cyan-400" />
+												Key Deliverables
 											</span>
 											<div className="space-y-1.5">
-												{service.deliverables.map((item, idx) => (
+												{pkg.deliverables.map((item, idx) => (
 													<div
 														key={idx}
 														className="flex items-start gap-2 text-xs text-slate-300"
@@ -803,20 +936,38 @@ export default function AgencyHome() {
 										</div>
 									</div>
 
-									<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 flex items-center justify-between">
-										<Link
-											href="/#consultation"
-											className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
-										>
-											<span>Consultation & Roadmap</span>
-											<ArrowRight className="w-3.5 h-3.5" />
-										</Link>
+									{/* card footer with price and action button */}
+									<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 space-y-3">
+										<div className="flex items-baseline justify-between">
+											<div>
+												<span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+													Starting Price
+												</span>
+												<div className="flex items-baseline gap-1.5">
+													<span className="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+														{pkg.priceBDT}
+													</span>
+													<span className="text-slate-400 text-xs font-semibold">
+														/ {pkg.priceUSD}
+													</span>
+												</div>
+											</div>
+
+											<span className="text-[10px] px-2.5 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 font-semibold">
+												Non-Drop Guarantee
+											</span>
+										</div>
 
 										<Link
-											href="/#pricing"
-											className="text-[11px] px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 hover:text-white transition-colors"
+											href="/#consultation"
+											className={`w-full py-2.5 rounded-full font-bold text-xs flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+												pkg.popular
+													? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
+													: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
+											}`}
 										>
-											View Plans
+											<span>Order {pkg.title}</span>
+											<ArrowRight className="w-3.5 h-3.5" />
 										</Link>
 									</div>
 								</div>
@@ -1466,9 +1617,12 @@ export default function AgencyHome() {
 												<option value="1. Frontend Web Development" className="bg-slate-900">1. Frontend Web Development (React / Next.js)</option>
 												<option value="2. Backend Development" className="bg-slate-900">2. Backend Development (Node.js / PostgreSQL)</option>
 												<option value="3. Full-Stack Development" className="bg-slate-900">3. Full-Stack Web Development (Turnkey App)</option>
-												<option value="YouTube Automation" className="bg-slate-900">YouTube Channel Automation</option>
-												<option value="Social Media Marketing" className="bg-slate-900">Social Media Marketing & Ads</option>
-												<option value="Technical SEO & Consulting" className="bg-slate-900">Technical SEO & CRO</option>
+												<option value="YouTube Channel Setup & Monetization" className="bg-slate-900">YouTube Channel Setup & Monetization</option>
+												<option value="Facebook Page & Meta Business Setup" className="bg-slate-900">Facebook Page & Meta Business Setup</option>
+												<option value="Followers, Subscribers & Watch Time" className="bg-slate-900">Followers, Subscribers & Watch Time Boost</option>
+												<option value="YouTube Channel Automation & Ops" className="bg-slate-900">YouTube Channel Automation & Video Ops</option>
+												<option value="Social Media Marketing & Ads" className="bg-slate-900">Social Media Marketing & Meta/Google Ads</option>
+												<option value="Technical SEO & Consulting" className="bg-slate-900">Technical SEO & CRO Audits</option>
 											</select>
 										</div>
 										<div>
@@ -1478,7 +1632,7 @@ export default function AgencyHome() {
 											<input
 												type="text"
 												name="budget"
-												placeholder="e.g. $500 - $2,000 / ৳15k - ৳95k"
+												placeholder="e.g. $500 - $2,000 / ৳5k - ৳95k"
 												className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 											/>
 										</div>
