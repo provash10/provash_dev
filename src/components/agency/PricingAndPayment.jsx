@@ -124,31 +124,30 @@ export default function PricingAndPayment() {
 	};
 
 	return (
-		<section id="pricing" className="space-y-12 scroll-mt-20">
-			{/* section header */}
+		<section id="pricing" className="space-y-10 scroll-mt-24">
+			{/* section header matching markivo */}
 			<div className="text-center max-w-3xl mx-auto space-y-3">
-				<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-					<CreditCard className="w-3.5 h-3.5" />
-					Transparent Pricing & Instant Checkout
+				<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+					<CreditCard className="w-4 h-4 text-cyan-400" />
+					PRICING PLANS
 				</div>
-				<h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-					Predictable Pricing, Exceptional Results
+				<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+					Take a Look of Our Pricing and Select Your Choice
 				</h2>
-				<p className="text-slate-400 text-xs md:text-sm">
-					Select an all-inclusive package tailored to your goals. We accept
-					bKash, Nagad, Visa, Mastercard, and international bank transfers.
+				<p className="text-slate-300 text-xs md:text-sm max-w-2xl mx-auto">
+					Select an all-inclusive package tailored to your goals. We accept bKash, Nagad, Visa, Mastercard, and international bank transfers with 100% money-back sprint assurance.
 				</p>
 			</div>
 
-			{/* plans grid with portfolio aesthetic */}
-			<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+			{/* plans grid with markivo aesthetic */}
+			<div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
 				{plansData.map((plan) => (
 					<div
 						key={plan.id}
 						className={`relative rounded-3xl p-6 md:p-8 flex flex-col justify-between transition-all duration-300 ${
 							plan.popular
-								? "bg-gradient-to-br from-[#0c1e42] via-[#0d2857] to-[#0a1835] border-2 border-cyan-400 shadow-[0_0_35px_rgba(6,182,212,0.35)] md:-translate-y-2"
-								: "bg-[#0d1527]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.12)] hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]"
+								? "bg-gradient-to-br from-[#09152a] via-[#0d2247] to-[#071329] border-2 border-cyan-400 shadow-[0_0_35px_rgba(6,182,212,0.35)] md:-translate-y-2"
+								: "bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400/60 shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_30px_rgba(6,182,212,0.25)]"
 						}`}
 					>
 						{plan.popular && (
@@ -204,7 +203,7 @@ export default function PricingAndPayment() {
 			</div>
 
 			{/* payment options badges */}
-			<div className="rounded-2xl bg-[#0d1527]/90 backdrop-blur-md border border-cyan-500/25 p-5 flex flex-wrap items-center justify-between gap-4 text-slate-300 text-xs shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+			<div className="rounded-2xl bg-[#09152a]/90 backdrop-blur-md border border-cyan-500/25 p-5 flex flex-wrap items-center justify-between gap-4 text-slate-300 text-xs shadow-[0_0_20px_rgba(6,182,212,0.1)]">
 				<div className="flex items-center gap-3">
 					<ShieldCheck className="w-5 h-5 text-emerald-400" />
 					<span>100% Secure Encrypted Payment Gateway Integration</span>
