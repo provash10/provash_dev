@@ -29,6 +29,12 @@ const Navbar = () => {
 					Services
 				</Link>
 				<Link
+					href="/software"
+					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-cyan-600/30 border border-slate-800 hover:border-cyan-500"
+				>
+					Software
+				</Link>
+				<Link
 					href="/#pricing"
 					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
 				>

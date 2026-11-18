@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
+import { softwareProducts } from "@/data/softwareData";
 
 // trusted tech stack marquee data matching frontend and backend specification
 const techStackList = [
@@ -973,6 +974,137 @@ export default function AgencyHome() {
 								</div>
 							))}
 						</div>
+					</div>
+				</section>
+
+				{/* proprietary software and saas suite showcase section */}
+				<section id="software" className="space-y-12 scroll-mt-24">
+					{/* section header with direct catalog link */}
+					<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
+						<div className="space-y-2">
+							<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+								<Laptop className="w-3.5 h-3.5 text-cyan-400" />
+								<span>PROPRIETARY SAAS & SOFTWARE SUITE</span>
+							</div>
+							<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+								Ready-to-Deploy Software Solutions
+							</h2>
+							<p className="text-slate-300 text-xs md:text-sm max-w-2xl">
+								Explore our high-performance software platforms built with modern full-stack architecture. Test live interactive demos hosted on Vercel or customize for your business.
+							</p>
+						</div>
+
+						<Link
+							href="/software"
+							className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-600/20 hover:from-cyan-500/30 hover:to-blue-600/30 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-400 text-xs font-bold transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] group shrink-0"
+						>
+							<span>Browse Software Catalog (6)</span>
+							<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+						</Link>
+					</div>
+
+					{/* grid of software products */}
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{softwareProducts.map((software) => (
+							<div
+								key={software.id}
+								className={`group relative flex flex-col justify-between rounded-2xl p-6 bg-gradient-to-b from-[#0a1b38]/90 via-[#071329]/90 to-slate-950/95 border ${software.border} backdrop-blur-xl shadow-xl transition-all duration-500 hover:-translate-y-1`}
+							>
+								{/* ambient top glow */}
+								<div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+								<div className="relative z-10 space-y-4">
+									{/* top badge and category */}
+									<div className="flex items-center justify-between gap-2">
+										<span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+											{software.category}
+										</span>
+										<span className="text-[10px] px-2.5 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold">
+											{software.badge}
+										</span>
+									</div>
+
+									{/* title and tagline */}
+									<div>
+										<h3 className="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
+											{software.title}
+										</h3>
+										<p className="text-cyan-400/90 text-xs font-medium mt-1">
+											{software.tagline}
+										</p>
+									</div>
+
+									{/* short description */}
+									<p className="text-slate-300 text-xs leading-relaxed line-clamp-3">
+										{software.shortDesc}
+									</p>
+
+									{/* key highlights */}
+									<div className="space-y-1.5 pt-2 border-t border-slate-800/80">
+										<span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+											Key Highlights
+										</span>
+										<ul className="space-y-1">
+											{software.features.slice(0, 3).map((feat, idx) => (
+												<li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
+													<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+													<span className="line-clamp-1">{feat}</span>
+												</li>
+											))}
+										</ul>
+									</div>
+
+									{/* tech stack pills */}
+									<div className="flex flex-wrap gap-1.5 pt-2">
+										{software.techStack.slice(0, 4).map((tech, idx) => (
+											<span
+												key={idx}
+												className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/90 text-slate-300 border border-slate-800 group-hover:border-cyan-500/30 transition-colors font-mono"
+											>
+												{tech}
+											</span>
+										))}
+										{software.techStack.length > 4 && (
+											<span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/90 text-slate-400 border border-slate-800">
+												+{software.techStack.length - 4} more
+											</span>
+										)}
+									</div>
+								</div>
+
+								{/* pricing and direct actions */}
+								<div className="relative z-10 pt-5 mt-5 border-t border-cyan-500/20 space-y-3">
+									<div className="flex items-baseline justify-between">
+										<span className="text-[10px] text-slate-400 uppercase tracking-wider">
+											Starting Price
+										</span>
+										<span className="text-sm font-black text-cyan-300">
+											{software.startingPrice}
+										</span>
+									</div>
+
+									<div className="grid grid-cols-2 gap-2">
+										<a
+											href={software.liveUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.7)] transition-all cursor-pointer"
+										>
+											<span>Vercel Demo</span>
+											<ExternalLink className="w-3 h-3" />
+										</a>
+
+										<Link
+											href={`/software/${software.slug}`}
+											className="py-2 px-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+										>
+											<span>Details</span>
+											<ArrowRight className="w-3 h-3" />
+										</Link>
+									</div>
+								</div>
+							</div>
+						))}
 					</div>
 				</section>
 
