@@ -14,7 +14,12 @@ import {
     SiFramer,
     SiZod,
     SiRedis,
-    SiCloudinary
+    SiCloudinary,
+    SiBun,
+    SiReactquery,
+    SiBiome,
+    SiJsonwebtokens,
+    SiDocker
 } from 'react-icons/si';
 import { GiBee } from 'react-icons/gi';
 import { javaScriptOverview } from './TechIconOverview/JavaScriptOverview';
@@ -177,6 +182,63 @@ export const techStackData = [
             ]
         }
     },
+    {
+        id: 'tanstack-query',
+        name: 'TanStack Query',
+        mainCategory: 'frontend',
+        category: 'Server State & Caching',
+        icon: <SiReactquery size={25} className='text-[#ff4154]' />,
+        url: 'https://tanstack.com/query/latest',
+        vivaDetails: {
+            whatIsIt: 'TanStack Query (React Query) is a powerful asynchronous state management library for fetching, caching, synchronizing, and updating server state.',
+            whyUseIt: 'It eliminates manual useEffect data fetching, manages background refetching, handles loading/error states, and automates server cache invalidation.',
+            keyConcepts: ['QueryClient & QueryProvider', 'useQuery & useMutation', 'Stale-While-Revalidate', 'Query Keys & Invalidation', 'Optimistic Updates'],
+            vivaQuestions: [
+                {
+                    q: 'How does TanStack Query differ from client state managers like Redux or Zustand?',
+                    a: 'Redux and Zustand manage synchronous local client state. TanStack Query specializes in asynchronous server state: managing cache, network deduplication, pagination, and background sync.'
+                }
+            ]
+        }
+    },
+    {
+        id: 'bun',
+        name: 'Bun',
+        mainCategory: 'frontend',
+        category: 'Fast Runtime & Bundler',
+        icon: <SiBun size={25} className='text-[#fbf0df]' />,
+        url: 'https://bun.sh/',
+        vivaDetails: {
+            whatIsIt: 'Bun is an all-in-one JavaScript runtime, bundler, test runner, and package manager written in Zig, built from scratch for speed.',
+            whyUseIt: 'It installs dependencies up to 30x faster than npm/yarn, runs TypeScript natively without transpilation, and speeds up local dev builds dramatically.',
+            keyConcepts: ['Zig Engine', 'Native TypeScript & JSX Support', 'Ultra-fast Package Manager', 'Bundler & Test Runner', 'Node.js API Compatibility'],
+            vivaQuestions: [
+                {
+                    q: 'Why is Bun faster than Node.js and npm?',
+                    a: 'Bun is written in low-level Zig on top of WebKit JavaScriptCore (rather than V8), uses native OS system calls (io_uring, kqueue), and performs zero-overhead TypeScript parsing.'
+                }
+            ]
+        }
+    },
+    {
+        id: 'biome',
+        name: 'Biome',
+        mainCategory: 'frontend',
+        category: 'Linter & Formatter',
+        icon: <SiBiome size={25} className='text-[#60a5fa]' />,
+        url: 'https://biomejs.dev/',
+        vivaDetails: {
+            whatIsIt: 'Biome is a fast formatter and linter for JavaScript, TypeScript, JSX, and JSON, designed as a modern unified replacement for Prettier and ESLint.',
+            whyUseIt: 'Written in Rust, it formats and lints code in milliseconds with zero configuration headaches and 97% Prettier compatibility.',
+            keyConcepts: ['Rust-Powered Speed', 'Unified Linter & Formatter', 'biome.json Configuration', 'Zero Plugin Overhead', 'IDE Integration'],
+            vivaQuestions: [
+                {
+                    q: 'What is the advantage of using Biome over ESLint and Prettier?',
+                    a: 'Biome unifies linting and formatting into a single tool that runs up to 35x faster, uses less memory, and eliminates rule conflicts between ESLint and Prettier.'
+                }
+            ]
+        }
+    },
 
     // -------------------------------------------------------------
     // 2. BACKEND & APIS (Runtime, Frameworks & Middlewares)
@@ -261,6 +323,25 @@ export const techStackData = [
                 {
                     q: 'What is the difference between memoryStorage and diskStorage in Multer?',
                     a: 'diskStorage saves uploaded files directly to server disk folders, while memoryStorage stores files in memory as Buffer objects (ideal for streaming directly to Cloudinary or S3).'
+                }
+            ]
+        }
+    },
+    {
+        id: 'jwt',
+        name: 'JWT Auth',
+        mainCategory: 'backend',
+        category: 'Token Security & RBAC',
+        icon: <SiJsonwebtokens size={25} className='text-[#d63aff]' />,
+        url: 'https://jwt.io/',
+        vivaDetails: {
+            whatIsIt: 'JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.',
+            whyUseIt: 'It powers stateless user authentication, access token and refresh token rotation, and Role-Based Access Control (RBAC) across distributed web APIs.',
+            keyConcepts: ['Header, Payload & Signature', 'Access & Refresh Tokens', 'Stateless Verification', 'Role-Based Access Control (RBAC)', 'HttpOnly Cookie Storage'],
+            vivaQuestions: [
+                {
+                    q: 'Why should Access Tokens have a short expiration and Refresh Tokens be stored in HttpOnly cookies?',
+                    a: 'Short-lived access tokens minimize damage if intercepted. Storing refresh tokens in HttpOnly cookies prevents malicious XSS scripts from accessing them.'
                 }
             ]
         }
@@ -429,6 +510,25 @@ export const techStackData = [
                 {
                     q: 'Why use a GUI client like Beekeeper Studio during backend development?',
                     a: 'GUI clients simplify inspecting database schemas, running raw SQL test queries, and visualizing table records without relying solely on command line tools.'
+                }
+            ]
+        }
+    },
+    {
+        id: 'docker',
+        name: 'Docker',
+        mainCategory: 'tools',
+        category: 'Containerization Platform',
+        icon: <SiDocker size={25} className='text-[#2496ed]' />,
+        url: 'https://www.docker.com/',
+        vivaDetails: {
+            whatIsIt: 'Docker is an open platform for developing, shipping, and running applications inside lightweight, isolated containers.',
+            whyUseIt: 'It guarantees environment consistency between development, staging, and production servers, eliminating the "works on my machine" problem.',
+            keyConcepts: ['Dockerfile & Image Layers', 'Docker Containers vs VMs', 'Docker Compose', 'Volume Mounts & Networking', 'Multi-stage Builds'],
+            vivaQuestions: [
+                {
+                    q: 'How does a Docker container differ from a Virtual Machine (VM)?',
+                    a: 'VMs virtualize hardware and run a complete guest OS (heavyweight). Docker containers share the host OS kernel and isolate user spaces, making them boot in milliseconds with minimal RAM.'
                 }
             ]
         }

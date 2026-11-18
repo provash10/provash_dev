@@ -35,21 +35,29 @@ import {
 import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
 
-// trusted tech stack marquee data
+// trusted tech stack marquee data matching frontend and backend specification
 const techStackList = [
-	{ name: "Next.js 15", category: "Full-Stack" },
-	{ name: "React 19", category: "Frontend" },
-	{ name: "TypeScript", category: "Type Safety" },
-	{ name: "Node.js", category: "Backend" },
-	{ name: "PostgreSQL", category: "Database" },
-	{ name: "Tailwind CSS", category: "Styling" },
-	{ name: "YouTube Studio", category: "Content" },
-	{ name: "Meta Ads", category: "Marketing" },
-	{ name: "Google Cloud", category: "Cloud" },
-	{ name: "bKash & Stripe", category: "Payments" },
+	{ name: "Next.js 16", category: "Full-Stack App Router" },
+	{ name: "React 19", category: "Modern UI Library" },
+	{ name: "TypeScript 5", category: "Strict Type Safety" },
+	{ name: "Bun", category: "Ultra-Fast Runtime" },
+	{ name: "Tailwind CSS v4", category: "Modern Styling" },
+	{ name: "TanStack Query v5", category: "Server State & Cache" },
+	{ name: "Shadcn UI", category: "Component Primitives" },
+	{ name: "Node.js", category: "Backend Runtime" },
+	{ name: "Express.js", category: "RESTful Modular API" },
+	{ name: "PostgreSQL", category: "Relational ACID DB" },
+	{ name: "Prisma ORM", category: "Type-Safe Data Client" },
+	{ name: "Redis", category: "In-Memory Caching" },
+	{ name: "JWT Auth & RBAC", category: "Security & Tokens" },
+	{ name: "Zod", category: "Schema Validation" },
+	{ name: "Biome", category: "Fast Linter & Formatter" },
+	{ name: "Docker", category: "Containerization" },
+	{ name: "Cloudinary", category: "Cloud Media CDN" },
+	{ name: "bKash & Stripe", category: "Payment Gateways" },
 ];
 
-// web development three primary options
+// web development three primary options with comprehensive tech stack
 const webDevOptions = [
 	{
 		id: "frontend",
@@ -59,8 +67,19 @@ const webDevOptions = [
 		badge: "Modern UI/UX",
 		icon: <Laptop className="w-6 h-6 text-cyan-400" />,
 		description:
-			"Modern, blazing-fast, and responsive user interfaces built with React 19, Next.js 15, and Tailwind CSS. We transform complex Figma designs into pixel-perfect, accessible client applications.",
-		techStack: ["React 19", "Next.js 15", "Tailwind CSS v4", "TypeScript", "Framer Motion", "Shadcn UI"],
+			"Modern, blazing-fast, and responsive user interfaces built with React 19, Next.js 16, and Tailwind CSS v4. We transform complex Figma designs into pixel-perfect, accessible client applications.",
+		techStack: [
+			"Next.js 16",
+			"React 19",
+			"TypeScript 5",
+			"Bun Runtime",
+			"Tailwind CSS v4",
+			"TanStack Query v5",
+			"Shadcn UI",
+			"Zod Validation",
+			"Framer Motion",
+			"Biome Toolchain",
+		],
 		deliverables: [
 			"Pixel-Perfect UI/UX from Figma or custom designs",
 			"Sub-second initial page load & SSR optimization",
@@ -85,7 +104,20 @@ const webDevOptions = [
 		icon: <Server className="w-6 h-6 text-blue-400" />,
 		description:
 			"Scalable, secure, and robust backend engineering with Node.js, Express, PostgreSQL, and Prisma ORM. Designed for high concurrency, strict type validation, and zero data loss.",
-		techStack: ["Node.js", "Express.js", "PostgreSQL", "Prisma ORM", "Redis", "JWT Auth", "Zod"],
+		techStack: [
+			"Node.js",
+			"Express.js",
+			"TypeScript 5",
+			"Bun",
+			"PostgreSQL",
+			"Prisma ORM",
+			"JWT Auth & RBAC",
+			"Redis Caching",
+			"Zod Middleware",
+			"Cloudinary",
+			"Nodemailer",
+			"Helmet & CORS",
+		],
 		deliverables: [
 			"Scalable RESTful & GraphQL modular API architecture",
 			"Secure JWT authentication, refresh tokens & RBAC",
@@ -110,9 +142,21 @@ const webDevOptions = [
 		icon: <Sparkles className="w-6 h-6 text-teal-300" />,
 		description:
 			"Complete end-to-end turnkey web applications combining our high-speed frontend with enterprise backend APIs. From ideation and database design to full production launch.",
-		techStack: ["Next.js 15 App Router", "React 19", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Tailwind"],
+		techStack: [
+			"Next.js 16 App Router",
+			"React 19",
+			"TypeScript 5",
+			"Bun Runtime",
+			"Express.js API",
+			"PostgreSQL",
+			"Prisma ORM",
+			"Tailwind CSS v4",
+			"TanStack Query v5",
+			"JWT & RBAC",
+			"bKash & Stripe",
+		],
 		deliverables: [
-			"Turnkey Next.js 15 + PostgreSQL full-stack solution",
+			"Turnkey Next.js 16 + PostgreSQL full-stack solution",
 			"Complete customer-facing UI + Admin management portal",
 			"End-to-end authentication, session management & RBAC",
 			"Automated payment checkout (bKash / Stripe) & invoicing",
@@ -125,6 +169,73 @@ const webDevOptions = [
 		border: "border-teal-400/50 hover:border-cyan-300",
 		glow: "shadow-[0_0_35px_rgba(20,184,166,0.3)]",
 		popular: true,
+	},
+];
+
+// complete enterprise tech stack breakdown matching frontend and backend specification
+const enterpriseTechStack = [
+	{
+		category: "Frontend Architecture",
+		tag: "CLIENT & UI/UX ECOSYSTEM",
+		icon: <Laptop className="w-5 h-5 text-cyan-400" />,
+		color: "border-cyan-500/30 hover:border-cyan-400",
+		glow: "from-cyan-500/15 via-blue-500/5 to-transparent",
+		description:
+			"Blazing-fast client applications with modern SSR, state synchronization, and component ownership.",
+		technologies: [
+			{ name: "Next.js 16", role: "App Router, SSR, SSG & Server Components" },
+			{ name: "React 19", role: "Modern UI Primitives, Actions & Hooks" },
+			{ name: "TypeScript 5", role: "Strict Static Type Checking & Interfaces" },
+			{ name: "Bun Runtime", role: "Ultra-Fast Bundler & Package Execution" },
+			{ name: "Tailwind CSS v4", role: "Utility-First Responsive Styling & PostCSS" },
+			{ name: "TanStack Query v5", role: "Async Server State & Cache Invalidation" },
+			{ name: "Shadcn UI & Radix", role: "Accessible Component Primitives" },
+			{ name: "Zod", role: "Client Form & Data Schema Validation" },
+			{ name: "Biome", role: "Rust-Powered Linter & Code Formatter" },
+			{ name: "Framer Motion", role: "Interactive Animations & Micro-Gestures" },
+		],
+	},
+	{
+		category: "Backend & Cloud Architecture",
+		tag: "RESTFUL MODULAR API & SECURITY",
+		icon: <Server className="w-5 h-5 text-blue-400" />,
+		color: "border-blue-500/30 hover:border-blue-400",
+		glow: "from-blue-500/15 via-indigo-500/5 to-transparent",
+		description:
+			"Modular, scalable backend services adhering to Level-2 Enterprise Architectural Standards.",
+		technologies: [
+			{ name: "Node.js & Bun", role: "Non-Blocking Asynchronous Server Runtime" },
+			{ name: "Express.js", role: "Modular Enterprise REST Architecture" },
+			{ name: "TypeScript 5", role: "End-to-End Type Safety across DTOs" },
+			{ name: "PostgreSQL", role: "ACID Relational Enterprise Database" },
+			{ name: "Prisma ORM", role: "Type-Safe DB Client & Auto Migrations" },
+			{ name: "JWT & RBAC", role: "Stateless Tokens & Role Authorization" },
+			{ name: "Redis", role: "Sub-Millisecond In-Memory Caching" },
+			{ name: "Zod Middleware", role: "Request Body, Query & Params Validation" },
+			{ name: "Cloudinary & Multer", role: "Cloud Media Storage & Streaming CDN" },
+			{ name: "Nodemailer & EJS", role: "Automated Transactional Email Templates" },
+			{ name: "Helmet & CORS", role: "API Hardening & Cross-Origin Security" },
+		],
+	},
+	{
+		category: "DevOps, Database & Gateways",
+		tag: "INFRASTRUCTURE & PAYMENTS",
+		icon: <Database className="w-5 h-5 text-teal-400" />,
+		color: "border-teal-500/30 hover:border-teal-400",
+		glow: "from-teal-500/15 via-cyan-500/5 to-transparent",
+		description:
+			"Zero-downtime deployment pipelines, resilient database layers, and instant payment checkout.",
+		technologies: [
+			{ name: "Docker", role: "Containerized Microservices & Environments" },
+			{ name: "PostgreSQL RDBMS", role: "Relational Data Modeling & Indexing" },
+			{ name: "Redis Cache", role: "Session Storage & API Rate Limiting" },
+			{ name: "Vercel / Cloud VPS", role: "Global Edge CDN & Cloud Deployments" },
+			{ name: "GitHub Actions", role: "Automated CI/CD Test & Deploy Pipelines" },
+			{ name: "bKash Checkout", role: "Direct Mobile Banking PGW Integration" },
+			{ name: "Nagad Gateway", role: "Instant MFS Online Merchant API" },
+			{ name: "Stripe & Cards", role: "Global Credit/Debit Card Processing" },
+			{ name: "Beekeeper Studio", role: "Database GUI Inspection & SQL Audits" },
+		],
 	},
 ];
 
@@ -237,7 +348,7 @@ const projectCaseStudies = [
 		description:
 			"Engineered a scalable multi-tenant SaaS application with real-time dashboard analytics, role-based auth, and automated Stripe/bKash billing.",
 		impact: "Processed $120k+ GMV with <350ms response latency",
-		tech: ["Next.js 15", "TypeScript", "PostgreSQL", "Tailwind CSS"],
+		tech: ["Next.js 16", "TypeScript 5", "PostgreSQL", "Tailwind CSS v4"],
 		badgeColor: "bg-cyan-950/80 text-cyan-300 border-cyan-500/40",
 	},
 	{
@@ -292,7 +403,7 @@ const clientTestimonials = [
 const faqItems = [
 	{
 		q: "What options do you offer for Web Development?",
-		a: "We offer three specialized options: 1. Frontend Development (React 19, Next.js 15, Tailwind UI/UX), 2. Backend Development (Node.js, Express, PostgreSQL, Prisma APIs), and 3. Full-Stack Development (Complete turnkey application with client UI, admin dashboard, auth, and online payments).",
+		a: "We offer three specialized options: Option 1: Frontend Development (React 19, Next.js 16, Tailwind v4 UI/UX), Option 2: Backend Development (Node.js, Express, PostgreSQL, Prisma APIs), and Option 3: Full-Stack Development (Complete turnkey application with client UI, admin dashboard, auth, and online payments).",
 	},
 	{
 		q: "How long does it take to complete a web project?",
@@ -422,7 +533,7 @@ export default function AgencyHome() {
 					<div className="flex flex-col md:flex-row items-center justify-between gap-4">
 						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs uppercase tracking-wider flex-shrink-0">
 							<Sparkles className="w-4 h-4 text-cyan-400" />
-							<span>Enterprise Technologies & Platforms:</span>
+							<span>Enterprise Technologies & Stack:</span>
 						</div>
 						<div className="flex flex-wrap items-center justify-center md:justify-end gap-2 text-xs">
 							{techStackList.map((tech, idx) => (
@@ -711,6 +822,85 @@ export default function AgencyHome() {
 								</div>
 							))}
 						</div>
+					</div>
+				</section>
+
+				{/* complete enterprise tech stack breakdown matching frontend and backend specification */}
+				<section className="space-y-10">
+					<div className="text-center max-w-3xl mx-auto space-y-3">
+						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+							<Cpu className="w-4 h-4 text-cyan-400" />
+							FULL-STACK ARCHITECTURE SPECIFICATION
+						</div>
+						<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+							Modern Frontend & Backend Tech Stack
+						</h2>
+						<p className="text-slate-300 text-xs md:text-sm max-w-2xl mx-auto">
+							Engineered with strict enterprise standards: Next.js 16, React 19, Bun, Express.js, TypeScript 5, and PostgreSQL Prisma ORM.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+						{enterpriseTechStack.map((stack, idx) => (
+							<div
+								key={idx}
+								className={`group relative rounded-3xl p-6 sm:p-8 bg-[#09152a]/90 backdrop-blur-xl border ${stack.color} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1`}
+							>
+								<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${stack.glow} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
+
+								<div className="relative z-10 space-y-5">
+									<div className="flex items-center justify-between">
+										<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
+											{stack.icon}
+										</div>
+										<span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
+											{stack.tag}
+										</span>
+									</div>
+
+									<div>
+										<h3 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
+											{stack.category}
+										</h3>
+										<p className="text-slate-300 text-xs leading-relaxed mt-1.5">
+											{stack.description}
+										</p>
+									</div>
+
+									{/* technologies table list */}
+									<div className="space-y-2 pt-2">
+										<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 block">
+											Core Frameworks & Tools
+										</span>
+										<div className="space-y-1.5">
+											{stack.technologies.map((item, i) => (
+												<div
+													key={i}
+													className="p-2 rounded-xl bg-slate-950/70 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors flex items-center justify-between gap-3 text-xs"
+												>
+													<span className="font-bold text-cyan-200 flex-shrink-0">
+														{item.name}
+													</span>
+													<span className="text-slate-400 text-[11px] text-right truncate">
+														{item.role}
+													</span>
+												</div>
+											))}
+										</div>
+									</div>
+								</div>
+
+								<div className="relative z-10 pt-5 mt-5 border-t border-cyan-500/20">
+									<Link
+										href="/portfolio"
+										className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
+									>
+										<span>View in Developer Portfolio</span>
+										<ArrowRight className="w-3.5 h-3.5" />
+									</Link>
+								</div>
+							</div>
+						))}
 					</div>
 				</section>
 
