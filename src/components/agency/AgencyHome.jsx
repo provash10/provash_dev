@@ -28,6 +28,9 @@ import {
 	ExternalLink,
 	HelpCircle,
 	Check,
+	Server,
+	Database,
+	Laptop,
 } from "lucide-react";
 import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
@@ -44,6 +47,140 @@ const techStackList = [
 	{ name: "Meta Ads", category: "Marketing" },
 	{ name: "Google Cloud", category: "Cloud" },
 	{ name: "bKash & Stripe", category: "Payments" },
+];
+
+// web development three primary options
+const webDevOptions = [
+	{
+		id: "frontend",
+		optionNumber: "Option 1",
+		title: "Frontend Development",
+		subtitle: "Client UI/UX & High-Speed Rendering",
+		badge: "Modern UI/UX",
+		icon: <Laptop className="w-6 h-6 text-cyan-400" />,
+		description:
+			"Modern, blazing-fast, and responsive user interfaces built with React 19, Next.js 15, and Tailwind CSS. We transform complex Figma designs into pixel-perfect, accessible client applications.",
+		techStack: ["React 19", "Next.js 15", "Tailwind CSS v4", "TypeScript", "Framer Motion", "Shadcn UI"],
+		deliverables: [
+			"Pixel-Perfect UI/UX from Figma or custom designs",
+			"Sub-second initial page load & SSR optimization",
+			"Interactive components, animations & micro-interactions",
+			"State management with TanStack Query & Zustand",
+			"Mobile-first responsive layouts across all screen sizes",
+			"Cross-browser testing & accessibility standards",
+		],
+		priceBDT: "৳15,000",
+		priceUSD: "$150",
+		gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
+		border: "border-cyan-500/30 hover:border-cyan-400",
+		glow: "shadow-[0_0_25px_rgba(6,182,212,0.2)]",
+		popular: false,
+	},
+	{
+		id: "backend",
+		optionNumber: "Option 2",
+		title: "Backend Development",
+		subtitle: "Secure APIs, Databases & Cloud Systems",
+		badge: "APIs & Databases",
+		icon: <Server className="w-6 h-6 text-blue-400" />,
+		description:
+			"Scalable, secure, and robust backend engineering with Node.js, Express, PostgreSQL, and Prisma ORM. Designed for high concurrency, strict type validation, and zero data loss.",
+		techStack: ["Node.js", "Express.js", "PostgreSQL", "Prisma ORM", "Redis", "JWT Auth", "Zod"],
+		deliverables: [
+			"Scalable RESTful & GraphQL modular API architecture",
+			"Secure JWT authentication, refresh tokens & RBAC",
+			"PostgreSQL schema modeling, migrations & indexing",
+			"Payment gateway integrations (bKash, Nagad, Stripe)",
+			"Centralized error handling, Zod validation & rate limiting",
+			"Caching with Redis & cloud database hosting setup",
+		],
+		priceBDT: "৳20,000",
+		priceUSD: "$200",
+		gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
+		border: "border-blue-500/30 hover:border-blue-400",
+		glow: "shadow-[0_0_25px_rgba(59,130,246,0.2)]",
+		popular: false,
+	},
+	{
+		id: "fullstack",
+		optionNumber: "Option 3",
+		title: "Full-Stack Development",
+		subtitle: "Turnkey Web Application & SaaS Engineering",
+		badge: "Most Popular / Turnkey",
+		icon: <Sparkles className="w-6 h-6 text-teal-300" />,
+		description:
+			"Complete end-to-end turnkey web applications combining our high-speed frontend with enterprise backend APIs. From ideation and database design to full production launch.",
+		techStack: ["Next.js 15 App Router", "React 19", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Tailwind"],
+		deliverables: [
+			"Turnkey Next.js 15 + PostgreSQL full-stack solution",
+			"Complete customer-facing UI + Admin management portal",
+			"End-to-end authentication, session management & RBAC",
+			"Automated payment checkout (bKash / Stripe) & invoicing",
+			"Automated CI/CD deployment on Vercel / Cloud VPS",
+			"One-month complimentary post-launch technical support",
+		],
+		priceBDT: "৳35,000",
+		priceUSD: "$350",
+		gradient: "from-teal-500/20 via-cyan-500/15 to-transparent",
+		border: "border-teal-400/50 hover:border-cyan-300",
+		glow: "shadow-[0_0_35px_rgba(20,184,166,0.3)]",
+		popular: true,
+	},
+];
+
+// complementary digital growth services
+const complementaryServices = [
+	{
+		id: "yt-auto",
+		title: "YouTube Channel Automation & Ops",
+		category: "CONTENT & AUDIENCE",
+		badge: "High Retention",
+		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
+		description:
+			"End-to-end channel creation, high-retention scripting, voiceover sync, cinematic 4K editing, and click-worthy thumbnail packaging.",
+		deliverables: [
+			"High-CPM Niche & Competitor Keyword Research",
+			"Engaging Viral Storyboarding & Hook Scriptwriting",
+			"Cinematic 4K Video Editing & Dynamic Sound Design",
+			"High-CTR Thumbnails & Metadata SEO Optimization",
+		],
+		gradient: "from-red-500/20 via-pink-600/10 to-transparent",
+		border: "border-red-500/30 hover:border-red-400",
+	},
+	{
+		id: "smm-growth",
+		title: "Social Media Marketing & Paid Ads",
+		category: "GROWTH MARKETING",
+		badge: "High ROI",
+		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
+		description:
+			"Targeted advertising funnels, conversion optimization, and brand scaling across Meta Ads, Google Ads, and LinkedIn.",
+		deliverables: [
+			"High-ROI Meta & Google Ad Campaign Strategy",
+			"Customer Journey & Multi-Step Sales Funnel Design",
+			"Audience Retargeting & Advanced Pixel Tracking",
+			"A/B Creative Testing & Ad Copy Optimization",
+		],
+		gradient: "from-emerald-500/20 via-teal-600/10 to-transparent",
+		border: "border-emerald-500/30 hover:border-emerald-400",
+	},
+	{
+		id: "tech-seo",
+		title: "Technical SEO & CRO Optimization",
+		category: "SEARCH & AUDITS",
+		badge: "Core Vitals",
+		icon: <Target className="w-6 h-6 text-purple-400" />,
+		description:
+			"Comprehensive digital audits, Google Core Web Vitals optimization, schema architecture, and conversion rate engineering.",
+		deliverables: [
+			"Google Core Web Vitals & Sub-Second Speed Optimization",
+			"Technical On-Page, Schema & Semantic Structure",
+			"Keyword Research & Search Intent Mapping",
+			"Conversion Rate Optimization Heatmap Audits",
+		],
+		gradient: "from-purple-500/20 via-indigo-600/10 to-transparent",
+		border: "border-purple-500/30 hover:border-purple-400",
+	},
 ];
 
 // markivo three core agency pillars
@@ -89,86 +226,6 @@ const agencyPillars = [
 		glowColor: "from-cyan-500/20 via-blue-500/10 to-transparent",
 		linkText: "Discover Web Engineering",
 		linkHref: "/#services",
-	},
-];
-
-// digital agency exclusive services catalog
-const exclusiveServices = [
-	{
-		id: "web-dev",
-		title: "Full-Stack Web Development",
-		category: "ENTERPRISE ENGINEERING",
-		badge: "Enterprise Grade",
-		icon: <Code2 className="w-6 h-6 text-cyan-400" />,
-		description:
-			"Production-grade, fast SSR web applications built with Next.js 15, React 19, TypeScript, and clean modular backend architecture.",
-		deliverables: [
-			"Modern Next.js 15 & React 19 SSR Architecture",
-			"Secure REST & GraphQL APIs with Node.js",
-			"PostgreSQL / MongoDB Database Design & Optimization",
-			"Mobile-First Responsive Layouts & Tailwind CSS",
-			"End-to-End Authentication & Role-Based Access",
-			"Automated CI/CD Deployment on Vercel / Cloud",
-		],
-		gradient: "from-cyan-500/20 via-blue-600/10 to-transparent",
-		border: "border-cyan-500/30 hover:border-cyan-400",
-	},
-	{
-		id: "yt-auto",
-		title: "YouTube Channel Automation & Ops",
-		category: "CONTENT & AUDIENCE",
-		badge: "High Retention",
-		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
-		description:
-			"End-to-end channel creation, high-retention scripting, voiceover sync, cinematic 4K editing, and click-worthy thumbnail packaging.",
-		deliverables: [
-			"High-CPM Niche & Competitor Keyword Research",
-			"Engaging Viral Storyboarding & Hook Scriptwriting",
-			"Cinematic 4K Video Editing & Dynamic Sound Design",
-			"High-CTR Thumbnails & Metadata SEO Optimization",
-			"Weekly Channel Analytics & Retention Tracking",
-			"Monetization & Brand Sponsorship Strategy",
-		],
-		gradient: "from-red-500/20 via-pink-600/10 to-transparent",
-		border: "border-red-500/30 hover:border-red-400",
-	},
-	{
-		id: "smm-growth",
-		title: "Social Media Marketing & Paid Ads",
-		category: "GROWTH MARKETING",
-		badge: "High ROI",
-		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
-		description:
-			"Targeted advertising funnels, conversion optimization, and brand scaling across Meta Ads, Google Ads, and LinkedIn.",
-		deliverables: [
-			"High-ROI Meta & Google Ad Campaign Strategy",
-			"Customer Journey & Multi-Step Sales Funnel Design",
-			"Audience Retargeting & Advanced Pixel Tracking",
-			"A/B Creative Testing & Ad Copy Optimization",
-			"In-Depth Weekly Performance Reports & ROAS Audits",
-			"Omni-Channel Lead Generation & Email Nurturing",
-		],
-		gradient: "from-emerald-500/20 via-teal-600/10 to-transparent",
-		border: "border-emerald-500/30 hover:border-emerald-400",
-	},
-	{
-		id: "tech-seo",
-		title: "Technical SEO & CRO Optimization",
-		category: "SEARCH & AUDITS",
-		badge: "Core Vitals",
-		icon: <Target className="w-6 h-6 text-purple-400" />,
-		description:
-			"Comprehensive digital audits, Google Core Web Vitals optimization, schema architecture, and conversion rate engineering.",
-		deliverables: [
-			"Google Core Web Vitals & Sub-Second Speed Optimization",
-			"Technical On-Page, Schema & Semantic Structure",
-			"Keyword Research & Search Intent Mapping",
-			"Conversion Rate Optimization (CRO) Heatmap Audits",
-			"Search Console & Google Analytics 4 Setup",
-			"One-on-One Technical Consultation & Scaling Roadmap",
-		],
-		gradient: "from-purple-500/20 via-indigo-600/10 to-transparent",
-		border: "border-purple-500/30 hover:border-purple-400",
 	},
 ];
 
@@ -234,16 +291,16 @@ const clientTestimonials = [
 // markivo faq items
 const faqItems = [
 	{
-		q: "What services does your digital agency provide?",
-		a: "We offer end-to-end digital engineering and growth services: modern Full-Stack Web Development (Next.js, React, Node.js, PostgreSQL), YouTube Channel Automation & Video Ops, Social Media Marketing & High-ROI Paid Ads, and Technical SEO & Conversion Rate Optimization.",
+		q: "What options do you offer for Web Development?",
+		a: "We offer three specialized options: 1. Frontend Development (React 19, Next.js 15, Tailwind UI/UX), 2. Backend Development (Node.js, Express, PostgreSQL, Prisma APIs), and 3. Full-Stack Development (Complete turnkey application with client UI, admin dashboard, auth, and online payments).",
 	},
 	{
-		q: "How long does it take to complete a website project?",
-		a: "Standard MVP websites and landing pages typically take 5 to 7 days. Full-featured SaaS or multi-page custom applications with database and payment integrations generally take 2 to 4 weeks depending on feature requirements.",
+		q: "How long does it take to complete a web project?",
+		a: "Standard MVP frontends or API microservices take 5 to 7 days. Full-featured SaaS or multi-page custom applications with database and payment integrations generally take 2 to 4 weeks depending on feature requirements.",
 	},
 	{
 		q: "Do you provide ongoing support after project launch?",
-		a: "Yes! Every project includes complimentary post-launch support and maintenance (from 1 month up to ongoing retainer support). We handle updates, security patches, performance monitoring, and continuous scaling.",
+		a: "Yes! Every project includes complimentary post-launch support and maintenance. We handle updates, security patches, performance monitoring, and continuous scaling.",
 	},
 	{
 		q: "What payment methods do you accept?",
@@ -255,6 +312,9 @@ const faqItems = [
 export default function AgencyHome() {
 	// console.log("rendering markivo styled agency home page")
 
+	// web development tab filter state
+	const [activeWebTab, setActiveWebTab] = useState("all");
+
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
 
@@ -262,16 +322,22 @@ export default function AgencyHome() {
 		setActiveFaq(activeFaq === index ? null : index);
 	};
 
+	// filter web dev options if tab is active
+	const filteredWebDev =
+		activeWebTab === "all"
+			? webDevOptions
+			: webDevOptions.filter((opt) => opt.id === activeWebTab);
+
 	return (
 		<div className="w-full space-y-16 md:space-y-24 bg-[#050b17] text-white" suppressHydrationWarning>
-			{/* 1. full width hero banner flush with navbar (kept untouched as requested) */}
+			{/* hero banner flush with navbar untouched as requested */}
 			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-14 md:pt-14 md:pb-20 px-4 sm:px-6 lg:px-8 shadow-2xl">
 				<div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
 				<div className="relative z-10 max-w-7xl mx-auto">
 					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-						{/* left column: headline, description & cta */}
+						{/* left column headline description and cta */}
 						<div className="lg:col-span-7 space-y-6 text-center lg:text-left">
 							<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
 								<Sparkles className="w-4 h-4 text-cyan-400" />
@@ -335,7 +401,7 @@ export default function AgencyHome() {
 							</div>
 						</div>
 
-						{/* right column: hero illustration image */}
+						{/* right column hero illustration image */}
 						<div className="lg:col-span-5 flex justify-center relative">
 							<div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-purple-500/10 rounded-full blur-3xl scale-95 pointer-events-none" />
 							<div className="relative z-10 w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
@@ -350,13 +416,13 @@ export default function AgencyHome() {
 				</div>
 			</section>
 
-			{/* 2. markivo trusted companies & technology marquee strip */}
+			{/* trusted companies marquee strip right below banner */}
 			<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="rounded-2xl bg-[#09152a]/80 backdrop-blur-md border border-cyan-500/25 p-5 md:p-6 shadow-[0_4px_30px_rgba(6,182,212,0.12)]">
 					<div className="flex flex-col md:flex-row items-center justify-between gap-4">
 						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs uppercase tracking-wider flex-shrink-0">
 							<Sparkles className="w-4 h-4 text-cyan-400" />
-							<span>Trusted by 100+ Companies & Creators:</span>
+							<span>Enterprise Technologies & Platforms:</span>
 						</div>
 						<div className="flex flex-wrap items-center justify-center md:justify-end gap-2 text-xs">
 							{techStackList.map((tech, idx) => (
@@ -373,9 +439,282 @@ export default function AgencyHome() {
 				</div>
 			</section>
 
-			{/* main content container with max-w-7xl */}
+			{/* main content container with max-w */}
 			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24" suppressHydrationWarning>
-				{/* 3. markivo 3 core pillars of agency excellence */}
+				{/* services section positioned right below banner as requested */}
+				<section id="services" className="space-y-12 scroll-mt-24">
+					{/* section header */}
+					<div className="text-center max-w-3xl mx-auto space-y-3">
+						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+							<Code2 className="w-4 h-4 text-cyan-400" />
+							WHAT WE DO • DIGITAL SERVICES
+						</div>
+						<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+							Our Exclusive Services
+						</h2>
+						<p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl mx-auto">
+							From modular frontend and backend engineering to full turnkey SaaS platforms and media automation, select the exact service tailored to your goals.
+						</p>
+					</div>
+
+					{/* web development spotlight header with three options */}
+					<div className="space-y-6">
+						<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
+							<div>
+								<div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+									<Code2 className="w-4 h-4" />
+									<span>CORE ARCHITECTURE</span>
+								</div>
+								<h3 className="text-xl sm:text-2xl font-black text-white mt-1">
+									Web Development Solutions
+								</h3>
+								<p className="text-slate-400 text-xs mt-1">
+									Choose from three specialized web development models based on your project scope.
+								</p>
+							</div>
+
+							{/* interactive three options pill switcher */}
+							<div className="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-slate-950/80 border border-cyan-500/30 backdrop-blur-md">
+								<button
+									type="button"
+									onClick={() => setActiveWebTab("all")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeWebTab === "all"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									All 3 Options
+								</button>
+								<button
+									type="button"
+									onClick={() => setActiveWebTab("frontend")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeWebTab === "frontend"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									1. Frontend
+								</button>
+								<button
+									type="button"
+									onClick={() => setActiveWebTab("backend")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeWebTab === "backend"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									2. Backend
+								</button>
+								<button
+									type="button"
+									onClick={() => setActiveWebTab("fullstack")}
+									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+										activeWebTab === "fullstack"
+											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+											: "text-slate-400 hover:text-white"
+									}`}
+								>
+									3. Fullstack
+								</button>
+							</div>
+						</div>
+
+						{/* web development three cards grid */}
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+							{filteredWebDev.map((opt) => (
+								<div
+									key={opt.id}
+									className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${opt.border} ${opt.glow} transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
+								>
+									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${opt.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
+
+									<div className="relative z-10 space-y-4">
+										<div className="flex items-center justify-between">
+											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
+												{opt.icon}
+											</div>
+											<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+												{opt.badge}
+											</span>
+										</div>
+
+										<div>
+											<span className="text-[10px] text-cyan-400 font-extrabold uppercase tracking-widest">
+												{opt.optionNumber}
+											</span>
+											<h4 className="text-xl font-bold text-white mt-0.5 group-hover:text-cyan-200 transition-colors">
+												{opt.title}
+											</h4>
+											<p className="text-[11px] text-slate-400 font-medium">
+												{opt.subtitle}
+											</p>
+											<p className="text-slate-300 text-xs leading-relaxed mt-2.5">
+												{opt.description}
+											</p>
+										</div>
+
+										{/* tech stack pills */}
+										<div className="space-y-1.5 pt-2">
+											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+												Tech Stack
+											</span>
+											<div className="flex flex-wrap gap-1.5">
+												{opt.techStack.map((tech, i) => (
+													<span
+														key={i}
+														className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-950 border border-cyan-500/20 text-slate-300 font-medium"
+													>
+														{tech}
+													</span>
+												))}
+											</div>
+										</div>
+
+										{/* deliverables list */}
+										<div className="space-y-1.5 pt-2">
+											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+												<CheckCheck className="w-3.5 h-3.5 text-cyan-400" />
+												Key Deliverables
+											</span>
+											<div className="space-y-1.5">
+												{opt.deliverables.map((item, idx) => (
+													<div
+														key={idx}
+														className="flex items-start gap-2 text-xs text-slate-300"
+													>
+														<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+														<span>{item}</span>
+													</div>
+												))}
+											</div>
+										</div>
+									</div>
+
+									{/* card footer with price and action button */}
+									<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 space-y-3">
+										<div className="flex items-baseline justify-between">
+											<div>
+												<span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+													Starting Price
+												</span>
+												<div className="flex items-baseline gap-1.5">
+													<span className="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+														{opt.priceBDT}
+													</span>
+													<span className="text-slate-400 text-xs font-semibold">
+														/ {opt.priceUSD}
+													</span>
+												</div>
+											</div>
+
+											<span className="text-[10px] px-2.5 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 font-semibold">
+												Milestone Assured
+											</span>
+										</div>
+
+										<Link
+											href="/#consultation"
+											className={`w-full py-2.5 rounded-full font-bold text-xs flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+												opt.popular
+													? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
+													: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
+											}`}
+										>
+											<span>Select {opt.title}</span>
+											<ArrowRight className="w-3.5 h-3.5" />
+										</Link>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+
+					{/* complementary growth services youtube smm seo */}
+					<div className="space-y-6 pt-6">
+						<div className="pb-2 border-b border-cyan-500/20">
+							<div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+								<Sparkles className="w-4 h-4" />
+								<span>AUDIENCE & REVENUE ACCELERATION</span>
+							</div>
+							<h3 className="text-xl sm:text-2xl font-black text-white mt-1">
+								Media Automation & Growth Services
+							</h3>
+						</div>
+
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+							{complementaryServices.map((service) => (
+								<div
+									key={service.id}
+									className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${service.border} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
+								>
+									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${service.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
+
+									<div className="relative z-10 space-y-4">
+										<div className="flex items-center justify-between">
+											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
+												{service.icon}
+											</div>
+											<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
+												{service.badge}
+											</span>
+										</div>
+
+										<div>
+											<span className="text-[10px] text-cyan-400/80 uppercase tracking-widest font-bold">
+												{service.category}
+											</span>
+											<h4 className="text-lg sm:text-xl font-bold text-white mt-0.5 group-hover:text-cyan-200 transition-colors">
+												{service.title}
+											</h4>
+											<p className="text-slate-300 text-xs leading-relaxed mt-2.5">
+												{service.description}
+											</p>
+										</div>
+
+										<div className="space-y-1.5 pt-2">
+											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+												Deliverables
+											</span>
+											<div className="space-y-1.5">
+												{service.deliverables.map((item, idx) => (
+													<div
+														key={idx}
+														className="flex items-start gap-2 text-xs text-slate-300"
+													>
+														<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+														<span>{item}</span>
+													</div>
+												))}
+											</div>
+										</div>
+									</div>
+
+									<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 flex items-center justify-between">
+										<Link
+											href="/#consultation"
+											className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
+										>
+											<span>Consultation & Roadmap</span>
+											<ArrowRight className="w-3.5 h-3.5" />
+										</Link>
+
+										<Link
+											href="/#pricing"
+											className="text-[11px] px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 hover:text-white transition-colors"
+										>
+											View Plans
+										</Link>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				{/* markivo three core agency pillars */}
 				<section className="space-y-6">
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 						{agencyPillars.map((pillar) => (
@@ -427,96 +766,7 @@ export default function AgencyHome() {
 					</div>
 				</section>
 
-				{/* 4. markivo our exclusive services showcase */}
-				<section id="services" className="space-y-10 scroll-mt-24">
-					<div className="text-center max-w-3xl mx-auto space-y-3">
-						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
-							<Sparkles className="w-4 h-4 text-cyan-400" />
-							WHAT WE DO
-						</div>
-						<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-							Our Exclusive Services
-						</h2>
-						<p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl mx-auto">
-							We combine high-performance software engineering with viral content operations and high-ROI advertising to build market leaders.
-						</p>
-					</div>
-
-					{/* markivo 4 service cards grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-						{exclusiveServices.map((service) => (
-							<div
-								key={service.id}
-								className={`group relative rounded-3xl p-6 md:p-8 bg-[#09152a]/90 backdrop-blur-xl border ${service.border} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_40px_rgba(6,182,212,0.3)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1`}
-							>
-								<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${service.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
-
-								<div className="relative z-10 space-y-5">
-									<div className="flex items-center justify-between">
-										<div className="p-3.5 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
-											{service.icon}
-										</div>
-										<span className="text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
-											{service.badge}
-										</span>
-									</div>
-
-									<div>
-										<span className="text-[10px] text-cyan-400/80 uppercase tracking-widest font-bold">
-											{service.category}
-										</span>
-										<h3 className="text-xl md:text-2xl font-bold text-white mt-1 group-hover:text-cyan-200 transition-colors">
-											{service.title}
-										</h3>
-										<p className="text-slate-300 text-xs md:text-sm leading-relaxed mt-2.5">
-											{service.description}
-										</p>
-									</div>
-
-									{/* deliverables list */}
-									<div className="space-y-2 pt-2">
-										<span className="text-[11px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
-											<CheckCheck className="w-3.5 h-3.5 text-cyan-400" />
-											Key Deliverables & Specifications
-										</span>
-										<div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-											{service.deliverables.map((item, idx) => (
-												<div
-													key={idx}
-													className="flex items-start gap-2 text-xs text-slate-300"
-												>
-													<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
-													<span>{item}</span>
-												</div>
-											))}
-										</div>
-									</div>
-								</div>
-
-								{/* card footer cta */}
-								<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 flex flex-wrap items-center justify-between gap-3">
-									<Link
-										href="/#pricing"
-										className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-xs border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300"
-									>
-										<span>Select Service Plan</span>
-										<ArrowRight className="w-3.5 h-3.5" />
-									</Link>
-
-									<Link
-										href="/#consultation"
-										className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-cyan-300 transition-colors"
-									>
-										<span>Custom Proposal</span>
-										<ArrowRight className="w-3.5 h-3.5" />
-									</Link>
-								</div>
-							</div>
-						))}
-					</div>
-				</section>
-
-				{/* 5. markivo key stats and impact numbers counter band */}
+				{/* markivo key stats and impact numbers counter band */}
 				<section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#071329] via-[#091f42] to-[#071329] border border-cyan-500/40 p-8 md:p-12 shadow-[0_0_40px_rgba(6,182,212,0.25)]">
 					<div className="absolute -left-10 -top-10 w-80 h-80 bg-teal-600/15 rounded-full blur-3xl pointer-events-none" />
 					<div className="absolute -right-10 -bottom-10 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -564,10 +814,10 @@ export default function AgencyHome() {
 					</div>
 				</section>
 
-				{/* 6. markivo we are a digital agency with added value for your business */}
+				{/* markivo we are a digital agency with added value for your business */}
 				<section className="space-y-8">
 					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-						{/* left: compelling agency story & value pillars */}
+						{/* left agency story and value pillars */}
 						<div className="lg:col-span-7 space-y-6">
 							<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_12px_rgba(6,182,212,0.25)]">
 								<Award className="w-4 h-4 text-cyan-400" />
@@ -582,7 +832,7 @@ export default function AgencyHome() {
 								Unlike traditional agencies that outsource your work to unknown third parties or burden you with slow communication, we unite high-speed full-stack engineering with data-backed media strategies under direct founder supervision.
 							</p>
 
-							{/* markivo 3 value feature boxes */}
+							{/* markivo three value feature boxes */}
 							<div className="space-y-4 pt-2">
 								<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-4 sm:p-5 flex items-start gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
 									<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">
@@ -633,7 +883,7 @@ export default function AgencyHome() {
 							</div>
 						</div>
 
-						{/* right: interactive high-impact agency credentials card */}
+						{/* right interactive agency credentials card */}
 						<div className="lg:col-span-5 relative">
 							<div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-teal-500/15 rounded-3xl blur-3xl scale-95 pointer-events-none" />
 
@@ -703,7 +953,7 @@ export default function AgencyHome() {
 					</div>
 				</section>
 
-				{/* 7. markivo explore our projects showcase portfolio grid */}
+				{/* markivo explore our projects showcase portfolio grid */}
 				<section className="space-y-10">
 					<div className="text-center max-w-3xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
@@ -794,10 +1044,10 @@ export default function AgencyHome() {
 					</div>
 				</section>
 
-				{/* 8. markivo take a look of our pricing and select your choice */}
+				{/* pricing plans and instant checkout section */}
 				<PricingAndPayment />
 
-				{/* 9. markivo what our client say testimonials */}
+				{/* markivo what our client say testimonials */}
 				<section className="space-y-10">
 					<div className="text-center max-w-2xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
@@ -818,7 +1068,7 @@ export default function AgencyHome() {
 								key={idx}
 								className="group rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400 p-6 md:p-8 flex flex-col justify-between space-y-5 shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 hover:-translate-y-1"
 							>
-								{/* 5 star rating */}
+								{/* rating stars */}
 								<div className="flex items-center gap-1 text-amber-400">
 									{[...Array(item.rating)].map((_, i) => (
 										<Star key={i} className="w-4 h-4 fill-amber-400" />
@@ -845,7 +1095,7 @@ export default function AgencyHome() {
 					</div>
 				</section>
 
-				{/* 10. markivo frequently asked questions accordion */}
+				{/* markivo frequently asked questions accordion */}
 				<section className="space-y-10 max-w-4xl mx-auto">
 					<div className="text-center space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
@@ -901,7 +1151,7 @@ export default function AgencyHome() {
 					</div>
 				</section>
 
-				{/* 11. markivo get in touch project consultation */}
+				{/* markivo get in touch project consultation */}
 				<section id="consultation" className="space-y-8 scroll-mt-24">
 					<div className="text-center max-w-3xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
@@ -917,7 +1167,7 @@ export default function AgencyHome() {
 					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-						{/* left: direct contact cards */}
+						{/* left direct contact cards */}
 						<div className="lg:col-span-5 space-y-4">
 							<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-5 flex items-center gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
 								<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">
@@ -972,7 +1222,7 @@ export default function AgencyHome() {
 							</div>
 						</div>
 
-						{/* right: consultation form */}
+						{/* right consultation form */}
 						<div className="lg:col-span-7">
 							<div className="rounded-3xl bg-gradient-to-br from-[#09152a] via-[#0d2247] to-[#071329] border-2 border-cyan-500/40 p-6 md:p-8 shadow-[0_0_35px_rgba(6,182,212,0.25)] space-y-6">
 								<div className="space-y-1">
@@ -1023,7 +1273,9 @@ export default function AgencyHome() {
 												name="service"
 												className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 											>
-												<option value="Web Development" className="bg-slate-900">Full-Stack Web Development</option>
+												<option value="1. Frontend Web Development" className="bg-slate-900">1. Frontend Web Development (React / Next.js)</option>
+												<option value="2. Backend Development" className="bg-slate-900">2. Backend Development (Node.js / PostgreSQL)</option>
+												<option value="3. Full-Stack Development" className="bg-slate-900">3. Full-Stack Web Development (Turnkey App)</option>
 												<option value="YouTube Automation" className="bg-slate-900">YouTube Channel Automation</option>
 												<option value="Social Media Marketing" className="bg-slate-900">Social Media Marketing & Ads</option>
 												<option value="Technical SEO & Consulting" className="bg-slate-900">Technical SEO & CRO</option>
@@ -1069,7 +1321,7 @@ export default function AgencyHome() {
 				</section>
 			</div>
 
-			{/* 12. modern agency footer */}
+			{/* modern agency footer */}
 			<Footer />
 		</div>
 	);
