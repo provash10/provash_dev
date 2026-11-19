@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, LayoutDashboard } from "lucide-react";
 
 // navigation login and profile action button
 const Login = () => {
@@ -29,8 +29,15 @@ const Login = () => {
 
 	if (user) {
 		return (
-			<div className="flex items-center gap-3">
-				<div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-cyan-500/30 text-xs">
+			<div className="flex items-center gap-2 md:gap-3">
+				<Link
+					href="/dashboard"
+					className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 hover:text-white border border-cyan-500/40 text-xs font-bold transition-all shadow-[0_0_12px_rgba(6,182,212,0.25)]"
+				>
+					<LayoutDashboard className="w-3.5 h-3.5" />
+					<span>Dashboard</span>
+				</Link>
+				<div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-cyan-500/30 text-xs">
 					<User className="w-3.5 h-3.5 text-cyan-400" />
 					<span className="font-semibold text-white max-w-[100px] truncate">
 						{user.name}

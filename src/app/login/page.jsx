@@ -46,7 +46,11 @@ export default function LoginPage() {
 				);
 			}
 
-			router.push("/");
+			if (data.data?.user?.role === "SUPER_ADMIN" || data.data?.user?.role === "ADMIN" || data.data?.user?.role === "PROJECT_MANAGER") {
+				router.push("/dashboard");
+			} else {
+				router.push("/");
+			}
 			router.refresh();
 		} catch (_err) {
 			// console.log("login connection notice", _err)
