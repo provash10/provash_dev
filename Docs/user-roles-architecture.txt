@@ -1,0 +1,238 @@
+================================================================================
+          DIGITAL AGENCY & SAAS PLATFORM: ROLE-BASED ACCESS CONTROL (RBAC)
+================================================================================
+Project: Provash Digital Agency & Developer Ecosystem
+Hierarchy Standard: Super Admin > Admin > Project Manager > User (Client)
+Reference Architecture: Programming Hero L2B7 Modular Enterprise Standard
+Date: 2026-11-19
+Document Purpose: Definitive Role Specifications, Permissions, and Workflows
+================================================================================
+
+--------------------------------------------------------------------------------
+1. EXECUTIVE SUMMARY & ROLE HIERARCHY
+--------------------------------------------------------------------------------
+The Provash Agency ecosystem operates on a 4-tier Role-Based Access Control (RBAC) 
+architecture designed to ensure clean separation of concerns, high security, 
+efficient client sprint delivery, and zero unauthorized data access:
+
+   [LEVEL 1: SUPER ADMIN]  ──> Supreme Authority, Owner, Full Financial & System Control
+          │
+   [LEVEL 2: ADMIN]        ──> Agency Operations Head, Service/Portfolio CRUD, Staff Management
+          │
+   [LEVEL 3: PROJECT_MANAGER]──> Sprint Execution, Client Delivery, Revisions, Software Deployment
+          │
+   [LEVEL 4: USER / CLIENT] ──> End-Consumer, Service/SaaS Buyer, Consultation Applicant
+
+
+================================================================================
+2. COMPREHENSIVE ROLE PROFILES & RESPONSIBILITIES
+================================================================================
+
+--------------------------------------------------------------------------------
+ROLE 1: SUPER_ADMIN (Platform Owner / Founder — Provash Sharma)
+--------------------------------------------------------------------------------
+A. Who They Are:
+   - The platform founder, lead engineer, and legal business owner.
+   - Initialized via database seeds; cannot self-register from public endpoints.
+   - Only a Super Admin can create another Super Admin.
+
+B. Core Responsibilities & Powers:
+   1. User & Admin Management:
+      - Create, invite, promote, block, unblock, and permanently delete Admins.
+      - Create, block, unblock, or manage other Super Admins.
+      - Full access to audit trails, login session logs, and security anomaly logs.
+   2. Financial & Payment Control:
+      - Complete access to all payment gateway configurations (bKash, Nagad, Stripe, 
+        SSLCommerz, Bank Transfers).
+      - View gross revenue, net margins, platform transaction ledgers, and execute refunds.
+      - Authority to adjust payment thresholds and corporate discount vouchers.
+   3. Proprietary Software Suite & SaaS Architecture:
+      - Absolute control over the 6 SaaS products (DevFlow ERP, TubePulse AI, 
+        SocialBoost Hub, RestoPos Cloud, ShopNest Commerce, MedCare Plus).
+      - Authority to update production Vercel demo URLs, GitHub repositories, and API webhooks.
+   4. Infrastructure & Server Environment:
+      - Access to environment variables (.env), database migration commands, and cloud storage.
+
+C. Restrictions:
+   - None within the system boundary. Cannot be blocked or deleted by any Admin, 
+     Project Manager, or regular User.
+
+
+--------------------------------------------------------------------------------
+ROLE 2: ADMIN (Agency Operations Head / Studio Manager)
+--------------------------------------------------------------------------------
+A. Who They Are:
+   - The operational head of the digital agency, hired or appointed by the Super Admin.
+   - Created through admin invitation/onboarding; cannot self-register from the public site.
+
+B. Core Responsibilities & Powers:
+   1. Inquiries & Lead Processing:
+      - Review and triage incoming client consultation requests from homepage forms.
+      - Update inquiry lifecycle: PENDING -> CONTACTED -> IN_PROGRESS -> RESOLVED / CLOSED.
+      - Add internal administrative notes to client lead profiles.
+   2. Service & Portfolio Catalogue CRUD:
+      - Publish, edit, reorder, or archive agency services (Web Dev, YouTube Automation, SMM).
+      - Add new case studies and verified projects to the Portfolio Showcase.
+      - Approve and publish client ratings, video reviews, and testimonials.
+   3. Team & User Operations:
+      - Onboard and manage Project Managers (assign roles, monitor active sprints).
+      - View client directory, monitor client account statuses, and block abusive users.
+      - Create other Admins when delegated by Super Admin.
+   4. Client Invoicing:
+      - Generate official PDF project invoices, milestone billing links, and verify bank receipts.
+
+C. Restrictions & Boundaries:
+   - CANNOT create, block, edit, or delete any Super Admin.
+   - CANNOT modify core database schemas, secret API keys, or root environment configurations.
+   - CANNOT execute financial account withdrawals or override core gateway accounts without Super Admin approval.
+
+
+--------------------------------------------------------------------------------
+ROLE 3: PROJECT_MANAGER (Sprint Executor / Technical Coordinator / Client Lead)
+--------------------------------------------------------------------------------
+A. Who They Are:
+   - The direct bridge between agency leadership and the client.
+   - Leads project sprints, oversees code/content deliverables, and manages client satisfaction.
+   - Created and assigned by Super Admin or Admin; cannot self-register.
+
+B. Core Responsibilities & Powers:
+   1. Client Sprint & Milestone Tracking:
+      - Oversee the day-to-day development of client orders (e.g., Next.js web application, 
+        YouTube channel automation setup, SMM campaigns).
+      - Update active milestone progress on the Client Portal (e.g., "Architecture Setup", 
+        "UI Implementation", "API Integration", "Staging QA", "Ready for Launch").
+   2. Client Communication & Revision Management:
+      - Directly interact with the client via the in-app messaging system or ticket board.
+      - Collect client feedback, document scope adjustments, and ensure on-time milestone delivery.
+      - Manage revision cycles according to the client's purchased plan (Starter, Growth, Enterprise).
+   3. Software Setup & Production Deployment:
+      - Assist clients who purchase turnkey SaaS products (e.g., deploying DevFlow ERP or 
+        ShopNest Commerce from Vercel staging to the client's custom domain).
+      - Deliver onboarding walkthroughs, documentation, and handover credentials to the client.
+   4. Technical QA & Lead Verification:
+      - Perform initial scope feasibility audits on complex inbound technical inquiries.
+      - Review client assets (branding files, API credentials, domain access) before sprint launch.
+
+C. Restrictions & Boundaries:
+   - CANNOT change service catalogue prices, tier packages, or company-wide rates.
+   - CANNOT view aggregate agency revenues, financial balances, or other PMs' private client accounts.
+   - CANNOT delete users, create admins, or alter platform-wide security settings.
+
+
+--------------------------------------------------------------------------------
+ROLE 4: USER / CLIENT (Customer, Startup Founder, Creator, Business Client)
+--------------------------------------------------------------------------------
+A. Who They Are:
+   - The end-consumer, client, or startup seeking web engineering, YouTube automation, 
+     social media marketing, or turnkey software licenses.
+   - Can freely self-register via Email/Password or one-click Google OAuth.
+
+B. Core Responsibilities & Powers:
+   1. Service Discovery & Interactive Demos:
+      - Browse full agency solutions: Modular Frontend, Modular Backend, and Turnkey Fullstack.
+      - Test live interactive software demos on Vercel across all 6 proprietary SaaS products.
+   2. Quotes & Consultation Applications:
+      - Submit customized project proposals with budget ranges, tech preferences, and launch targets.
+   3. Instant Checkout & Online Payments:
+      - Purchase agency plans (Starter Launchpad, Growth Business, Enterprise Elite) or software.
+      - Pay securely via bKash, Nagad, Visa, Mastercard, Amex, or International Stripe.
+   4. Authenticated Client Portal Experience:
+      - Real-time sprint progress dashboard showing current milestone, completion percentage, and ETA.
+      - Download official tax invoices, digital payment receipts, and contract deliverables.
+      - Submit revision tickets and communicate directly with their assigned Project Manager.
+
+C. Restrictions & Boundaries:
+   - Zero access to internal admin endpoints, studio management screens, or other clients' projects.
+   - Can only read and update their own personal profile, purchased services, and private invoices.
+
+
+================================================================================
+3. PERMISSIONS MATRIX (CRUD & SYSTEM ACTIONS)
+================================================================================
+
+Action / Resource                          USER     PROJECT_MGR    ADMIN    SUPER_ADMIN
+---------------------------------------------------------------------------------------
+Self-Registration (Email / Google)         [YES]       [NO]        [NO]        [NO]
+Account Login (Credential)                 [YES]       [YES]       [YES]       [YES]
+Browse Services & Software Demos           [YES]       [YES]       [YES]       [YES]
+Submit Consultation Quote / Inquiry        [YES]       [NO]        [NO]        [NO]
+Initiate Payment / Checkout                [YES]       [NO]        [NO]        [NO]
+View Own Orders & Invoices                 [YES]       [NO]        [NO]        [NO]
+Access Assigned Project Sprint Board       [YES]*      [YES]       [YES]       [YES]
+Update Sprint Progress & Milestones        [NO]        [YES]       [YES]       [YES]
+Communicate in Client Ticket Thread        [YES]*      [YES]       [YES]       [YES]
+Deploy Software to Client Domain           [NO]        [YES]       [YES]       [YES]
+Update Inquiry Status (Pending/Resolved)   [NO]        [NO]        [YES]       [YES]
+Create / Edit / Delete Services            [NO]        [NO]        [YES]       [YES]
+Create / Edit / Delete Portfolio Items     [NO]        [NO]        [YES]       [YES]
+Create / Edit / Delete Software Products   [NO]        [NO]        [YES]       [YES]
+Approve Client Testimonials                [NO]        [NO]        [YES]       [YES]
+Create New Project Manager                 [NO]        [NO]        [YES]       [YES]
+Block / Unblock Regular User               [NO]        [NO]        [YES]       [YES]
+Create New Admin                           [NO]        [NO]        [YES]       [YES]
+Block / Unblock Admin                      [NO]        [NO]        [NO]        [YES]
+Create New Super Admin                     [NO]        [NO]        [NO]        [YES]
+Block / Delete Super Admin                 [NO]        [NO]        [NO]        [YES]
+View Platform Gross Revenue & Ledger       [NO]        [NO]        [LIMITED]   [YES]
+Configure Payment Gateway API Keys         [NO]        [NO]        [NO]        [YES]
+Database Schema / Server Envs              [NO]        [NO]        [NO]        [YES]
+
+* Note: Users only see their own assigned project and ticket threads.
+
+
+================================================================================
+4. END-TO-END COLLABORATION WORKFLOW SCENARIO
+================================================================================
+Example: Client orders a Custom Web Application or DevFlow ERP software.
+
+Step 1: USER / CLIENT
+   - Browses the website, explores the 6 software demos on Vercel, and selects an Enterprise Plan.
+   - Fills out the consultation form or completes instant payment via bKash/Stripe.
+   - Receives an automated booking confirmation and access to their Client Portal.
+
+Step 2: ADMIN
+   - Receives notification of new order/inquiry in the Admin Management Panel.
+   - Verifies payment status and scopes out requirements.
+   - Assigns a dedicated PROJECT_MANAGER to lead the sprint and links them to the project.
+
+Step 3: PROJECT_MANAGER
+   - Welcomes the client via the Client Portal board and gathers specific brand guidelines/APIs.
+   - Configures the development milestones (e.g., Milestone 1: Wireframe, Milestone 2: Backend).
+   - Updates milestone progress in real-time, conducts sprint demos, and tests deployment on Vercel.
+   - Handles client revision requests and delivers the final production app to the client's domain.
+
+Step 4: SUPER_ADMIN
+   - Monitors overall agency performance, on-time delivery benchmarks, and total revenues.
+   - Oversees high-level quality standards and steps in for strategic enterprise contracts.
+
+================================================================================
+5. DATA MODELS AND ENUMS INTEGRATION (FOR PRISMA & JWT AUTH)
+================================================================================
+
+Enum Definition:
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  PROJECT_MANAGER
+  USER
+}
+
+Token Payload (JWT Access Token):
+{
+  "userId": "uuid-v4",
+  "email": "user@example.com",
+  "role": "PROJECT_MANAGER",
+  "iat": 1700000000,
+  "exp": 1700086400
+}
+
+Middleware Guard Route Standard (checkAuth utility):
+- Public Routes: checkAuth not required.
+- User Protected Routes: checkAuth("USER", "PROJECT_MANAGER", "ADMIN", "SUPER_ADMIN")
+- Project Manager Routes: checkAuth("PROJECT_MANAGER", "ADMIN", "SUPER_ADMIN")
+- Admin Management Routes: checkAuth("ADMIN", "SUPER_ADMIN")
+- Super Admin Only Routes: checkAuth("SUPER_ADMIN")
+
+================================================================================
+End of Specification — Approved for Production Implementation
+================================================================================
