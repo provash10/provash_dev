@@ -481,6 +481,65 @@ export default function AgencyHome() {
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
 
+	// consultation inquiry form state
+	const [inquiryForm, setInquiryForm] = useState({
+		name: "",
+		email: "",
+		service: "Frontend Web Development (React / Next.js)",
+		budget: "",
+		message: "",
+	});
+	const [isSubmittingInquiry, setIsSubmittingInquiry] = useState(false);
+	const [inquiryStatus, setInquiryStatus] = useState({ type: "", text: "" });
+
+	// handle consultation inquiry submit
+	const handleInquirySubmit = async (e) => {
+		e.preventDefault();
+		setIsSubmittingInquiry(true);
+		setInquiryStatus({ type: "", text: "" });
+
+		try {
+			const res = await fetch("http://localhost:5000/api/v1/inquiries", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					name: inquiryForm.name,
+					email: inquiryForm.email,
+					budget: inquiryForm.budget || "Not specified",
+					message: `[Service: ${inquiryForm.service}] ${inquiryForm.message}`,
+				}),
+			});
+
+			const data = await res.json();
+			if (data.success) {
+				setInquiryStatus({
+					type: "success",
+					text: "Your consultation request has been submitted successfully! We will get back to you shortly.",
+				});
+				setInquiryForm({
+					name: "",
+					email: "",
+					service: "Frontend Web Development (React / Next.js)",
+					budget: "",
+					message: "",
+				});
+			} else {
+				setInquiryStatus({
+					type: "error",
+					text: data.message || "Failed to submit consultation request.",
+				});
+			}
+		} catch (_err) {
+			// console.log("inquiry submission error", _err)
+			setInquiryStatus({
+				type: "error",
+				text: "Unable to connect to the server. Please try again shortly.",
+			});
+		} finally {
+			setIsSubmittingInquiry(false);
+		}
+	};
+
 	const toggleFaq = (index) => {
 		setActiveFaq(activeFaq === index ? null : index);
 	};
@@ -1681,9 +1740,20 @@ export default function AgencyHome() {
 									</p>
 								</div>
 
+								{inquiryStatus.text && (
+									<div
+										className={`p-4 rounded-2xl text-xs font-semibold flex items-center gap-2 ${
+											inquiryStatus.type === "success"
+												? "bg-emerald-950/80 border border-emerald-500/40 text-emerald-300"
+												: "bg-red-950/80 border border-red-500/40 text-red-300"
+										}`}
+									>
+										<span>{inquiryStatus.text}</span>
+									</div>
+								)}
+
 								<form
-									action="https://formspree.io/f/mqaeeyzq"
-									method="POST"
+									onSubmit={handleInquirySubmit}
 									className="space-y-4"
 								>
 									<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1695,6 +1765,8 @@ export default function AgencyHome() {
 												type="text"
 												name="name"
 												required
+												value={inquiryForm.name}
+												onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })}
 												placeholder="e.g. Alex Morgan"
 												className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 											/>
@@ -1707,6 +1779,8 @@ export default function AgencyHome() {
 												type="email"
 												name="email"
 												required
+												value={inquiryForm.email}
+												onChange={(e) => setInquiryForm({ ...inquiryForm, email: e.target.value })}
 												placeholder="e.g. alex@example.com"
 												className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 											/>
@@ -1720,11 +1794,13 @@ export default function AgencyHome() {
 											</label>
 											<select
 												name="service"
+												value={inquiryForm.service}
+												onChange={(e) => setInquiryForm({ ...inquiryForm, service: e.target.value })}
 												className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-slate-200 text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 											>
-												<option value="1. Frontend Web Development" className="bg-slate-900">1. Frontend Web Development (React / Next.js)</option>
-												<option value="2. Backend Development" className="bg-slate-900">2. Backend Development (Node.js / PostgreSQL)</option>
-												<option value="3. Full-Stack Development" className="bg-slate-900">3. Full-Stack Web Development (Turnkey App)</option>
+												<option value="Frontend Web Development" className="bg-slate-900">Frontend Web Development (React / Next.js)</option>
+												<option value="Backend Development" className="bg-slate-900">Backend Development (Node.js / PostgreSQL)</option>
+												<option value="Full-Stack Development" className="bg-slate-900">Full-Stack Web Development (Turnkey App)</option>
 												<option value="YouTube Channel Setup & Monetization" className="bg-slate-900">YouTube Channel Setup & Monetization</option>
 												<option value="Facebook Page & Meta Business Setup" className="bg-slate-900">Facebook Page & Meta Business Setup</option>
 												<option value="Followers, Subscribers & Watch Time" className="bg-slate-900">Followers, Subscribers & Watch Time Boost</option>
@@ -1740,6 +1816,8 @@ export default function AgencyHome() {
 											<input
 												type="text"
 												name="budget"
+												value={inquiryForm.budget}
+												onChange={(e) => setInquiryForm({ ...inquiryForm, budget: e.target.value })}
 												placeholder="e.g. $500 - $2,000 / ৳5k - ৳95k"
 												className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 											/>
@@ -1747,13 +1825,15 @@ export default function AgencyHome() {
 									</div>
 
 									<div>
-										<label className="block text-xs font-semibold text-slate-300 mb-1.5">
+										<label className="block text-slate-300 font-semibold mb-1.5 text-xs">
 											Project Scope & Goals
 										</label>
 										<textarea
 											name="message"
 											rows={4}
 											required
+											value={inquiryForm.message}
+											onChange={(e) => setInquiryForm({ ...inquiryForm, message: e.target.value })}
 											placeholder="Share details about your product, desired launch date, and objectives..."
 											className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all"
 										/>
@@ -1761,10 +1841,11 @@ export default function AgencyHome() {
 
 									<button
 										type="submit"
-										className="w-full py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+										disabled={isSubmittingInquiry}
+										className="w-full py-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-sm md:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:shadow-[0_0_35px_rgba(6,182,212,0.9)] cursor-pointer hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
 									>
 										<Send className="w-4 h-4" />
-										<span>Submit Consultation Request</span>
+										<span>{isSubmittingInquiry ? "Submitting Inquiry..." : "Submit Consultation Request"}</span>
 									</button>
 								</form>
 							</div>

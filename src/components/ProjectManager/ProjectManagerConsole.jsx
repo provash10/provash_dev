@@ -70,6 +70,26 @@ export default function ProjectManagerConsole() {
 		}
 	};
 
+	// handle project sprint status update
+	const handleUpdateStatus = async (inquiryId, newStatus) => {
+		try {
+			const res = await fetch(`http://localhost:5000/api/v1/inquiries/${inquiryId}/status`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({ status: newStatus }),
+			});
+			const data = await res.json();
+			if (data.success) {
+				fetchPmOverview(token);
+			}
+		} catch (_err) {
+			// console.log("pm status update notice", _err)
+		}
+	};
+
 	const handleLogout = () => {
 		localStorage.removeItem("provash_agency_user");
 		localStorage.removeItem("provash_agency_token");
@@ -196,11 +216,19 @@ export default function ProjectManagerConsole() {
 									className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
 								>
 									<div>
-										<div className="flex items-center gap-2">
+										<div className="flex flex-wrap items-center gap-2">
 											<h4 className="font-bold text-sm text-white">{proj.name}</h4>
-											<span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-950 text-blue-300 border border-blue-500/30">
-												{proj.status}
-											</span>
+											<select
+												value={proj.status}
+												onChange={(e) => handleUpdateStatus(proj.id, e.target.value)}
+												className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-950 text-blue-300 border border-blue-500/40 font-bold cursor-pointer focus:outline-none"
+											>
+												<option value="PENDING" className="bg-slate-900">PENDING</option>
+												<option value="IN_PROGRESS" className="bg-slate-900">IN_PROGRESS</option>
+												<option value="CONTACTED" className="bg-slate-900">CONTACTED</option>
+												<option value="RESOLVED" className="bg-slate-900">RESOLVED</option>
+												<option value="CANCELLED" className="bg-slate-900">CANCELLED</option>
+											</select>
 										</div>
 										<div className="text-slate-400 text-xs mt-0.5">
 											{proj.email} • Budget: <strong className="text-cyan-300">{proj.budget || "Custom"}</strong>

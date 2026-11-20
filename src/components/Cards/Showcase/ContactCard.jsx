@@ -12,17 +12,47 @@ const ContactCard = () => {
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState('');
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    // handle contact message submission to backend api
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitted(true);
-        setTimeout(() => {
-            setIsSubmitted(false);
-            setFormData({ name: '', email: '', subject: '', message: '' });
-        }, 4000);
+        setIsSubmitting(true);
+        setSubmitError('');
+
+        try {
+            const res = await fetch('http://localhost:5000/api/v1/inquiries', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    budget: 'Direct Contact Form',
+                    message: `[Subject: ${formData.subject}] ${formData.message}`,
+                }),
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                setIsSubmitted(true);
+                setFormData({ name: '', email: '', subject: '', message: '' });
+                setTimeout(() => {
+                    setIsSubmitted(false);
+                }, 5000);
+            } else {
+                setSubmitError(data.message || 'Failed to send message.');
+            }
+        } catch (_err) {
+            // console.log('contact form error', _err)
+            setSubmitError('Unable to connect to server. Please try again shortly.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const contactDetails = [
@@ -216,11 +246,18 @@ const ContactCard = () => {
                                 />
                             </div>
 
+                            {submitError && (
+                                <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/40 text-red-300 text-xs">
+                                    {submitError}
+                                </div>
+                            )}
+
                             <button
                                 type="submit"
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl text-xs md:text-sm shadow-lg shadow-cyan-500/25 hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer"
+                                disabled={isSubmitting}
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl text-xs md:text-sm shadow-lg shadow-cyan-500/25 hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer disabled:opacity-50"
                             >
-                                <FaPaperPlane className="text-xs" /> Send Message
+                                <FaPaperPlane className="text-xs" /> {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>

@@ -189,6 +189,26 @@ export default function SuperAdminConsole() {
 		}
 	};
 
+	// handle inquiry status update
+	const handleUpdateInquiryStatus = async (inquiryId, newStatus) => {
+		try {
+			const res = await fetch(`http://localhost:5000/api/v1/inquiries/${inquiryId}/status`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({ status: newStatus }),
+			});
+			const data = await res.json();
+			if (data.success) {
+				fetchDashboardData(token);
+			}
+		} catch (_err) {
+			// console.log("inquiry status update error", _err)
+		}
+	};
+
 	// handle logout
 	const handleLogout = () => {
 		localStorage.removeItem("provash_agency_user");
@@ -593,11 +613,19 @@ export default function SuperAdminConsole() {
 										className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
 									>
 										<div>
-											<div className="flex items-center gap-2">
+											<div className="flex flex-wrap items-center gap-2">
 												<h4 className="font-bold text-sm text-white">{inq.name}</h4>
-												<span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/30">
-													{inq.status}
-												</span>
+												<select
+													value={inq.status}
+													onChange={(e) => handleUpdateInquiryStatus(inq.id, e.target.value)}
+													className="text-[10px] px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-bold cursor-pointer focus:outline-none"
+												>
+													<option value="PENDING" className="bg-slate-900">PENDING</option>
+													<option value="IN_PROGRESS" className="bg-slate-900">IN_PROGRESS</option>
+													<option value="CONTACTED" className="bg-slate-900">CONTACTED</option>
+													<option value="RESOLVED" className="bg-slate-900">RESOLVED</option>
+													<option value="CANCELLED" className="bg-slate-900">CANCELLED</option>
+												</select>
 											</div>
 											<div className="text-slate-400 text-xs mt-0.5">
 												{inq.email} • {inq.phone || "No phone"} • Budget:{" "}
