@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaGithub, FaExternalLinkAlt, FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import ProjectCard from "@/components/Cards/Showcase/ProjectCard";
@@ -54,16 +54,37 @@ const projectsData = [
 const categories = ["All", "Full-Stack", "Frontend"];
 
 const AllProjects = () => {
+  const [projectsList, setProjectsList] = useState(projectsData);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredProjects = projectsData.filter((project) => {
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/v1/portfolio");
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          // merge database projects with initial showcase
+          setProjectsList([...data.data, ...projectsData]);
+        }
+      } catch (_err) {
+        // console.log("offline portfolio fetch notice", _err)
+      }
+    };
+    loadProjects();
+  }, []);
+
+  const filteredProjects = projectsList.filter((project) => {
     const matchesCategory =
-      activeCategory === "All" || project.category === activeCategory;
+      activeCategory === "All" ||
+      project.category?.toLowerCase() === activeCategory.toLowerCase() ||
+      (activeCategory === "Full-Stack" && project.category?.toLowerCase().includes("full-stack")) ||
+      (activeCategory === "Frontend" && project.category?.toLowerCase().includes("frontend"));
+    const techItems = project.technologies || project.techStack || [];
     const matchesSearch =
-      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.techStack.some((tech) =>
+      project.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      techItems.some((tech) =>
         tech.toLowerCase().includes(searchQuery.toLowerCase())
       );
 

@@ -17,7 +17,9 @@ import {
 	Plus,
 	Edit2,
 	Trash2,
+	FolderKanban,
 } from "lucide-react";
+import PortfolioAdminManager from "@/components/Portfolio/PortfolioAdminManager";
 
 // admin studio control console component
 export default function AdminConsole() {
@@ -520,6 +522,9 @@ export default function AdminConsole() {
 						</div>
 					)}
 				</div>
+
+				{/* portfolio projects management section */}
+				<PortfolioAdminManager token={token} />
 			</div>
 
 			{/* service create and edit modal */}

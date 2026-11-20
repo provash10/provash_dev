@@ -20,7 +20,9 @@ import {
 	Edit2,
 	Trash2,
 	Plus,
+	FolderKanban,
 } from "lucide-react";
+import PortfolioAdminManager from "@/components/Portfolio/PortfolioAdminManager";
 
 // super admin executive control console component
 export default function SuperAdminConsole() {
@@ -554,6 +556,17 @@ export default function SuperAdminConsole() {
 					>
 						Software Suite (6)
 					</button>
+
+					<button
+						onClick={() => setActiveTab("portfolio")}
+						className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+							activeTab === "portfolio"
+								? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+								: "text-slate-400 hover:text-white hover:bg-slate-900"
+						}`}
+					>
+						Portfolio Projects
+					</button>
 				</div>
 
 				{/* tab content overview and role breakdown */}
@@ -963,6 +976,11 @@ export default function SuperAdminConsole() {
 							))}
 						</div>
 					</div>
+				)}
+
+				{/* tab content portfolio projects management */}
+				{activeTab === "portfolio" && (
+					<PortfolioAdminManager token={token} />
 				)}
 			</div>
 
