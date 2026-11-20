@@ -274,11 +274,28 @@ export default function PricingAndPayment() {
 										Reference: Use your transaction ID or Name
 									</p>
 								</div>
+								{paymentSuccess.paymentUrl ? (
+									<a
+										href={paymentSuccess.paymentUrl}
+										className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2 hover:from-cyan-300 hover:to-blue-400 cursor-pointer shadow-lg shadow-cyan-400/25"
+									>
+										<span>Proceed to Secure Checkout</span>
+										<ArrowRight className="w-4 h-4" />
+									</a>
+								) : (
+									<a
+										href={`/payment/checkout?txn=${paymentSuccess.transactionId}&amount=${paymentSuccess.amount}&service=${encodeURIComponent(selectedPlan.name)}`}
+										className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2 hover:from-cyan-300 hover:to-blue-400 cursor-pointer shadow-lg shadow-cyan-400/25"
+									>
+										<span>Proceed to Secure Checkout</span>
+										<ArrowRight className="w-4 h-4" />
+									</a>
+								)}
 								<button
 									onClick={() => setSelectedPlan(null)}
-									className="w-full py-2.5 rounded-xl bg-cyan-400 text-slate-950 font-bold text-sm cursor-pointer"
+									className="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white font-semibold text-xs cursor-pointer"
 								>
-									Done
+									Close
 								</button>
 							</div>
 						) : (
