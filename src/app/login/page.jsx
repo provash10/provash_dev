@@ -46,10 +46,15 @@ export default function LoginPage() {
 				);
 			}
 
-			if (data.data?.user?.role === "SUPER_ADMIN" || data.data?.user?.role === "ADMIN" || data.data?.user?.role === "PROJECT_MANAGER") {
-				router.push("/dashboard");
+			const role = data.data?.user?.role;
+			if (role === "SUPER_ADMIN") {
+				router.push("/dashboard/super-admin");
+			} else if (role === "ADMIN") {
+				router.push("/dashboard/admin");
+			} else if (role === "PROJECT_MANAGER") {
+				router.push("/dashboard/project-manager");
 			} else {
-				router.push("/");
+				router.push("/dashboard/user");
 			}
 			router.refresh();
 		} catch (_err) {
