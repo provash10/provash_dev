@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { FaYoutube, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import {
 	Code2,
 	TrendingUp,
@@ -31,11 +30,9 @@ import {
 	Server,
 	Database,
 	Laptop,
-	Share2,
-	ThumbsUp,
-	UserPlus,
 } from "lucide-react";
 import PricingAndPayment from "@/components/agency/PricingAndPayment";
+import TechArchitectureHub from "@/components/agency/TechArchitectureHub";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
 import { softwareProducts } from "@/data/softwareData";
 
@@ -176,106 +173,6 @@ const webDevOptions = [
 	},
 ];
 
-// social media and channel growth three primary packages
-const socialMediaGrowthOptions = [
-	{
-		id: "youtube-setup",
-		optionNumber: "Option 1",
-		title: "YouTube Channel Setup & Monetization",
-		subtitle: "Complete Brand Channel, 4K Art, SEO & Verification",
-		badge: "High Retention & SEO",
-		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
-		description:
-			"Complete YouTube channel creation from scratch. Custom 4K banner and avatar design, phone verification, high-ranking SEO tags and keywords, watermark, upload defaults, playlist structuring, and monetization compliance.",
-		platforms: [
-			"YouTube Studio",
-			"4K Banner & Logo",
-			"Channel SEO Tags",
-			"Verification Setup",
-			"Monetization Readiness",
-			"Upload Defaults",
-		],
-		deliverables: [
-			"Professional channel creation & phone number verification",
-			"Custom high-converting channel banner, logo & watermark",
-			"Complete channel SEO: high-search keywords, tags & description",
-			"Upload defaults, community tab & playlist structuring",
-			"Monetization eligibility roadmap & copyright-safe guidelines",
-			"One-on-one strategy session on viral titles & thumbnail design",
-		],
-		priceBDT: "৳5,000",
-		priceUSD: "$50",
-		gradient: "from-red-500/20 via-pink-500/10 to-transparent",
-		border: "border-red-500/30 hover:border-red-400",
-		glow: "shadow-[0_0_25px_rgba(239,68,68,0.2)]",
-		popular: false,
-	},
-	{
-		id: "facebook-setup",
-		optionNumber: "Option 2",
-		title: "Facebook Page & Meta Business Setup",
-		subtitle: "Official Brand Page, Auto-Responder & Meta Suite",
-		badge: "Verified Business Setup",
-		icon: <FaFacebook className="w-6 h-6 text-blue-400" />,
-		description:
-			"Professional Facebook business page creation and Meta Business Suite configuration. Custom cover banner and profile branding, custom username/URL, WhatsApp button integration, auto-responder chat bot, and Meta pixel setup.",
-		platforms: [
-			"Meta Business Suite",
-			"Custom Page URL",
-			"WhatsApp Business",
-			"Auto-Responder Bot",
-			"Meta Pixel",
-			"Action CTA Button",
-		],
-		deliverables: [
-			"Official business page creation with optimized category & bio",
-			"Custom high-resolution banner cover & branded profile logo",
-			"Meta Business Suite & WhatsApp Business direct button link",
-			"Instant auto-reply chat bot & FAQ messaging configuration",
-			"Custom vanities URL / username registration (@yourbrand)",
-			"Meta Pixel tracking code setup for future ad retargeting",
-		],
-		priceBDT: "৳5,000",
-		priceUSD: "$50",
-		gradient: "from-blue-600/20 via-indigo-600/10 to-transparent",
-		border: "border-blue-500/30 hover:border-blue-400",
-		glow: "shadow-[0_0_25px_rgba(59,130,246,0.2)]",
-		popular: false,
-	},
-	{
-		id: "growth-sales",
-		optionNumber: "Option 3",
-		title: "Followers, Subscribers & Monetization Boost",
-		subtitle: "Real Audience, Watch Time & Multi-Platform Growth",
-		badge: "Most Popular / Fast Growth",
-		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
-		description:
-			"Fast-track your audience growth across YouTube, Facebook, Instagram, TikTok, and Telegram. High-retention subscribers, 4,000 watch hours packages, Facebook page likes/followers, Instagram active followers, and monetization eligibility fulfillment.",
-		platforms: [
-			"YouTube Subscribers",
-			"4000 Watch Hours",
-			"Facebook Followers",
-			"Instagram Growth",
-			"TikTok Audience",
-			"Aged Channels & Pages",
-		],
-		deliverables: [
-			"Real & high-retention YouTube subscribers (1,000+ packages)",
-			"4,000 YouTube public watch hours for instant YPP monetization",
-			"Facebook page followers & active post likes (10,000+ packages)",
-			"Instagram targeted followers & post engagement boost",
-			"Safe, policy-compliant delivery with lifetime non-drop warranty",
-			"Turnkey monetized channels & aged pages available upon request",
-		],
-		priceBDT: "৳8,000",
-		priceUSD: "$80",
-		gradient: "from-emerald-500/20 via-teal-500/15 to-transparent",
-		border: "border-emerald-400/50 hover:border-emerald-300",
-		glow: "shadow-[0_0_35px_rgba(16,185,129,0.3)]",
-		popular: true,
-	},
-];
-
 // complete enterprise tech stack breakdown matching frontend and backend specification
 const enterpriseTechStack = [
 	{
@@ -343,48 +240,48 @@ const enterpriseTechStack = [
 	},
 ];
 
-// markivo three core agency pillars
+// markivo agency core pillars
 const agencyPillars = [
 	{
-		id: "influencer",
-		title: "Influencer & Content Solutions",
-		badge: "Content Ops",
+		id: "frontend",
+		title: "High-Performance Frontend Systems",
+		badge: "Modern UI/UX",
 		description:
-			"High-CTR channel automation, viral hooks, retention editing, and organic subscriber growth engines tailored for creators and brands.",
-		metric: "+300%",
-		metricLabel: "Average View Growth",
-		icon: <FaYoutube className="w-6 h-6 text-red-400" />,
-		accentColor: "border-red-500/30 group-hover:border-red-400/70",
-		glowColor: "from-red-500/20 via-pink-500/10 to-transparent",
-		linkText: "Explore Media Ops",
-		linkHref: "/#services",
-	},
-	{
-		id: "growth",
-		title: "Your Growth, Our Top Priority",
-		badge: "High ROI",
-		description:
-			"Data-driven sales funnels, conversion rate optimization, and transparent weekly founder sprints that deliver measurable revenue.",
-		metric: "3.4X",
-		metricLabel: "Average Ad ROAS",
-		icon: <TrendingUp className="w-6 h-6 text-emerald-400" />,
-		accentColor: "border-emerald-500/30 group-hover:border-emerald-400/70",
-		glowColor: "from-emerald-500/20 via-teal-500/10 to-transparent",
-		linkText: "View Growth Solutions",
-		linkHref: "/#services",
-	},
-	{
-		id: "innovation",
-		title: "Innovating For Your Success",
-		badge: "Full-Stack",
-		description:
-			"Scalable server-side rendered web applications, robust APIs, and cloud infrastructure engineered to handle high user concurrency.",
-		metric: "<0.8s",
-		metricLabel: "Sub-Second Latency",
-		icon: <Code2 className="w-6 h-6 text-cyan-400" />,
+			"Lightning-fast Next.js 16 and React 19 interfaces with responsive styling, fluid micro-animations, and 99+ Google Lighthouse scores.",
+		metric: "<0.4s",
+		metricLabel: "First Contentful Paint",
+		icon: <Laptop className="w-6 h-6 text-cyan-400" />,
 		accentColor: "border-cyan-500/30 group-hover:border-cyan-400/70",
 		glowColor: "from-cyan-500/20 via-blue-500/10 to-transparent",
-		linkText: "Discover Web Engineering",
+		linkText: "Explore Frontend",
+		linkHref: "/#services",
+	},
+	{
+		id: "backend",
+		title: "Scalable APIs & Cloud Microservices",
+		badge: "Level-2 Architecture",
+		description:
+			"Modular Express.js and Bun REST APIs backed by PostgreSQL and Prisma ORM, engineered for enterprise security, caching, and 99.9% uptime.",
+		metric: "99.99%",
+		metricLabel: "Production Uptime",
+		icon: <Server className="w-6 h-6 text-blue-400" />,
+		accentColor: "border-blue-500/30 group-hover:border-blue-400/70",
+		glowColor: "from-blue-500/20 via-indigo-500/10 to-transparent",
+		linkText: "Explore APIs",
+		linkHref: "/#services",
+	},
+	{
+		id: "fullstack",
+		title: "Full-Stack Turnkey SaaS Platforms",
+		badge: "End-to-End",
+		description:
+			"Complete production-ready web applications with multi-tenant architecture, JWT authentication, RBAC dashboards, and online payment gateways.",
+		metric: "100%",
+		metricLabel: "Code Ownership",
+		icon: <Layers className="w-6 h-6 text-teal-400" />,
+		accentColor: "border-teal-500/30 group-hover:border-teal-400/70",
+		glowColor: "from-teal-500/20 via-emerald-500/10 to-transparent",
+		linkText: "Explore SaaS Suite",
 		linkHref: "/#services",
 	},
 ];
@@ -401,21 +298,21 @@ const projectCaseStudies = [
 		badgeColor: "bg-cyan-950/80 text-cyan-300 border-cyan-500/40",
 	},
 	{
-		title: "Automated YouTube Media Network",
-		category: "Content Ops & Automation",
+		title: "Multi-Vendor Enterprise E-Commerce Platform",
+		category: "Full-Stack Web App",
 		description:
-			"Built and managed a cashcow media channel with automated scripting pipelines, sound design, high-CTR thumbnails, and viral retention editing.",
-		impact: "Scaled from zero to 120K+ subscribers with 18M+ views",
-		tech: ["YouTube Studio", "Premiere Pro", "AI Scripting", "Viral SEO"],
-		badgeColor: "bg-red-950/80 text-red-300 border-red-500/40",
+			"Architected a scalable e-commerce engine with inventory management, cart state synchronization, bKash/Stripe checkout, and real-time order tracking.",
+		impact: "Handled 50,000+ monthly active users with zero downtime",
+		tech: ["Next.js 16", "Express.js", "PostgreSQL", "Prisma ORM"],
+		badgeColor: "bg-blue-950/80 text-blue-300 border-blue-500/40",
 	},
 	{
-		title: "E-Commerce 3X ROAS Ads Funnel",
-		category: "Performance Marketing",
+		title: "Real-Time Telemedicine & Booking Portal",
+		category: "Healthcare SaaS",
 		description:
-			"Designed and executed full-funnel advertising across Meta and Google Ads with custom landing pages and conversion tracking.",
-		impact: "Delivered 3.4X return on ad spend and cut CAC by 38%",
-		tech: ["Meta Ads", "Google Ads", "Funnel CRO", "Pixel Tracking"],
+			"Developed a compliant patient-doctor consultation portal with WebRTC video calling, automated slot scheduling, and prescription PDF generation.",
+		impact: "Reduced appointment booking friction by 65%",
+		tech: ["React 19", "Node.js", "TypeScript 5", "Tailwind CSS v4"],
 		badgeColor: "bg-emerald-950/80 text-emerald-300 border-emerald-500/40",
 	},
 ];
@@ -432,19 +329,19 @@ const clientTestimonials = [
 	},
 	{
 		quote:
-			"Our automated YouTube channel gained over 50,000 subscribers in 4 months under their content management and SEO strategy.",
+			"The full-stack booking portal built by Provash and team scaled seamlessly during our peak launch. Sub-100ms response times and zero bugs.",
 		author: "Sarah Jenkins",
-		role: "Digital Media Entrepreneur",
+		role: "CTO, HealthPulse Telemed",
 		rating: 5,
-		avatarBg: "from-red-500 to-pink-600",
+		avatarBg: "from-teal-500 to-cyan-600",
 	},
 	{
 		quote:
-			"The paid marketing funnels reduced our customer acquisition cost by 38% in the first month. Highly recommended for scaling businesses.",
+			"Their frontend architecture migration to Next.js 16 and TypeScript boosted our Google Lighthouse score to 99 and cut bounce rate by half.",
 		author: "David Thorne",
-		role: "Marketing Director, Thorne Commerce",
+		role: "VP of Engineering, CloudScale Logistics",
 		rating: 5,
-		avatarBg: "from-emerald-500 to-teal-600",
+		avatarBg: "from-blue-600 to-indigo-600",
 	},
 ];
 
@@ -455,12 +352,12 @@ const faqItems = [
 		a: "We offer three specialized options: Option 1: Frontend Development (React 19, Next.js 16, Tailwind v4 UI/UX), Option 2: Backend Development (Node.js, Express, PostgreSQL, Prisma APIs), and Option 3: Full-Stack Development (Complete turnkey application with client UI, admin dashboard, auth, and online payments).",
 	},
 	{
-		q: "What is included in YouTube & Facebook Setup services?",
-		a: "We provide end-to-end channel and page setups: custom 4K banner and logo design, phone verification, high-ranking SEO tags, auto-reply chat bots, WhatsApp Business linking, and complete monetization eligibility guidelines.",
+		q: "How do you ensure application performance and security?",
+		a: "We build with Next.js App Router, SSR/SSG caching, strict TypeScript type-safety, JWT authentication, and PostgreSQL indexing with Prisma ORM for sub-100ms API response times.",
 	},
 	{
-		q: "Are the followers, subscribers, and watch hours safe and non-drop?",
-		a: "Yes! All audience packages (YouTube subscribers, 4,000 watch hours, Facebook followers, Instagram followers) are delivered safely complying with platform guidelines, accompanied by lifetime non-drop warranty.",
+		q: "What is your typical development turnaround time?",
+		a: "Individual frontend or backend milestones are completed within 5 to 7 days, while full-stack enterprise applications and SaaS platforms are delivered within 2 to 4 weeks with weekly live review demos.",
 	},
 	{
 		q: "What payment methods do you accept?",
@@ -474,9 +371,6 @@ export default function AgencyHome() {
 
 	// web development tab filter state
 	const [activeWebTab, setActiveWebTab] = useState("all");
-
-	// social media growth tab filter state
-	const [activeSocialTab, setActiveSocialTab] = useState("all");
 
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
@@ -579,12 +473,6 @@ export default function AgencyHome() {
 			? webDevOptions
 			: webDevOptions.filter((opt) => opt.id === activeWebTab);
 
-	// filter social media options if tab is active
-	const filteredSocialMedia =
-		activeSocialTab === "all"
-			? socialMediaGrowthOptions
-			: socialMediaGrowthOptions.filter((opt) => opt.id === activeSocialTab);
-
 	return (
 		<div className="w-full space-y-16 md:space-y-24 bg-[#050b17] text-white" suppressHydrationWarning>
 			{/* hero banner flush with navbar untouched as requested */}
@@ -604,15 +492,13 @@ export default function AgencyHome() {
 							<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug">
 								We Build High-Impact{" "}
 								<span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-blue-300">
-									Web Applications,
+									Web Applications
 								</span>{" "}
-								YouTube Automation & Digital Growth.
+								& Scalable Software Architecture.
 							</h1>
 
 							<p className="text-slate-300 text-xs sm:text-sm md:text-base max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-								From scalable full-stack software to revenue-generating YouTube
-								channels and data-driven marketing funnels, we provide end-to-end
-								solutions designed to accelerate your business.
+								From high-performance frontend interfaces to complex full-stack enterprise platforms and secure cloud backends, we engineer custom web solutions tailored to scale your business.
 							</p>
 
 							{/* call to action buttons with portfolio pill aesthetic */}
@@ -658,16 +544,9 @@ export default function AgencyHome() {
 							</div>
 						</div>
 
-						{/* right column hero illustration image */}
+						{/* right column hero tech architecture hub */}
 						<div className="lg:col-span-5 flex justify-center relative">
-							<div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-purple-500/10 rounded-full blur-3xl scale-95 pointer-events-none" />
-							<div className="relative z-10 w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center">
-								<img
-									src="/img/hero-provash.png"
-									alt="Provash - Founder & Lead Full-Stack Engineer"
-									className="w-full h-full object-contain filter drop-shadow-[0_10px_35px_rgba(6,182,212,0.35)] hover:scale-105 transition-transform duration-500"
-								/>
-							</div>
+							<TechArchitectureHub />
 						</div>
 					</div>
 				</div>
@@ -710,7 +589,7 @@ export default function AgencyHome() {
 							Our Exclusive Services
 						</h2>
 						<p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-2xl mx-auto">
-							From modular frontend and backend engineering to YouTube channel setup, Facebook business pages, audience scaling, and turnkey SaaS applications.
+							From modular frontend and backend engineering to complete turnkey full-stack SaaS applications, custom cloud architectures, and scalable APIs.
 						</p>
 					</div>
 
@@ -889,180 +768,7 @@ export default function AgencyHome() {
 						</div>
 					</div>
 
-					{/* 2. social media and channel growth solutions right after web development */}
-					<div className="space-y-6 pt-4">
-						<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
-							<div>
-								<div className="inline-flex items-center gap-2 text-cyan-400 text-xs font-bold uppercase tracking-wider">
-									<Share2 className="w-4 h-4" />
-									<span>AUDIENCE & BRAND ACCELERATION</span>
-								</div>
-								<h3 className="text-xl sm:text-2xl font-black text-white mt-1">
-									Social Media & Channel Growth Solutions
-								</h3>
-								<p className="text-slate-400 text-xs mt-1">
-									Turnkey YouTube channel setup, verified Facebook business pages, real followers, subscribers, and watch time packages.
-								</p>
-							</div>
 
-							{/* interactive social options pill switcher */}
-							<div className="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-slate-950/80 border border-cyan-500/30 backdrop-blur-md">
-								<button
-									type="button"
-									onClick={() => setActiveSocialTab("all")}
-									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-										activeSocialTab === "all"
-											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
-											: "text-slate-400 hover:text-white"
-									}`}
-								>
-									All 3 Packages
-								</button>
-								<button
-									type="button"
-									onClick={() => setActiveSocialTab("youtube-setup")}
-									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-										activeSocialTab === "youtube-setup"
-											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
-											: "text-slate-400 hover:text-white"
-									}`}
-								>
-									1. YouTube Setup
-								</button>
-								<button
-									type="button"
-									onClick={() => setActiveSocialTab("facebook-setup")}
-									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-										activeSocialTab === "facebook-setup"
-											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
-											: "text-slate-400 hover:text-white"
-									}`}
-								>
-									2. Facebook Page
-								</button>
-								<button
-									type="button"
-									onClick={() => setActiveSocialTab("growth-sales")}
-									className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-										activeSocialTab === "growth-sales"
-											? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-[0_0_12px_rgba(6,182,212,0.5)]"
-											: "text-slate-400 hover:text-white"
-									}`}
-								>
-									3. Followers & Subscribers
-								</button>
-							</div>
-						</div>
-
-						{/* social media three cards grid */}
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-							{filteredSocialMedia.map((pkg) => (
-								<div
-									key={pkg.id}
-									className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${pkg.border} ${pkg.glow} transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
-								>
-									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${pkg.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
-
-									<div className="relative z-10 space-y-4">
-										<div className="flex items-center justify-between">
-											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
-												{pkg.icon}
-											</div>
-											<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
-												{pkg.badge}
-											</span>
-										</div>
-
-										<div>
-											<span className="text-[10px] text-cyan-400 font-extrabold uppercase tracking-widest">
-												{pkg.optionNumber}
-											</span>
-											<h4 className="text-xl font-bold text-white mt-0.5 group-hover:text-cyan-200 transition-colors">
-												{pkg.title}
-											</h4>
-											<p className="text-[11px] text-slate-400 font-medium">
-												{pkg.subtitle}
-											</p>
-											<p className="text-slate-300 text-xs leading-relaxed mt-2.5">
-												{pkg.description}
-											</p>
-										</div>
-
-										{/* platforms / features pills */}
-										<div className="space-y-1.5 pt-2">
-											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
-												Supported Channels & Tools
-											</span>
-											<div className="flex flex-wrap gap-1.5">
-												{pkg.platforms.map((platform, i) => (
-													<span
-														key={i}
-														className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-950 border border-cyan-500/20 text-slate-300 font-medium"
-													>
-														{platform}
-													</span>
-												))}
-											</div>
-										</div>
-
-										{/* deliverables list */}
-										<div className="space-y-1.5 pt-2">
-											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
-												<CheckCheck className="w-3.5 h-3.5 text-cyan-400" />
-												Key Deliverables
-											</span>
-											<div className="space-y-1.5">
-												{pkg.deliverables.map((item, idx) => (
-													<div
-														key={idx}
-														className="flex items-start gap-2 text-xs text-slate-300"
-													>
-														<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
-														<span>{item}</span>
-													</div>
-												))}
-											</div>
-										</div>
-									</div>
-
-									{/* card footer with price and action button */}
-									<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 space-y-3">
-										<div className="flex items-baseline justify-between">
-											<div>
-												<span className="text-[10px] text-slate-400 uppercase tracking-wider block">
-													Starting Price
-												</span>
-												<div className="flex items-baseline gap-1.5">
-													<span className="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
-														{pkg.priceBDT}
-													</span>
-													<span className="text-slate-400 text-xs font-semibold">
-														/ {pkg.priceUSD}
-													</span>
-												</div>
-											</div>
-
-											<span className="text-[10px] px-2.5 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 font-semibold">
-												Non-Drop Guarantee
-											</span>
-										</div>
-
-										<Link
-											href="/#consultation"
-											className={`w-full py-2.5 rounded-full font-bold text-xs flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
-												pkg.popular
-													? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
-													: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
-											}`}
-										>
-											<span>Order {pkg.title}</span>
-											<ArrowRight className="w-3.5 h-3.5" />
-										</Link>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
 				</section>
 
 				{/* proprietary software and saas suite showcase section */}
@@ -1340,7 +1046,7 @@ export default function AgencyHome() {
 							<p className="text-xs sm:text-sm font-bold text-white">
 								Projects Completed
 							</p>
-							<p className="text-[11px] text-slate-400">Software & Media Systems</p>
+							<p className="text-[11px] text-slate-400">Software & Web Platforms</p>
 						</div>
 
 						<div className="space-y-1.5 px-3 pt-4 md:pt-0">
@@ -1355,12 +1061,12 @@ export default function AgencyHome() {
 
 						<div className="space-y-1.5 px-3 pt-4 md:pt-0">
 							<span className="text-3xl sm:text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
-								15M+
+								10M+
 							</span>
 							<p className="text-xs sm:text-sm font-bold text-white">
-								YouTube Views & Reach
+								API Requests Daily
 							</p>
-							<p className="text-[11px] text-slate-400">Organic Video Audience</p>
+							<p className="text-[11px] text-slate-400">High-Availability Production</p>
 						</div>
 
 						<div className="space-y-1.5 px-3 pt-4 md:pt-0">
@@ -1390,7 +1096,7 @@ export default function AgencyHome() {
 							</h2>
 
 							<p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-								Unlike traditional agencies that outsource your work to unknown third parties or burden you with slow communication, we unite high-speed full-stack engineering with data-backed media strategies under direct founder supervision.
+								Unlike traditional agencies that outsource your work to unknown third parties or burden you with slow communication, we engineer high-performance web systems with clean architecture, strict type-safety, and direct founder supervision.
 							</p>
 
 							{/* markivo three value feature boxes */}
@@ -1525,7 +1231,7 @@ export default function AgencyHome() {
 							Explore Our Projects
 						</h2>
 						<p className="text-slate-300 text-xs md:text-sm max-w-2xl mx-auto">
-							Take a closer look at the custom software and high-growth media engines we have built and scaled for clients.
+							Take a closer look at the custom web applications, SaaS platforms, and enterprise software systems we have engineered.
 						</p>
 					</div>
 
@@ -1830,12 +1536,9 @@ export default function AgencyHome() {
 												<option value="Frontend Web Development" className="bg-slate-900">Frontend Web Development (React / Next.js)</option>
 												<option value="Backend Development" className="bg-slate-900">Backend Development (Node.js / PostgreSQL)</option>
 												<option value="Full-Stack Development" className="bg-slate-900">Full-Stack Web Development (Turnkey App)</option>
-												<option value="YouTube Channel Setup & Monetization" className="bg-slate-900">YouTube Channel Setup & Monetization</option>
-												<option value="Facebook Page & Meta Business Setup" className="bg-slate-900">Facebook Page & Meta Business Setup</option>
-												<option value="Followers, Subscribers & Watch Time" className="bg-slate-900">Followers, Subscribers & Watch Time Boost</option>
-												<option value="YouTube Channel Automation & Ops" className="bg-slate-900">YouTube Channel Automation & Video Ops</option>
-												<option value="Social Media Marketing & Ads" className="bg-slate-900">Social Media Marketing & Meta/Google Ads</option>
-												<option value="Technical SEO & Consulting" className="bg-slate-900">Technical SEO & CRO Audits</option>
+												<option value="Enterprise SaaS Architecture" className="bg-slate-900">Enterprise SaaS Architecture & Scaling</option>
+												<option value="Database Design & Optimization" className="bg-slate-900">Database Design & Prisma ORM Optimization</option>
+												<option value="Technical SEO & Performance Audit" className="bg-slate-900">Technical SEO & Next.js Performance Audit</option>
 											</select>
 										</div>
 										<div>
