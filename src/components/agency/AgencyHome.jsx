@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaYoutube, FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
 import {
 	Code2,
@@ -491,6 +491,35 @@ export default function AgencyHome() {
 	});
 	const [isSubmittingInquiry, setIsSubmittingInquiry] = useState(false);
 	const [inquiryStatus, setInquiryStatus] = useState({ type: "", text: "" });
+
+	// live testimonials state
+	const [testimonialsList, setTestimonialsList] = useState(clientTestimonials);
+
+	// fetch published testimonials from backend
+	useEffect(() => {
+		const loadTestimonials = async () => {
+			try {
+				const res = await fetch("http://localhost:5000/api/v1/testimonials");
+				const data = await res.json();
+				if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+					// format database testimonials for cards
+					const formatted = data.data.map((item) => ({
+						quote: item.feedback,
+						author: item.clientName,
+						role:
+							item.clientRole +
+							(item.companyName ? ` • ${item.companyName}` : ""),
+						rating: item.rating || 5,
+						avatarBg: "from-cyan-500 to-blue-600",
+					}));
+					setTestimonialsList(formatted);
+				}
+			} catch (_err) {
+				// console.log("offline testimonials notice", _err)
+			}
+		};
+		loadTestimonials();
+	}, []);
 
 	// handle consultation inquiry submit
 	const handleInquirySubmit = async (e) => {
@@ -1571,7 +1600,7 @@ export default function AgencyHome() {
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{clientTestimonials.map((item, idx) => (
+						{testimonialsList.map((item, idx) => (
 							<div
 								key={idx}
 								className="group rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400 p-6 md:p-8 flex flex-col justify-between space-y-5 shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 hover:-translate-y-1"

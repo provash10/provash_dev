@@ -23,6 +23,7 @@ import {
 	FolderKanban,
 } from "lucide-react";
 import PortfolioAdminManager from "@/components/Portfolio/PortfolioAdminManager";
+import TestimonialAdminManager from "@/components/Testimonial/TestimonialAdminManager";
 
 // super admin executive control console component
 export default function SuperAdminConsole() {
@@ -567,6 +568,17 @@ export default function SuperAdminConsole() {
 					>
 						Portfolio Projects
 					</button>
+
+					<button
+						onClick={() => setActiveTab("testimonials")}
+						className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+							activeTab === "testimonials"
+								? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+								: "text-slate-400 hover:text-white hover:bg-slate-900"
+						}`}
+					>
+						Testimonials
+					</button>
 				</div>
 
 				{/* tab content overview and role breakdown */}
@@ -981,6 +993,11 @@ export default function SuperAdminConsole() {
 				{/* tab content portfolio projects management */}
 				{activeTab === "portfolio" && (
 					<PortfolioAdminManager token={token} />
+				)}
+
+				{/* tab content client testimonials management */}
+				{activeTab === "testimonials" && (
+					<TestimonialAdminManager token={token} />
 				)}
 			</div>
 

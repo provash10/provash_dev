@@ -20,6 +20,7 @@ import {
 	FolderKanban,
 } from "lucide-react";
 import PortfolioAdminManager from "@/components/Portfolio/PortfolioAdminManager";
+import TestimonialAdminManager from "@/components/Testimonial/TestimonialAdminManager";
 
 // admin studio control console component
 export default function AdminConsole() {
@@ -525,6 +526,9 @@ export default function AdminConsole() {
 
 				{/* portfolio projects management section */}
 				<PortfolioAdminManager token={token} />
+
+				{/* testimonials management section */}
+				<TestimonialAdminManager token={token} />
 			</div>
 
 			{/* service create and edit modal */}
