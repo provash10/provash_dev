@@ -63,25 +63,16 @@ const Navbar = () => {
 					Portfolio
 				</Link>
 				<Link
-					href="/about"
+					href="/blogs"
 					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
-						pathname.startsWith("/about")
+						pathname.startsWith("/blog")
 							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
 							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
 					}`}
 				>
-					About
+					Blogs
 				</Link>
-				<Link
-					href="/contact"
-					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
-						pathname.startsWith("/contact")
-							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
-							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
-					}`}
-				>
-					Contact
-				</Link>
+				{/* about and contact links commented out */}
 			</div>
 			<div className="flex items-center gap-2">
 				<Login />
