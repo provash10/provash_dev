@@ -699,38 +699,24 @@ export default function AgencyHome() {
 										</div>
 									</div>
 
-									{/* card footer with price and action button */}
-									<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 space-y-3">
-										<div className="flex items-baseline justify-between">
-											<div>
-												<span className="text-[10px] text-slate-400 uppercase tracking-wider block">
-													Starting Price
-												</span>
-												<div className="flex items-baseline gap-1.5">
-													<span className="text-xl sm:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
-														{opt.priceBDT}
-													</span>
-													<span className="text-slate-400 text-xs font-semibold">
-														/ {opt.priceUSD}
-													</span>
-												</div>
-											</div>
-
-											<span className="text-[10px] px-2.5 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 font-semibold">
-												Milestone Assured
-											</span>
-										</div>
-
+									{/* card footer with view project action button */}
+									<div className="relative z-10 pt-5 mt-6 border-t border-cyan-500/20">
 										<Link
-											href="/#consultation"
-											className={`w-full py-2.5 rounded-full font-bold text-xs flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+											href={
+												opt.id === "frontend"
+													? "/showcase/allprojects?category=frontend"
+													: opt.id === "backend"
+														? "/showcase/allprojects?category=backend"
+														: "/showcase/allprojects?category=fullstack"
+											}
+											className={`w-full py-3 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
 												opt.popular
 													? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
 													: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
 											}`}
 										>
-											<span>Select {opt.title}</span>
-											<ArrowRight className="w-3.5 h-3.5" />
+											<span>View {opt.title.replace(" Development", "")} Projects</span>
+											<ArrowRight className="w-4 h-4" />
 										</Link>
 									</div>
 								</div>

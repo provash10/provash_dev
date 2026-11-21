@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FaGithub, FaExternalLinkAlt, FaSearch } from "react-icons/fa";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import ProjectCard from "@/components/Cards/Showcase/ProjectCard";
 
 const projectsData = [
@@ -12,9 +13,9 @@ const projectsData = [
     description:
       "A complete e-commerce website architecture featuring responsive layouts, custom cart management, and seamless UI flow.",
     techStack: ["React", "Tailwind CSS", "DaisyUI", "Node.js"],
-    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=Shopyzu+E-Commerce",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
     liveUrl: "https://shopyzu.com",
-    githubUrl: "https://github.com/example/shopyzu",
+    githubUrl: "https://github.com/provash10/shopyzu",
   },
   {
     id: 2,
@@ -23,9 +24,9 @@ const projectsData = [
     description:
       "Admin profile & management interface featuring dark mode toggle, security settings, and dynamic user controls.",
     techStack: ["React", "Tailwind CSS", "FontAwesome", "React Router"],
-    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=Admin+Panel",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
     liveUrl: "https://example.com/admin",
-    githubUrl: "https://github.com/example/admin-panel",
+    githubUrl: "https://github.com/provash10/admin-panel",
   },
   {
     id: 3,
@@ -34,9 +35,9 @@ const projectsData = [
     description:
       "Real-time analytics platform featuring interactive charts, custom hooks, and secure HTTP interceptors for API calls.",
     techStack: ["Next.js", "Firebase", "Axios", "Tailwind CSS"],
-    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=Analytics+Dashboard",
-    liveUrl: "https://example.com/analytics",
-    githubUrl: "https://github.com/example/analytics",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    liveUrl: "https://analytics.provash.dev",
+    githubUrl: "https://github.com/provash10/analytics",
   },
   {
     id: 4,
@@ -45,18 +46,58 @@ const projectsData = [
     description:
       "A specialized UI component for rendering dynamic vertical charts and data graphs in React applications.",
     techStack: ["React", "Tailwind CSS", "Recharts"],
-    image: "https://via.placeholder.com/600x400/0f172a/38bdf8?text=Chart+Visualizer",
+    image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format&fit=crop&q=80",
     liveUrl: "https://example.com/charts",
-    githubUrl: "https://github.com/example/chart-visualizer",
+    githubUrl: "https://github.com/provash10/chart-visualizer",
+  },
+  {
+    id: 5,
+    title: "E-Commerce Modular RESTful API Engine",
+    category: "Backend",
+    description:
+      "High-throughput enterprise REST API with JWT authentication, refresh token rotation, Prisma ORM, and PostgreSQL caching.",
+    techStack: ["Node.js", "Express.js", "PostgreSQL", "Prisma ORM", "Redis", "JWT"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80",
+    liveUrl: "http://localhost:5000/api/v1/health",
+    githubUrl: "https://github.com/provash10/ecommerce-backend-api",
+  },
+  {
+    id: 6,
+    title: "Multi-Gateway Payment & Webhook Service",
+    category: "Backend",
+    description:
+      "Dedicated microservice for processing bKash tokenized checkout, SSLCommerz, and Stripe webhooks with idempotent logging.",
+    techStack: ["Express.js", "TypeScript", "bKash API", "Stripe SDK", "Zod", "Docker"],
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80",
+    liveUrl: "http://localhost:5000/api/v1/payment/health",
+    githubUrl: "https://github.com/provash10/payment-webhook-service",
   },
 ];
 
-const categories = ["All", "Full-Stack", "Frontend"];
+const categories = ["All", "Frontend", "Backend", "Full-Stack"];
 
 const AllProjects = () => {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
   const [projectsList, setProjectsList] = useState(projectsData);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+
+  // sync active category with url query parameter
+  useEffect(() => {
+    if (categoryParam) {
+      const lower = categoryParam.toLowerCase();
+      if (lower === "frontend") {
+        setActiveCategory("Frontend");
+      } else if (lower === "backend") {
+        setActiveCategory("Backend");
+      } else if (lower === "fullstack" || lower === "full-stack") {
+        setActiveCategory("Full-Stack");
+      } else if (lower === "all") {
+        setActiveCategory("All");
+      }
+    }
+  }, [categoryParam]);
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -75,11 +116,13 @@ const AllProjects = () => {
   }, []);
 
   const filteredProjects = projectsList.filter((project) => {
+    const categoryLower = (project.category || "").toLowerCase();
     const matchesCategory =
       activeCategory === "All" ||
-      project.category?.toLowerCase() === activeCategory.toLowerCase() ||
-      (activeCategory === "Full-Stack" && project.category?.toLowerCase().includes("full-stack")) ||
-      (activeCategory === "Frontend" && project.category?.toLowerCase().includes("frontend"));
+      categoryLower === activeCategory.toLowerCase() ||
+      (activeCategory === "Full-Stack" && (categoryLower.includes("full-stack") || categoryLower.includes("fullstack") || categoryLower.includes("saas"))) ||
+      (activeCategory === "Frontend" && categoryLower.includes("frontend")) ||
+      (activeCategory === "Backend" && (categoryLower.includes("backend") || categoryLower.includes("api")));
     const techItems = project.technologies || project.techStack || [];
     const matchesSearch =
       project.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
