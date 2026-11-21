@@ -30,32 +30,8 @@ export default function RootLayout({ children }) {
 			className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
 			suppressHydrationWarning
 		>
-			<head>
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-							(function() {
-								if (typeof window === 'undefined') return;
-								var observer = new MutationObserver(function(mutations) {
-									for (var i = 0; i < mutations.length; i++) {
-										var m = mutations[i];
-										if (m.type === 'attributes' && m.attributeName === 'bis_skin_checked') {
-											m.target.removeAttribute('bis_skin_checked');
-										}
-									}
-								});
-								observer.observe(document.documentElement, {
-									attributes: true,
-									subtree: true,
-									attributeFilter: ['bis_skin_checked']
-								});
-							})();
-						`,
-					}}
-				/>
-			</head>
 			<body
-				className="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased overflow-x-hidden overflow-y-auto"
+				className="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased"
 				suppressHydrationWarning
 			>
 				<QueryProvider>
