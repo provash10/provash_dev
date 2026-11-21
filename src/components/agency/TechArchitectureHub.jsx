@@ -23,11 +23,11 @@ export default function TechArchitectureHub() {
 			{/* background ambient neon glow */}
 			<div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/25 via-blue-600/20 to-purple-500/15 rounded-full blur-[90px] scale-95 pointer-events-none" />
 
-			{/* outer rotating orbital ring */}
-			<div className="absolute w-[350px] sm:w-[410px] h-[350px] sm:h-[410px] rounded-full border border-cyan-500/20 border-dashed animate-[spin_60s_linear_infinite] pointer-events-none" />
+			{/* outer rotating orbital ring shifted slightly up */}
+			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-4 sm:-mt-5 w-[350px] sm:w-[410px] h-[350px] sm:h-[410px] rounded-full border border-cyan-500/20 border-dashed animate-[spin_60s_linear_infinite] pointer-events-none" />
 
-			{/* middle secondary glowing orbit touching box corners */}
-			<div className="absolute w-[280px] sm:w-[325px] h-[280px] sm:h-[325px] rounded-full border border-blue-500/35 shadow-[0_0_20px_rgba(6,182,212,0.2)] pointer-events-none" />
+			{/* middle secondary glowing orbit touching box corners shifted up */}
+			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-4 sm:-mt-5 w-[280px] sm:w-[325px] h-[280px] sm:h-[325px] rounded-full border border-blue-500/35 shadow-[0_0_20px_rgba(6,182,212,0.2)] pointer-events-none" />
 
 			{/* central platform pedestal */}
 			<div className="relative z-10 w-52 sm:w-60 h-52 sm:h-60 rounded-3xl bg-gradient-to-br from-[#0c214d]/90 via-[#071530]/95 to-[#040a17] border border-cyan-400/40 shadow-[0_0_50px_rgba(6,182,212,0.35)] p-5 flex flex-col items-center justify-center text-center space-y-3 backdrop-blur-2xl">
@@ -81,7 +81,7 @@ export default function TechArchitectureHub() {
 			</div>
 
 			{/* bottom center live metrics glass card touching circle line */}
-			<div className="absolute bottom-8 sm:bottom-10 md:bottom-11 z-20 px-4 py-2 rounded-2xl bg-[#071329]/95 border border-cyan-500/30 text-white text-[11px] font-semibold shadow-[0_4px_25px_rgba(6,182,212,0.25)] backdrop-blur-xl flex items-center gap-4">
+			<div className="absolute bottom-10 sm:bottom-12 md:bottom-13 z-20 px-4 py-2 rounded-2xl bg-[#071329]/95 border border-cyan-500/30 text-white text-[11px] font-semibold shadow-[0_4px_25px_rgba(6,182,212,0.25)] backdrop-blur-xl flex items-center gap-4">
 				<div className="flex items-center gap-1.5 text-emerald-400">
 					<Activity className="w-3.5 h-3.5" />
 					<span>99.9% Sla</span>
