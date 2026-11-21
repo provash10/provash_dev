@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavigationManager from "@/components/HeaderFooter/NavigationManager";
 import QueryProvider from "@/providers/QueryProvider";
+import FloatingChat from "@/components/FloatingChat/FloatingChat";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -64,6 +65,8 @@ export default function RootLayout({ children }) {
 				<QueryProvider>
 					<NavigationManager />
 					<main className="w-full">{children}</main>
+					{/* floating chat client widget */}
+					<FloatingChat />
 				</QueryProvider>
 			</body>
 		</html>
