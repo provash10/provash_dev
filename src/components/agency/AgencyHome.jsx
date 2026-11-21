@@ -641,7 +641,7 @@ export default function AgencyHome() {
 						</div>
 
 						{/* web development three cards grid */}
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
 							{filteredWebDev.map((opt) => {
 								const isExpanded = !!expandedWebCards[opt.id];
 								return (
@@ -729,29 +729,29 @@ export default function AgencyHome() {
 															))}
 														</div>
 													</div>
+
+													{/* card footer with view project action button */}
+													<div className="relative z-10 pt-4 border-t border-cyan-500/20">
+														<Link
+															href={
+																opt.id === "frontend"
+																	? "/showcase/allprojects?category=frontend"
+																	: opt.id === "backend"
+																		? "/showcase/allprojects?category=backend"
+																		: "/showcase/allprojects?category=fullstack"
+															}
+															className={`w-full py-3 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+																opt.popular
+																	? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
+																	: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
+															}`}
+														>
+															<span>View {opt.title.replace(" Development", "")} Projects</span>
+															<ArrowRight className="w-4 h-4" />
+														</Link>
+													</div>
 												</div>
 											)}
-										</div>
-
-										{/* card footer with view project action button */}
-										<div className="relative z-10 pt-5 mt-6 border-t border-cyan-500/20">
-											<Link
-												href={
-													opt.id === "frontend"
-														? "/showcase/allprojects?category=frontend"
-														: opt.id === "backend"
-															? "/showcase/allprojects?category=backend"
-															: "/showcase/allprojects?category=fullstack"
-												}
-												className={`w-full py-3 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
-													opt.popular
-														? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
-														: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
-												}`}
-											>
-												<span>View {opt.title.replace(" Development", "")} Projects</span>
-												<ArrowRight className="w-4 h-4" />
-											</Link>
 										</div>
 									</div>
 								);
