@@ -352,7 +352,7 @@ export default function AgencyHome() {
 							{/* call to action buttons with portfolio pill aesthetic */}
 							<div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
 								<Link
-									href="/#services"
+									href="/services"
 									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-xs md:text-sm border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300"
 								>
 									<span>Explore Services</span>

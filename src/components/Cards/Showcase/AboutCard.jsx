@@ -94,7 +94,7 @@ const AboutCard = () => {
                                 <FaDownload className="text-xs" /> Download Resume
                             </a>
                             <Link
-                                href="/showcase/services"
+                                href="/services"
                                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold rounded-xl text-xs md:text-sm border border-slate-700 hover:border-cyan-400 transition-all duration-300"
                             >
                                 Explore Services <FaExternalLinkAlt className="text-[10px]" />
