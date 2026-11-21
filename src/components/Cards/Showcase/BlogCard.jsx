@@ -1,12 +1,13 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FaSearch, FaClock, FaArrowRight, FaBookOpen, FaTag } from 'react-icons/fa';
 
 const blogPosts = [
     {
-        id: 1,
+        id: '1',
         title: 'Mastering Next.js 16 SSR & Turbopack Performance',
+        slug: 'mastering-nextjs-16-ssr-turbopack-performance',
         category: 'Next.js',
         readTime: '6 min read',
         date: 'July 20, 2026',
@@ -16,8 +17,9 @@ const blogPosts = [
         readUrl: '#'
     },
     {
-        id: 2,
+        id: '2',
         title: 'Building Resilient Axios Interceptors for JWT Auth',
+        slug: 'building-resilient-axios-interceptors-for-jwt-auth',
         category: 'Backend',
         readTime: '5 min read',
         date: 'July 15, 2026',
@@ -27,8 +29,9 @@ const blogPosts = [
         readUrl: '#'
     },
     {
-        id: 3,
+        id: '3',
         title: 'State Management & Custom React Hooks Architecture',
+        slug: 'state-management-custom-react-hooks-architecture',
         category: 'React',
         readTime: '7 min read',
         date: 'July 10, 2026',
@@ -38,8 +41,9 @@ const blogPosts = [
         readUrl: '#'
     },
     {
-        id: 4,
+        id: '4',
         title: 'Designing Scalable MERN Stack Apps from Scratch',
+        slug: 'designing-scalable-mern-stack-apps-from-scratch',
         category: 'Performance',
         readTime: '8 min read',
         date: 'July 05, 2026',
@@ -53,15 +57,35 @@ const blogPosts = [
 const categories = ['All', 'Next.js', 'React', 'Backend', 'Performance'];
 
 const BlogCard = () => {
+    const [blogs, setBlogs] = useState(blogPosts);
     const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
-    const filteredBlogs = blogPosts.filter((post) => {
-        const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
+    // fetch live blogs from backend api
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const res = await fetch("http://localhost:5000/api/v1/blogs");
+                const data = await res.json();
+                if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+                    setBlogs(data.data);
+                }
+            } catch (_err) {
+                // console.log("offline blog fetch fallback notice", _err)
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchBlogs();
+    }, []);
+
+    const filteredBlogs = blogs.filter((post) => {
+        const matchesCategory = activeCategory === 'All' || post.category.toLowerCase() === activeCategory.toLowerCase();
         const matchesSearch =
             post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+            (Array.isArray(post.tags) && post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())));
 
         return matchesCategory && matchesSearch;
     });
@@ -151,7 +175,9 @@ const BlogCard = () => {
                                     </div>
                                 </div>
 
-                                <div className="text-[11px] text-slate-400 font-medium mb-2">{post.date}</div>
+                                <div className="text-[11px] text-slate-400 font-medium mb-2">
+                                    {post.createdAt ? new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : (post.date || 'Recent')}
+                                </div>
 
                                 <h2 className="text-xl font-bold text-slate-100 group-hover:text-cyan-300 transition-colors mb-3 leading-snug">
                                     {post.title}
