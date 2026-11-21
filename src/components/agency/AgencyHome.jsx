@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import {
 	Code2,
-	TrendingUp,
 	Sparkles,
 	ArrowRight,
 	CheckCircle2,
@@ -14,24 +13,19 @@ import {
 	Send,
 	ChevronDown,
 	Star,
-	Award,
 	Clock,
-	Target,
 	Cpu,
 	CheckCheck,
 	Phone,
 	Mail,
 	MapPin,
 	MessageSquare,
-	Briefcase,
 	ExternalLink,
 	HelpCircle,
-	Check,
 	Server,
 	Database,
 	Laptop,
 } from "lucide-react";
-import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import TechArchitectureHub from "@/components/agency/TechArchitectureHub";
 import TechIcon from "@/components/TechIcon/TechIcon";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
@@ -262,37 +256,6 @@ const agencyPillars = [
 		glowColor: "from-teal-500/20 via-emerald-500/10 to-transparent",
 		linkText: "Explore SaaS Suite",
 		linkHref: "/#services",
-	},
-];
-
-// markivo showcase portfolio case studies
-const projectCaseStudies = [
-	{
-		title: "SaaS Workflow & Analytics Platform",
-		category: "Full-Stack Web App",
-		description:
-			"Engineered a scalable multi-tenant SaaS application with real-time dashboard analytics, role-based auth, and automated Stripe/bKash billing.",
-		impact: "Processed $120k+ GMV with <350ms response latency",
-		tech: ["Next.js 16", "TypeScript 5", "PostgreSQL", "Tailwind CSS v4"],
-		badgeColor: "bg-cyan-950/80 text-cyan-300 border-cyan-500/40",
-	},
-	{
-		title: "Multi-Vendor Enterprise E-Commerce Platform",
-		category: "Full-Stack Web App",
-		description:
-			"Architected a scalable e-commerce engine with inventory management, cart state synchronization, bKash/Stripe checkout, and real-time order tracking.",
-		impact: "Handled 50,000+ monthly active users with zero downtime",
-		tech: ["Next.js 16", "Express.js", "PostgreSQL", "Prisma ORM"],
-		badgeColor: "bg-blue-950/80 text-blue-300 border-blue-500/40",
-	},
-	{
-		title: "Real-Time Telemedicine & Booking Portal",
-		category: "Healthcare SaaS",
-		description:
-			"Developed a compliant patient-doctor consultation portal with WebRTC video calling, automated slot scheduling, and prescription PDF generation.",
-		impact: "Reduced appointment booking friction by 65%",
-		tech: ["React 19", "Node.js", "TypeScript 5", "Tailwind CSS v4"],
-		badgeColor: "bg-emerald-950/80 text-emerald-300 border-emerald-500/40",
 	},
 ];
 
@@ -1136,215 +1099,6 @@ export default function AgencyHome() {
 						</div>
 					</div>
 				</section>
-
-				{/* markivo we are a digital agency with added value for your business */}
-				<section className="space-y-8">
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-						{/* left agency story and value pillars */}
-						<div className="lg:col-span-7 space-y-6">
-							<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-								<Award className="w-4 h-4 text-cyan-400" />
-								ABOUT OUR AGENCY
-							</div>
-
-							<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
-								We Are a Digital Agency with Added Value For Your Business
-							</h2>
-
-							<p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-								Unlike traditional agencies that outsource your work to unknown third parties or burden you with slow communication, we engineer high-performance web systems with clean architecture, strict type-safety, and direct founder supervision.
-							</p>
-
-							{/* markivo three value feature boxes */}
-							<div className="space-y-4 pt-2">
-								<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-4 sm:p-5 flex items-start gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
-									<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">
-										<Cpu className="w-5 h-5 text-cyan-400" />
-									</div>
-									<div className="space-y-1">
-										<h4 className="text-sm font-bold text-white">Proven Results & Zero Technical Debt</h4>
-										<p className="text-slate-300 text-xs leading-relaxed">
-											We build modern server-rendered Next.js codebases designed for blazing speed, high security, and seamless horizontal scaling.
-										</p>
-									</div>
-								</div>
-
-								<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-4 sm:p-5 flex items-start gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
-									<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">
-										<Target className="w-5 h-5 text-cyan-400" />
-									</div>
-									<div className="space-y-1">
-										<h4 className="text-sm font-bold text-white">Trusted Partner & Direct Founder Collaboration</h4>
-										<p className="text-slate-300 text-xs leading-relaxed">
-											Work directly with lead engineer Provash and our core studio. Regular sprint demos, transparent feedback loops, and rapid iterations.
-										</p>
-									</div>
-								</div>
-
-								<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-4 sm:p-5 flex items-start gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
-									<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">
-										<Clock className="w-5 h-5 text-cyan-400" />
-									</div>
-									<div className="space-y-1">
-										<h4 className="text-sm font-bold text-white">Global Delivery & Dedicated 24/7 Support</h4>
-										<p className="text-slate-300 text-xs leading-relaxed">
-											Serving startups and creators across USA, Europe, and Bangladesh with easy online payments and dedicated ongoing support.
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="pt-2">
-								<Link
-									href="/portfolio"
-									className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900/90 text-cyan-300 hover:text-white font-bold text-xs md:text-sm border border-cyan-500/50 hover:border-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
-								>
-									<Layers className="w-4 h-4" />
-									<span>Explore Provash's Credentials & Full Portfolio</span>
-									<ArrowRight className="w-4 h-4" />
-								</Link>
-							</div>
-						</div>
-
-						{/* right interactive agency credentials card */}
-						<div className="lg:col-span-5 relative">
-							<div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-teal-500/15 rounded-3xl blur-3xl scale-95 pointer-events-none" />
-
-							<div className="relative rounded-3xl bg-gradient-to-br from-[#09152a] via-[#0d2247] to-[#071329] border-2 border-cyan-500/40 p-6 md:p-8 shadow-[0_0_40px_rgba(6,182,212,0.3)] space-y-6">
-								<div className="flex items-center justify-between">
-									<span className="text-[11px] font-bold uppercase tracking-wider text-cyan-300 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40">
-										Verified Agency Hub
-									</span>
-									<div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
-										<span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-										<span>Available for Sprints</span>
-									</div>
-								</div>
-
-								{/* founder profile preview */}
-								<div className="flex items-center gap-4 pt-2">
-									<div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)] flex-shrink-0 bg-slate-900">
-										<img
-											src="/img/hero-provash.png"
-											alt="Provash Sharma - Founder & Lead Engineer"
-											className="w-full h-full object-cover object-top"
-										/>
-									</div>
-									<div>
-										<h3 className="text-lg font-bold text-white">Provash Sharma</h3>
-										<p className="text-xs text-cyan-300 font-medium">Founder & Principal Full-Stack Engineer</p>
-										<div className="flex items-center gap-1 text-amber-400 text-xs pt-1">
-											{[...Array(5)].map((_, i) => (
-												<Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
-											))}
-											<span className="text-white font-bold ml-1 text-xs">4.9 / 5.0</span>
-										</div>
-									</div>
-								</div>
-
-								{/* verified impact grid */}
-								<div className="grid grid-cols-2 gap-3 pt-2">
-									<div className="rounded-xl bg-slate-950/80 border border-cyan-500/30 p-3.5 space-y-1 text-center">
-										<span className="text-2xl font-black text-cyan-300">+250%</span>
-										<p className="text-[11px] text-slate-300 font-medium">Client Traffic Growth</p>
-									</div>
-									<div className="rounded-xl bg-slate-950/80 border border-cyan-500/30 p-3.5 space-y-1 text-center">
-										<span className="text-2xl font-black text-emerald-400">100%</span>
-										<p className="text-[11px] text-slate-300 font-medium">On-Time Milestones</p>
-									</div>
-									<div className="rounded-xl bg-slate-950/80 border border-cyan-500/30 p-3.5 space-y-1 text-center">
-										<span className="text-2xl font-black text-teal-300">50+</span>
-										<p className="text-[11px] text-slate-300 font-medium">Live Repositories</p>
-									</div>
-									<div className="rounded-xl bg-slate-950/80 border border-cyan-500/30 p-3.5 space-y-1 text-center">
-										<span className="text-2xl font-black text-blue-300">24/7</span>
-										<p className="text-[11px] text-slate-300 font-medium">Sprint Accessibility</p>
-									</div>
-								</div>
-
-								<div className="pt-2">
-									<Link
-										href="/#consultation"
-										className="w-full py-3 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-xs md:text-sm flex items-center justify-center gap-2 border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300"
-									>
-										<span>Book Strategy Consultation</span>
-										<ArrowRight className="w-4 h-4" />
-									</Link>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* markivo explore our projects showcase portfolio grid */}
-				<section className="space-y-10">
-					<div className="text-center max-w-3xl mx-auto space-y-3">
-						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
-							<Briefcase className="w-4 h-4 text-cyan-400" />
-							FEATURED CASE STUDIES
-						</div>
-						<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-							Explore Our Projects
-						</h2>
-						<p className="text-slate-300 text-xs md:text-sm max-w-2xl mx-auto">
-							Take a closer look at the custom web applications, SaaS platforms, and enterprise software systems we have engineered.
-						</p>
-					</div>
-
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{projectCaseStudies.map((project, idx) => (
-							<div
-								key={idx}
-								className="group rounded-3xl p-6 md:p-8 bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400 shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
-							>
-								<div className="space-y-4">
-									<div className="flex items-center justify-between">
-										<span className={`text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${project.badgeColor}`}>
-											{project.category}
-										</span>
-										<ExternalLink className="w-4 h-4 text-cyan-400 group-hover:text-white transition-colors" />
-									</div>
-
-									<h3 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
-										{project.title}
-									</h3>
-
-									<p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-										{project.description}
-									</p>
-
-									<div className="p-3.5 rounded-2xl bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
-										✨ <span className="text-white">{project.impact}</span>
-									</div>
-								</div>
-
-								<div className="pt-6 mt-6 border-t border-cyan-500/20 space-y-4">
-									<div className="flex flex-wrap gap-1.5">
-										{project.tech.map((t, i) => (
-											<span
-												key={i}
-												className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-950 border border-cyan-500/20 text-slate-300 font-medium"
-											>
-												{t}
-											</span>
-										))}
-									</div>
-
-									<Link
-										href="/portfolio"
-										className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
-									>
-										<span>View Case Study Details</span>
-										<ArrowRight className="w-3.5 h-3.5" />
-									</Link>
-								</div>
-							</div>
-						))}
-					</div>
-				</section>
-
-				{/* pricing plans and instant checkout section */}
-				<PricingAndPayment />
 
 				{/* markivo what our client say testimonials */}
 				<section className="space-y-10">
