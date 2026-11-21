@@ -7,7 +7,7 @@ import Login from "@/components/Credentials/Login/Login";
 const Navbar = () => {
 	// console.log("rendering agency top navigation bar")
 	return (
-		<div className="navbar-bg-gradient px-4 md:px-8 py-3 border-b border-slate-900 flex justify-between items-center text-white backdrop-blur-md">
+		<div className="navbar-bg-gradient px-4 md:px-8 py-3 border-b border-slate-800/80 flex justify-between items-center text-white backdrop-blur-xl bg-slate-950/85 shadow-lg shadow-black/30">
 			<Link href="/" className="flex items-center gap-2 group">
 				{/* devaioz logo commented out pending domain purchase */}
 				{/* <img src="/img/devaioz_tlogo.png" alt="devaioz logo" className="h-8 w-auto object-contain" /> */}
