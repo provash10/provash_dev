@@ -1,6 +1,7 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import WordPressEditor from './WordPressEditor';
 import {
     FaSearch,
     FaClock,
@@ -10,9 +11,7 @@ import {
     FaCheckCircle,
     FaLayerGroup,
     FaFolderOpen,
-    FaExternalLinkAlt,
-    FaImage,
-    FaLink
+    FaExternalLinkAlt
 } from 'react-icons/fa';
 
 const defaultCategoriesTaxonomy = [
@@ -228,20 +227,6 @@ const BlogCard = () => {
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-    // textarea reference for cursor and text selection
-    const contentTextareaRef = useRef(null);
-
-    // link insertion dialog state
-    const [isLinkDialogOpen, setIsLinkDialogOpen] = useState(false);
-    const [linkWord, setLinkWord] = useState('');
-    const [linkTargetUrl, setLinkTargetUrl] = useState('');
-    const [linkSelection, setLinkSelection] = useState({ start: 0, end: 0 });
-
-    // image insertion dialog state
-    const [isImageDialogOpen, setIsImageDialogOpen] = useState(false);
-    const [imageSourceUrl, setImageSourceUrl] = useState('');
-    const [imageTitleCaption, setImageTitleCaption] = useState('');
-
     // article creation form state
     const [formData, setFormData] = useState({
         title: '',
@@ -296,98 +281,6 @@ const BlogCard = () => {
         (c) => c.name.toLowerCase() === activeCategory.toLowerCase()
     );
     const currentSubcategories = currentCategoryObj ? currentCategoryObj.subcategories : [];
-
-    // open link dialog with highlighted selected text
-    const handleTriggerLinkDialog = () => {
-        const textarea = contentTextareaRef.current;
-        if (textarea) {
-            const start = textarea.selectionStart || 0;
-            const end = textarea.selectionEnd || 0;
-            const selected = textarea.value.substring(start, end).trim();
-            setLinkSelection({ start, end });
-            setLinkWord(selected || '');
-            setLinkTargetUrl('');
-            setIsLinkDialogOpen(true);
-        } else {
-            setLinkWord('');
-            setLinkTargetUrl('');
-            setIsLinkDialogOpen(true);
-        }
-    };
-
-    // apply link markdown to selected range in textarea
-    const handleApplyLinkToText = (e) => {
-        e.preventDefault();
-        if (!linkTargetUrl.trim()) return;
-
-        const formattedUrl = linkTargetUrl.trim().startsWith('http://') || linkTargetUrl.trim().startsWith('https://')
-            ? linkTargetUrl.trim()
-            : `https://${linkTargetUrl.trim()}`;
-
-        const anchor = linkWord.trim() || 'Link';
-        const markdown = `[${anchor}](${formattedUrl})`;
-
-        const textarea = contentTextareaRef.current;
-        const fullContent = formData.content || '';
-        const start = linkSelection.start;
-        const end = linkSelection.end;
-
-        const before = fullContent.substring(0, start);
-        const after = fullContent.substring(end);
-        const updated = `${before}${markdown}${after}`;
-
-        setFormData((prev) => ({ ...prev, content: updated }));
-        setIsLinkDialogOpen(false);
-        setLinkWord('');
-        setLinkTargetUrl('');
-
-        setTimeout(() => {
-            if (contentTextareaRef.current) {
-                contentTextareaRef.current.focus();
-                const nextPos = before.length + markdown.length;
-                contentTextareaRef.current.setSelectionRange(nextPos, nextPos);
-            }
-        }, 80);
-    };
-
-    // open image insertion dialog
-    const handleTriggerImageDialog = () => {
-        setImageSourceUrl('');
-        setImageTitleCaption('');
-        setIsImageDialogOpen(true);
-    };
-
-    // apply inline image markdown at current cursor position
-    const handleApplyImageToText = (e) => {
-        e.preventDefault();
-        if (!imageSourceUrl.trim()) return;
-
-        const formattedImg = imageSourceUrl.trim().startsWith('http://') || imageSourceUrl.trim().startsWith('https://')
-            ? imageSourceUrl.trim()
-            : `https://${imageSourceUrl.trim()}`;
-
-        const caption = imageTitleCaption.trim() || 'Article Illustration';
-        const markdown = `\n\n![${caption}](${formattedImg})\n\n`;
-
-        const textarea = contentTextareaRef.current;
-        const fullContent = formData.content || '';
-        const pos = textarea ? textarea.selectionStart || fullContent.length : fullContent.length;
-
-        const before = fullContent.substring(0, pos);
-        const after = fullContent.substring(pos);
-        const updated = `${before}${markdown}${after}`;
-
-        setFormData((prev) => ({ ...prev, content: updated }));
-        setIsImageDialogOpen(false);
-        setImageSourceUrl('');
-        setImageTitleCaption('');
-
-        setTimeout(() => {
-            if (contentTextareaRef.current) {
-                contentTextareaRef.current.focus();
-            }
-        }, 80);
-    };
 
     // handle article creation form submission
     const handleCreateBlog = async (e) => {
@@ -922,40 +815,20 @@ const BlogCard = () => {
                                     />
                                 </div>
 
-                                {/* article content body with interactive selection tools */}
+                                {/* article content body with visual wordpress style editor */}
                                 <div>
-                                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                    <div className="flex items-center justify-between mb-1.5">
                                         <label className="text-slate-300 font-semibold">
                                             Full Content <span className="text-cyan-400">*</span>
                                         </label>
-                                        <div className="flex items-center gap-2">
-                                            <button
-                                                type="button"
-                                                onClick={handleTriggerLinkDialog}
-                                                className="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-sm hover:shadow-cyan-500/20"
-                                                title="Select any word in the text below, then click here to link it up"
-                                            >
-                                                <FaLink className="text-[10px]" /> Link Selected Word
-                                            </button>
-                                            <button
-                                                type="button"
-                                                onClick={handleTriggerImageDialog}
-                                                className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-950/80 hover:bg-blue-900 border border-blue-500/40 text-blue-300 rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-sm hover:shadow-blue-500/20"
-                                            >
-                                                <FaImage className="text-[10px]" /> Insert Image
-                                            </button>
-                                        </div>
+                                        <span className="text-[11px] text-cyan-400 font-medium">
+                                            Visual WordPress Editor
+                                        </span>
                                     </div>
-                                    <p className="text-[11px] text-cyan-300/80 mb-2">
-                                        💡 <strong>Tip:</strong> Select any word or phrase with your mouse, then click <strong>&quot;Link Selected Word&quot;</strong> to link it to an external URL. Click <strong>&quot;Insert Image&quot;</strong> to place photos between paragraphs.
-                                    </p>
-                                    <textarea
-                                        ref={contentTextareaRef}
-                                        rows={8}
+                                    <WordPressEditor
                                         value={formData.content}
-                                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                        placeholder="Write your article paragraphs here...&#10;&#10;Select any word and click 'Link Selected Word' to add a website hyperlink.&#10;&#10;Insert photos between paragraphs using the 'Insert Image' button."
-                                        className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono text-[11px] leading-relaxed"
+                                        onChange={(contentHtml) => setFormData((prev) => ({ ...prev, content: contentHtml }))}
+                                        placeholder="Write like in WordPress... select any text to create a link, format headings, and insert inline photos between paragraphs."
                                     />
                                 </div>
 
@@ -1010,147 +883,6 @@ const BlogCard = () => {
                 </div>
             )}
 
-            {/* link insertion helper dialog */}
-            {isLinkDialogOpen && (
-                <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-                    <div className="bg-[#0e172e] border border-cyan-400/60 rounded-2xl w-full max-w-md p-6 shadow-2xl relative text-left">
-                        <button
-                            onClick={() => setIsLinkDialogOpen(false)}
-                            className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer"
-                        >
-                            <FaTimes className="text-sm" />
-                        </button>
-
-                        <div className="flex items-center gap-2.5 mb-4">
-                            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
-                                <FaLink className="text-xs" />
-                            </div>
-                            <div>
-                                <h4 className="text-base font-bold text-white">Link Selected Word</h4>
-                                <p className="text-[11px] text-slate-400">Connect a keyword to an external website</p>
-                            </div>
-                        </div>
-
-                        <form onSubmit={handleApplyLinkToText} className="space-y-3.5 text-xs">
-                            <div>
-                                <label className="block text-slate-300 font-semibold mb-1">
-                                    Selected Word / Anchor Text
-                                </label>
-                                <input
-                                    type="text"
-                                    value={linkWord}
-                                    onChange={(e) => setLinkWord(e.target.value)}
-                                    placeholder="Word to highlight as link"
-                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-slate-300 font-semibold mb-1">
-                                    Destination Web Address (URL) <span className="text-cyan-400">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    value={linkTargetUrl}
-                                    onChange={(e) => setLinkTargetUrl(e.target.value)}
-                                    placeholder="https://example.com"
-                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
-                                    required
-                                    autoFocus
-                                />
-                            </div>
-
-                            <div className="pt-2 flex items-center justify-end gap-2.5">
-                                <button
-                                    type="button"
-                                    onClick={() => setIsLinkDialogOpen(false)}
-                                    className="px-4 py-1.5 rounded-xl text-slate-400 hover:text-white bg-slate-800 transition-colors cursor-pointer"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold transition-all cursor-pointer shadow-md"
-                                >
-                                    Apply Link
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
-
-            {/* image insertion helper dialog */}
-            {isImageDialogOpen && (
-                <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-                    <div className="bg-[#0e172e] border border-blue-400/60 rounded-2xl w-full max-w-md p-6 shadow-2xl relative text-left">
-                        <button
-                            onClick={() => setIsImageDialogOpen(false)}
-                            className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer"
-                        >
-                            <FaTimes className="text-sm" />
-                        </button>
-
-                        <div className="flex items-center gap-2.5 mb-4">
-                            <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-                                <FaImage className="text-xs" />
-                            </div>
-                            <div>
-                                <h4 className="text-base font-bold text-white">Insert Photo Between Paragraphs</h4>
-                                <p className="text-[11px] text-slate-400">Embed an inline picture with caption</p>
-                            </div>
-                        </div>
-
-                        <form onSubmit={handleApplyImageToText} className="space-y-3.5 text-xs">
-                            <div>
-                                <label className="block text-slate-300 font-semibold mb-1">
-                                    Photo URL <span className="text-cyan-400">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    value={imageSourceUrl}
-                                    onChange={(e) => setImageSourceUrl(e.target.value)}
-                                    placeholder="https://images.unsplash.com/..."
-                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
-                                    required
-                                    autoFocus
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-slate-300 font-semibold mb-1">
-                                    Photo Caption / Description
-                                </label>
-                                <input
-                                    type="text"
-                                    value={imageTitleCaption}
-                                    onChange={(e) => setImageTitleCaption(e.target.value)}
-                                    placeholder="e.g. Next.js Turbopack Performance Benchmark"
-                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
-                                />
-                            </div>
-
-                            <div className="pt-2 flex items-center justify-end gap-2.5">
-                                <button
-                                    type="button"
-                                    onClick={() => setIsImageDialogOpen(false)}
-                                    className="px-4 py-1.5 rounded-xl text-slate-400 hover:text-white bg-slate-800 transition-colors cursor-pointer"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-5 py-1.5 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-semibold transition-all cursor-pointer shadow-md"
-                                >
-                                    Insert Image
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
-
             {/* read article modal */}
             {readingBlog && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
@@ -1200,9 +932,16 @@ const BlogCard = () => {
                             {readingBlog.description}
                         </div>
 
-                        {/* rich content rendering with paragraphs, inline images and external links */}
+                        {/* rich content rendering with visual html or markdown fallback */}
                         <div className="text-slate-300 space-y-5 mb-8">
-                            {renderRichArticleContent(readingBlog.content || readingBlog.description)}
+                            {readingBlog.content?.includes('<') ? (
+                                <div
+                                    className="article-rendered-content text-slate-200 space-y-4 text-sm md:text-base leading-relaxed [&_a]:text-cyan-400 [&_a]:underline [&_a]:font-semibold [&_a:hover]:text-cyan-300 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-cyan-300 [&_h2]:mt-6 [&_h2]:mb-3 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-cyan-200 [&_h3]:mt-5 [&_h3]:mb-2 [&_h4]:text-lg [&_h4]:font-bold [&_h4]:text-cyan-100 [&_h4]:mt-4 [&_h4]:mb-2 [&_blockquote]:p-4 [&_blockquote]:my-4 [&_blockquote]:rounded-xl [&_blockquote]:bg-cyan-950/20 [&_blockquote]:border-l-4 [&_blockquote]:border-cyan-400 [&_blockquote]:text-cyan-200 [&_blockquote]:italic [&_figure]:my-6 [&_figure]:rounded-2xl [&_figure]:overflow-hidden [&_figure]:border [&_figure]:border-cyan-500/20 [&_img]:w-full [&_img]:max-h-[420px] [&_img]:object-cover [&_figcaption]:text-center [&_figcaption]:text-xs [&_figcaption]:text-slate-400 [&_figcaption]:py-2 [&_figcaption]:bg-slate-950/80 [&_figcaption]:italic [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1 [&_pre]:bg-slate-950 [&_pre]:p-4 [&_pre]:rounded-xl [&_pre]:font-mono [&_pre]:text-xs [&_pre]:text-cyan-300 [&_pre]:border [&_pre]:border-slate-800"
+                                    dangerouslySetInnerHTML={{ __html: readingBlog.content }}
+                                />
+                            ) : (
+                                renderRichArticleContent(readingBlog.content || readingBlog.description)
+                            )}
                         </div>
 
                         {/* tags in reading modal */}
