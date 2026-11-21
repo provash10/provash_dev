@@ -1,63 +1,62 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaSearch, FaClock, FaArrowRight, FaTag, FaPlus, FaTimes, FaPenNib, FaCheckCircle, FaLayerGroup } from 'react-icons/fa';
+import { FaSearch, FaClock, FaArrowRight, FaTimes, FaPenNib, FaCheckCircle, FaLayerGroup, FaFolderOpen } from 'react-icons/fa';
 
-const initialFallbackPosts = [
+const defaultCategoriesTaxonomy = [
     {
-        id: '1',
-        title: 'Mastering Next.js 16 SSR & Turbopack Performance',
-        slug: 'mastering-nextjs-16-ssr-turbopack-performance',
-        category: 'Next.js',
-        readTime: '6 min read',
-        date: 'July 20, 2026',
-        description: 'Explore how Server-Side Rendering (SSR) in Next.js 16 improves SEO, speeds up initial page load, and delivers blazing-fast web experiences.',
-        content: 'Server-Side Rendering in Next.js provides dynamic HTML rendering at request time. Combined with Turbopack, development builds and production outputs achieve ultra-fast bundle compilation and instantaneous hydration across all modern browsers.',
-        tags: ['Next.js', 'SSR', 'Turbopack', 'Performance'],
-        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000'
+        name: 'Technology & IT',
+        count: 0,
+        subcategories: [
+            { name: 'Web Development', count: 0 },
+            { name: 'Artificial Intelligence', count: 0 },
+            { name: 'Cybersecurity', count: 0 },
+            { name: 'Cloud & DevOps', count: 0 },
+            { name: 'Mobile Apps', count: 0 },
+            { name: 'Software Architecture', count: 0 }
+        ]
     },
     {
-        id: '2',
-        title: 'Building Resilient Axios Interceptors for JWT Auth',
-        slug: 'building-resilient-axios-interceptors-for-jwt-auth',
-        category: 'Backend',
-        readTime: '5 min read',
-        date: 'July 15, 2026',
-        description: 'Learn how to handle automatic token refresh, secure HTTP requests, and global error handling using custom Axios interceptors.',
-        content: 'Axios interceptors allow capturing requests and responses before they are handled by then or catch. Using a refresh token rotation queue guarantees users remain securely logged in without interrupted active sessions.',
-        tags: ['Axios', 'JWT', 'Node.js', 'Security'],
-        image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1000'
+        name: 'Science',
+        count: 0,
+        subcategories: [
+            { name: 'Space & Astronomy', count: 0 },
+            { name: 'Physics & Quantum', count: 0 },
+            { name: 'Biotechnology', count: 0 },
+            { name: 'Climate & Environment', count: 0 },
+            { name: 'Neuroscience', count: 0 }
+        ]
     },
     {
-        id: '3',
-        title: 'State Management & Custom React Hooks Architecture',
-        slug: 'state-management-custom-react-hooks-architecture',
-        category: 'React',
-        readTime: '7 min read',
-        date: 'July 10, 2026',
-        description: 'A practical guide to structuring clean React frontend applications with custom hooks, Context API, and modular state isolation.',
-        content: 'Extracting stateful business logic into reusable custom hooks isolates presentation components from side-effects. This pattern improves code readability, testability, and maintainability across large-scale frontend applications.',
-        tags: ['React', 'Hooks', 'State Management', 'Clean Code'],
-        image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000'
+        name: 'Politics',
+        count: 0,
+        subcategories: [
+            { name: 'National Politics', count: 0 },
+            { name: 'Geopolitics & Global Affairs', count: 0 },
+            { name: 'Public Policy', count: 0 },
+            { name: 'Political Economy', count: 0 },
+            { name: 'Law & Human Rights', count: 0 }
+        ]
     },
     {
-        id: '4',
-        title: 'Designing Scalable MERN Stack Apps from Scratch',
-        slug: 'designing-scalable-mern-stack-apps-from-scratch',
-        category: 'Performance',
-        readTime: '8 min read',
-        date: 'July 05, 2026',
-        description: 'Best practices for organizing MongoDB schemas, Express middleware, RESTful API endpoints, and responsive React component layouts.',
-        content: 'A robust MERN architecture enforces separation of concerns through modular folders: controllers handle HTTP status codes, services process business logic, and schemas validate inputs cleanly.',
-        tags: ['MERN Stack', 'MongoDB', 'Express', 'Node.js'],
-        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000'
+        name: 'Finance',
+        count: 0,
+        subcategories: [
+            { name: 'Personal Finance', count: 0 },
+            { name: 'FinTech', count: 0 },
+            { name: 'Stock Market & Investing', count: 0 },
+            { name: 'Cryptocurrency & Web3', count: 0 },
+            { name: 'Macroeconomics & Banking', count: 0 },
+            { name: 'Startup Funding', count: 0 }
+        ]
     }
 ];
 
 const BlogCard = () => {
-    const [blogs, setBlogs] = useState(initialFallbackPosts);
-    const [categories, setCategories] = useState([]);
+    const [blogs, setBlogs] = useState([]);
+    const [categories, setCategories] = useState(defaultCategoriesTaxonomy);
     const [activeCategory, setActiveCategory] = useState('All');
+    const [activeSubCategory, setActiveSubCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const [readingBlog, setReadingBlog] = useState(null);
@@ -68,15 +67,17 @@ const BlogCard = () => {
     // article creation form state
     const [formData, setFormData] = useState({
         title: '',
-        category: '',
+        category: 'Technology & IT',
         customCategory: '',
+        subCategory: 'Web Development',
+        customSubCategory: '',
         description: '',
         content: '',
         tags: '',
         image: ''
     });
 
-    // fetch live blogs and category list from backend
+    // fetch live blogs and category taxonomy from backend
     const loadData = async () => {
         try {
             // fetch categories
@@ -101,7 +102,19 @@ const BlogCard = () => {
         loadData();
     }, []);
 
-    // handle form submission to backend api
+    // handle category tab switch
+    const handleCategoryChange = (catName) => {
+        setActiveCategory(catName);
+        setActiveSubCategory('All');
+    };
+
+    // available subcategories for current active category
+    const currentCategoryObj = categories.find(
+        (c) => c.name.toLowerCase() === activeCategory.toLowerCase()
+    );
+    const currentSubcategories = currentCategoryObj ? currentCategoryObj.subcategories : [];
+
+    // handle article creation form submission
     const handleCreateBlog = async (e) => {
         e.preventDefault();
         setErrorMessage('');
@@ -109,7 +122,11 @@ const BlogCard = () => {
 
         const targetCategory = formData.category === '__custom__'
             ? formData.customCategory.trim()
-            : (formData.category || (categories[0] ? categories[0].name : 'General'));
+            : (formData.category || 'Technology & IT');
+
+        const targetSubCategory = formData.subCategory === '__custom__'
+            ? formData.customSubCategory.trim()
+            : (formData.subCategory || 'General');
 
         if (!formData.title.trim()) {
             setErrorMessage('Please provide an article title');
@@ -131,11 +148,12 @@ const BlogCard = () => {
 
         const tagList = formData.tags
             ? formData.tags.split(',').map((t) => t.trim()).filter(Boolean)
-            : [targetCategory];
+            : [targetCategory, targetSubCategory];
 
         const payload = {
             title: formData.title.trim(),
             category: targetCategory,
+            subCategory: targetSubCategory,
             description: formData.description.trim(),
             content: formData.content.trim(),
             tags: tagList,
@@ -154,17 +172,20 @@ const BlogCard = () => {
             const data = await res.json();
             if (data.success && data.data) {
                 setSubmitSuccess(true);
-                // add newly created blog to state
+                // add newly created blog to active state
                 setBlogs((prev) => [data.data, ...prev]);
-                // refresh categories from backend
+                // reload live category taxonomy from backend
                 loadData();
                 setTimeout(() => {
                     setSubmitSuccess(false);
                     setIsCreateModalOpen(false);
+                    // reset form inputs
                     setFormData({
                         title: '',
-                        category: '',
+                        category: 'Technology & IT',
                         customCategory: '',
+                        subCategory: 'Web Development',
+                        customSubCategory: '',
                         description: '',
                         content: '',
                         tags: '',
@@ -181,23 +202,41 @@ const BlogCard = () => {
         }
     };
 
-    // filter articles based on category and search query
+    // filter articles based on category, subcategory and search query
     const filteredBlogs = blogs.filter((post) => {
-        const matchesCategory = activeCategory === 'All' || post.category.toLowerCase() === activeCategory.toLowerCase();
+        const matchesCategory =
+            activeCategory === 'All' ||
+            post.category.toLowerCase() === activeCategory.toLowerCase();
+
+        const matchesSubCategory =
+            activeSubCategory === 'All' ||
+            (post.subCategory && post.subCategory.toLowerCase() === activeSubCategory.toLowerCase());
+
         const matchesSearch =
             post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.subCategory?.toLowerCase().includes(searchQuery.toLowerCase()) ||
             (Array.isArray(post.tags) && post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())));
 
-        return matchesCategory && matchesSearch;
+        return matchesCategory && matchesSubCategory && matchesSearch;
     });
 
-    // open create modal with preselected category
+    // open create modal with preselected category and subcategory
     const handleOpenCreateModal = () => {
+        const initCategory = activeCategory !== 'All' ? activeCategory : 'Technology & IT';
+        const foundCategory = categories.find((c) => c.name.toLowerCase() === initCategory.toLowerCase());
+        const initSub = activeSubCategory !== 'All'
+            ? activeSubCategory
+            : (foundCategory?.subcategories?.[0]
+                ? foundCategory.subcategories[0].name
+                : 'General');
+
         setFormData({
             title: '',
-            category: activeCategory !== 'All' ? activeCategory : (categories[0] ? categories[0].name : 'React'),
+            category: initCategory,
             customCategory: '',
+            subCategory: initSub,
+            customSubCategory: '',
             description: '',
             content: '',
             tags: '',
@@ -207,6 +246,12 @@ const BlogCard = () => {
         setSubmitSuccess(false);
         setIsCreateModalOpen(true);
     };
+
+    // dynamic subcategories for modal selection based on modal category
+    const modalCategoryObj = categories.find(
+        (c) => c.name.toLowerCase() === formData.category.toLowerCase()
+    );
+    const modalSubcategories = modalCategoryObj ? modalCategoryObj.subcategories : [];
 
     return (
         <section className="w-full min-h-screen bg-[#070d19] text-white py-12 md:py-16 px-4 md:px-8 md:pr-32 lg:pr-36 xl:pr-40 flex flex-col items-center relative overflow-hidden">
@@ -219,13 +264,13 @@ const BlogCard = () => {
                 <div className="flex flex-col items-center md:items-start">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-3">
                         <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                        Tech Insights & Knowledge Hub
+                        Knowledge Base & Insights Hub
                     </div>
                     <h1 className="text-3xl md:text-5xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 drop-shadow-md">
                         Blog & Articles
                     </h1>
-                    <p className="text-gray-400 mt-2 text-sm md:text-base max-w-xl mx-auto md:mx-0">
-                        Explore tutorials by category, or contribute your own technical articles directly to the developer community.
+                    <p className="text-gray-400 mt-2 text-sm md:text-base max-w-2xl mx-auto md:mx-0">
+                        Explore in-depth articles across Technology, Science, Politics, and Finance, or share your own expertise.
                     </p>
                 </div>
 
@@ -246,21 +291,21 @@ const BlogCard = () => {
                 </div>
             </div>
 
-            {/* category list and search toolbar */}
-            <div className="w-full max-w-7xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10 relative z-10">
-                {/* category pills with post count badges */}
-                <div className="flex flex-wrap items-center gap-2">
+            {/* main category pills and search toolbar */}
+            <div className="w-full max-w-7xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-6 relative z-10">
+                {/* main category pills */}
+                <div className="flex flex-wrap items-center gap-2.5">
                     <button
-                        onClick={() => setActiveCategory('All')}
-                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                        onClick={() => handleCategoryChange('All')}
+                        className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
                             activeCategory === 'All'
-                                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/30'
+                                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border border-cyan-400/40'
                                 : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white hover:border-cyan-500/40'
                         }`}
                     >
-                        <FaLayerGroup className="text-[10px]" />
-                        <span>All Topics</span>
-                        <span className="ml-1 text-[10px] px-1.5 py-0.2 rounded-full bg-slate-800 text-cyan-300 font-bold border border-cyan-500/20">
+                        <FaLayerGroup className="text-[11px]" />
+                        <span>All Categories</span>
+                        <span className="ml-1 text-[10px] px-2 py-0.5 rounded-full bg-slate-800/90 text-cyan-300 font-bold border border-cyan-500/20">
                             {blogs.length}
                         </span>
                     </button>
@@ -268,15 +313,15 @@ const BlogCard = () => {
                     {categories.map((cat, idx) => (
                         <button
                             key={idx}
-                            onClick={() => setActiveCategory(cat.name)}
-                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                            onClick={() => handleCategoryChange(cat.name)}
+                            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
                                 activeCategory.toLowerCase() === cat.name.toLowerCase()
-                                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/30'
+                                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border border-cyan-400/40'
                                     : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white hover:border-cyan-500/40'
                             }`}
                         >
                             <span>{cat.name}</span>
-                            <span className="ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full bg-slate-800 text-cyan-300 font-bold border border-cyan-500/20">
+                            <span className="ml-1 text-[10px] px-2 py-0.5 rounded-full bg-slate-800/90 text-cyan-300 font-bold border border-cyan-500/20">
                                 {cat.count}
                             </span>
                         </button>
@@ -290,24 +335,73 @@ const BlogCard = () => {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search articles or topics..."
+                        placeholder="Search title, subcategory, tags..."
                         className="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl py-2 pl-9 pr-4 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
                     />
                 </div>
             </div>
 
-            {/* active category indicator and quick publish trigger */}
+            {/* subcategory filter bar when category is selected */}
+            {activeCategory !== 'All' && currentSubcategories && currentSubcategories.length > 0 && (
+                <div className="w-full max-w-7xl bg-[#091224]/80 border border-cyan-500/20 rounded-2xl p-4 mb-8 relative z-10 backdrop-blur-md">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-cyan-300 mb-3 px-1">
+                        <FaFolderOpen className="text-cyan-400" />
+                        <span>Subcategories in {activeCategory}:</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                        <button
+                            onClick={() => setActiveSubCategory('All')}
+                            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer ${
+                                activeSubCategory === 'All'
+                                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
+                                    : 'bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800 hover:border-cyan-500/30'
+                            }`}
+                        >
+                            All {activeCategory}
+                        </button>
+                        {currentSubcategories.map((sub, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setActiveSubCategory(sub.name)}
+                                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 cursor-pointer ${
+                                    activeSubCategory.toLowerCase() === sub.name.toLowerCase()
+                                        ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
+                                        : 'bg-slate-900/90 text-slate-300 hover:text-white border border-slate-800 hover:border-cyan-500/30'
+                                }`}
+                            >
+                                <span>{sub.name}</span>
+                                {sub.count > 0 && (
+                                    <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                                        activeSubCategory.toLowerCase() === sub.name.toLowerCase()
+                                            ? 'bg-slate-950/20 text-slate-950 font-bold'
+                                            : 'bg-slate-800 text-cyan-300'
+                                    }`}>
+                                        {sub.count}
+                                    </span>
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* active filter summary indicator */}
             <div className="w-full max-w-7xl flex items-center justify-between text-xs text-slate-400 mb-6 px-1 relative z-10">
                 <p>
                     Showing {filteredBlogs.length} {filteredBlogs.length === 1 ? 'article' : 'articles'} in{' '}
-                    <span className="text-cyan-400 font-semibold">{activeCategory === 'All' ? 'All Categories' : activeCategory}</span>
+                    <span className="text-cyan-400 font-semibold">{activeCategory}</span>
+                    {activeSubCategory !== 'All' && (
+                        <span>
+                            {' '}➔ <span className="text-blue-400 font-semibold">{activeSubCategory}</span>
+                        </span>
+                    )}
                 </p>
                 {activeCategory !== 'All' && (
                     <button
                         onClick={handleOpenCreateModal}
                         className="text-cyan-400 hover:text-cyan-300 underline font-medium cursor-pointer"
                     >
-                        + Write article in {activeCategory}
+                        + Write article in {activeSubCategory !== 'All' ? activeSubCategory : activeCategory}
                     </button>
                 )}
             </div>
@@ -328,12 +422,19 @@ const BlogCard = () => {
                                         alt={post.title}
                                         className="w-full h-52 object-cover transform group-hover:scale-105 transition-transform duration-500"
                                     />
-                                    <button
-                                        onClick={() => setActiveCategory(post.category)}
-                                        className="absolute top-3 left-3 bg-cyan-950/80 hover:bg-cyan-900 backdrop-blur-md border border-cyan-500/30 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full cursor-pointer transition-colors"
-                                    >
-                                        {post.category}
-                                    </button>
+                                    <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5">
+                                        <button
+                                            onClick={() => handleCategoryChange(post.category)}
+                                            className="bg-cyan-950/90 hover:bg-cyan-900 backdrop-blur-md border border-cyan-500/40 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full cursor-pointer transition-colors"
+                                        >
+                                            {post.category}
+                                        </button>
+                                        {post.subCategory && post.subCategory !== 'General' && (
+                                            <span className="bg-blue-950/90 backdrop-blur-md border border-blue-500/40 text-blue-300 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                                {post.subCategory}
+                                            </span>
+                                        )}
+                                    </div>
                                     <div className="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-slate-300 text-[10px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1">
                                         <FaClock className="text-[9px] text-cyan-400" /> {post.readTime || '5 min read'}
                                     </div>
@@ -342,7 +443,7 @@ const BlogCard = () => {
                                 <div className="text-[11px] text-slate-400 font-medium mb-2">
                                     {post.createdAt
                                         ? new Date(post.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                                        : (post.date || 'Recent')}
+                                        : 'Recent'}
                                 </div>
 
                                 <h2 className="text-xl font-bold text-slate-100 group-hover:text-cyan-300 transition-colors mb-3 leading-snug">
@@ -355,7 +456,7 @@ const BlogCard = () => {
                             </div>
 
                             <div>
-                                {/* tags */}
+                                {/* tags list */}
                                 <div className="flex flex-wrap gap-1.5 mb-5">
                                     {Array.isArray(post.tags) && post.tags.map((tag, idx) => (
                                         <span
@@ -367,7 +468,7 @@ const BlogCard = () => {
                                     ))}
                                 </div>
 
-                                {/* read article button */}
+                                {/* read article action button */}
                                 <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                                     <button
                                         onClick={() => setReadingBlog(post)}
@@ -382,13 +483,13 @@ const BlogCard = () => {
                 </div>
             ) : (
                 <div className="text-center py-20 text-slate-400 text-sm max-w-md mx-auto relative z-10">
-                    <p className="mb-4">No articles found in this category yet.</p>
+                    <p className="mb-4">No articles found in this category or subcategory yet.</p>
                     <button
                         onClick={handleOpenCreateModal}
                         className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-full shadow-lg shadow-cyan-500/25 transition-all text-xs cursor-pointer"
                     >
                         <FaPenNib className="text-xs" />
-                        Write the first article in {activeCategory}
+                        Write the first article in {activeSubCategory !== 'All' ? activeSubCategory : activeCategory}
                     </button>
                 </div>
             )}
@@ -411,7 +512,7 @@ const BlogCard = () => {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white">Create New Article</h3>
-                                <p className="text-xs text-slate-400">Publish your technical insight to the blog</p>
+                                <p className="text-xs text-slate-400">Publish your technical insight under category & subcategory</p>
                             </div>
                         </div>
 
@@ -429,14 +530,25 @@ const BlogCard = () => {
                                     </div>
                                 )}
 
-                                {/* category selector */}
+                                {/* category dropdown */}
                                 <div>
                                     <label className="block text-slate-300 font-semibold mb-1">
-                                        Category <span className="text-cyan-400">*</span>
+                                        Main Category <span className="text-cyan-400">*</span>
                                     </label>
                                     <select
                                         value={formData.category}
-                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                        onChange={(e) => {
+                                            const newCat = e.target.value;
+                                            const found = categories.find((c) => c.name.toLowerCase() === newCat.toLowerCase());
+                                            const firstSub = found?.subcategories?.[0]
+                                                ? found.subcategories[0].name
+                                                : 'General';
+                                            setFormData({
+                                                ...formData,
+                                                category: newCat,
+                                                subCategory: firstSub
+                                            });
+                                        }}
                                         className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400"
                                     >
                                         {categories.map((c, i) => (
@@ -460,7 +572,45 @@ const BlogCard = () => {
                                             type="text"
                                             value={formData.customCategory}
                                             onChange={(e) => setFormData({ ...formData, customCategory: e.target.value })}
-                                            placeholder="e.g. DevOps, Cloud, AI"
+                                            placeholder="e.g. Artificial Intelligence, Philosophy"
+                                            className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400"
+                                            required
+                                        />
+                                    </div>
+                                )}
+
+                                {/* subcategory dropdown */}
+                                <div>
+                                    <label className="block text-slate-300 font-semibold mb-1">
+                                        Subcategory <span className="text-cyan-400">*</span>
+                                    </label>
+                                    <select
+                                        value={formData.subCategory}
+                                        onChange={(e) => setFormData({ ...formData, subCategory: e.target.value })}
+                                        className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400"
+                                    >
+                                        {modalSubcategories.map((s, i) => (
+                                            <option key={i} value={s.name} className="bg-slate-900 text-white">
+                                                {s.name}
+                                            </option>
+                                        ))}
+                                        <option value="__custom__" className="bg-slate-900 text-cyan-300 font-semibold">
+                                            + Create Custom Subcategory
+                                        </option>
+                                    </select>
+                                </div>
+
+                                {/* custom subcategory input */}
+                                {formData.subCategory === '__custom__' && (
+                                    <div>
+                                        <label className="block text-slate-300 font-semibold mb-1">
+                                            New Subcategory Name <span className="text-cyan-400">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={formData.customSubCategory}
+                                            onChange={(e) => setFormData({ ...formData, customSubCategory: e.target.value })}
+                                            placeholder="e.g. Next.js, Quantum Computing, Deep Learning"
                                             className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400"
                                             required
                                         />
@@ -476,7 +626,7 @@ const BlogCard = () => {
                                         type="text"
                                         value={formData.title}
                                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                        placeholder="e.g. Advanced Docker Multistage Builds for Microservices"
+                                        placeholder="e.g. Understanding Modern Cloud Architecture"
                                         className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400"
                                         required
                                     />
@@ -506,7 +656,7 @@ const BlogCard = () => {
                                         rows={6}
                                         value={formData.content}
                                         onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                        placeholder="Write your article body, key takeaways, architectural diagrams explanation, or code snippets..."
+                                        placeholder="Write your article body, key takeaways, diagrams explanation, or code snippets..."
                                         className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono text-[11px]"
                                     />
                                 </div>
@@ -574,17 +724,22 @@ const BlogCard = () => {
                             <FaTimes className="text-base" />
                         </button>
 
-                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                        <div className="flex flex-wrap items-center gap-2 mb-4">
                             <span className="bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-bold px-3 py-1 rounded-full">
                                 {readingBlog.category}
                             </span>
+                            {readingBlog.subCategory && readingBlog.subCategory !== 'General' && (
+                                <span className="bg-blue-950/80 border border-blue-500/30 text-blue-300 text-xs font-bold px-3 py-1 rounded-full">
+                                    {readingBlog.subCategory}
+                                </span>
+                            )}
                             <span className="text-xs text-slate-400 flex items-center gap-1">
                                 <FaClock className="text-cyan-400 text-[10px]" /> {readingBlog.readTime || '5 min read'}
                             </span>
                             <span className="text-xs text-slate-500">
                                 {readingBlog.createdAt
                                     ? new Date(readingBlog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-                                    : (readingBlog.date || 'Recent')}
+                                    : 'Recent'}
                             </span>
                         </div>
 
