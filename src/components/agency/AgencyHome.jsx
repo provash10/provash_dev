@@ -33,30 +33,9 @@ import {
 } from "lucide-react";
 import PricingAndPayment from "@/components/agency/PricingAndPayment";
 import TechArchitectureHub from "@/components/agency/TechArchitectureHub";
+import TechIcon from "@/components/TechIcon/TechIcon";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
 import { softwareProducts } from "@/data/softwareData";
-
-// trusted tech stack marquee data matching frontend and backend specification
-const techStackList = [
-	{ name: "Next.js 16", category: "Full-Stack App Router" },
-	{ name: "React 19", category: "Modern UI Library" },
-	{ name: "TypeScript 5", category: "Strict Type Safety" },
-	{ name: "Bun", category: "Ultra-Fast Runtime" },
-	{ name: "Tailwind CSS v4", category: "Modern Styling" },
-	{ name: "TanStack Query v5", category: "Server State & Cache" },
-	{ name: "Shadcn UI", category: "Component Primitives" },
-	{ name: "Node.js", category: "Backend Runtime" },
-	{ name: "Express.js", category: "RESTful Modular API" },
-	{ name: "PostgreSQL", category: "Relational ACID DB" },
-	{ name: "Prisma ORM", category: "Type-Safe Data Client" },
-	{ name: "Redis", category: "In-Memory Caching" },
-	{ name: "JWT Auth & RBAC", category: "Security & Tokens" },
-	{ name: "Zod", category: "Schema Validation" },
-	{ name: "Biome", category: "Fast Linter & Formatter" },
-	{ name: "Docker", category: "Containerization" },
-	{ name: "Cloudinary", category: "Cloud Media CDN" },
-	{ name: "bKash & Stripe", category: "Payment Gateways" },
-];
 
 // web development three primary options with comprehensive tech stack
 const webDevOptions = [
@@ -552,26 +531,19 @@ export default function AgencyHome() {
 				</div>
 			</section>
 
-			{/* trusted companies marquee strip right below banner */}
+			{/* enterprise tech stack showcase right below hero banner */}
 			<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="rounded-2xl bg-[#09152a]/80 backdrop-blur-md border border-cyan-500/25 p-5 md:p-6 shadow-[0_4px_30px_rgba(6,182,212,0.12)]">
-					<div className="flex flex-col md:flex-row items-center justify-between gap-4">
-						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs uppercase tracking-wider flex-shrink-0">
+				<div className="rounded-3xl bg-[#09152a]/80 backdrop-blur-md border border-cyan-500/25 p-5 md:p-8 shadow-[0_4px_30px_rgba(6,182,212,0.12)] space-y-4">
+					<div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-cyan-500/20 pb-3">
+						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs md:text-sm uppercase tracking-wider">
 							<Sparkles className="w-4 h-4 text-cyan-400" />
-							<span>Enterprise Technologies & Stack:</span>
+							<span>Enterprise Technologies & Stack</span>
 						</div>
-						<div className="flex flex-wrap items-center justify-center md:justify-end gap-2 text-xs">
-							{techStackList.map((tech, idx) => (
-								<div
-									key={idx}
-									className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 border border-cyan-500/20 hover:border-cyan-400 text-slate-300 hover:text-white transition-all duration-200 cursor-default hover:scale-105 shadow-[0_0_10px_rgba(6,182,212,0.08)]"
-								>
-									<span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-									<span className="font-semibold">{tech.name}</span>
-								</div>
-							))}
-						</div>
+						<span className="text-[11px] text-slate-400 font-medium">
+							Interactive viva notes, official docs & architecture overview
+						</span>
 					</div>
+					<TechIcon />
 				</div>
 			</section>
 
