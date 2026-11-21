@@ -30,6 +30,33 @@ export default function RootLayout({ children }) {
 			className={`${geistSans.variable} ${geistMono.variable}`}
 			suppressHydrationWarning
 		>
+			<head>
+				{/* sanitize browser extension attributes before hydration */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+(function(){
+  try {
+    function clean() {
+      var els = document.querySelectorAll('[bis_skin_checked]');
+      for (var i = 0; i < els.length; i++) {
+        els[i].removeAttribute('bis_skin_checked');
+      }
+    }
+    clean();
+    if (typeof MutationObserver !== 'undefined') {
+      new MutationObserver(function() { clean(); }).observe(document.documentElement, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: ['bis_skin_checked']
+      });
+    }
+  } catch(e) {}
+})();
+`,
+					}}
+				/>
+			</head>
 			<body
 				className="min-h-screen bg-slate-950 text-slate-100 antialiased"
 				suppressHydrationWarning

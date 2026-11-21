@@ -12,8 +12,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* ensure natural page scroll without clipping */
 html {
   overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: 100% !important;
 }
 
 body {
@@ -21,10 +25,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  width: 100% !important;
 }
 
-/* ensure dev overlay never blocks user interaction */
-nextjs-portal {
+/* hide development error overlays and dialog backdrops from hijacking mouse events */
+nextjs-portal,
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast],
+dialog[data-nextjs-dialog] {
   display: none !important;
   pointer-events: none !important;
 }
