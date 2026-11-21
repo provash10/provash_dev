@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
     FaSearch,
@@ -228,6 +228,20 @@ const BlogCard = () => {
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+    // textarea reference for cursor and text selection
+    const contentTextareaRef = useRef(null);
+
+    // link insertion dialog state
+    const [isLinkDialogOpen, setIsLinkDialogOpen] = useState(false);
+    const [linkWord, setLinkWord] = useState('');
+    const [linkTargetUrl, setLinkTargetUrl] = useState('');
+    const [linkSelection, setLinkSelection] = useState({ start: 0, end: 0 });
+
+    // image insertion dialog state
+    const [isImageDialogOpen, setIsImageDialogOpen] = useState(false);
+    const [imageSourceUrl, setImageSourceUrl] = useState('');
+    const [imageTitleCaption, setImageTitleCaption] = useState('');
+
     // article creation form state
     const [formData, setFormData] = useState({
         title: '',
@@ -248,7 +262,12 @@ const BlogCard = () => {
             const catRes = await fetch('http://localhost:5000/api/v1/blogs/categories');
             const catData = await catRes.json();
             if (catData.success && catData.data && Array.isArray(catData.data.categories)) {
-                setCategories(catData.data.categories);
+                // filter out any old legacy categories
+                const legacyCategories = ['backend', 'react', 'performance', 'typescript', 'next.js'];
+                const sanitized = catData.data.categories.filter(
+                    (c) => !legacyCategories.includes(c.name.toLowerCase())
+                );
+                setCategories(sanitized.length > 0 ? sanitized : defaultCategoriesTaxonomy);
             }
 
             // fetch blogs
@@ -277,6 +296,98 @@ const BlogCard = () => {
         (c) => c.name.toLowerCase() === activeCategory.toLowerCase()
     );
     const currentSubcategories = currentCategoryObj ? currentCategoryObj.subcategories : [];
+
+    // open link dialog with highlighted selected text
+    const handleTriggerLinkDialog = () => {
+        const textarea = contentTextareaRef.current;
+        if (textarea) {
+            const start = textarea.selectionStart || 0;
+            const end = textarea.selectionEnd || 0;
+            const selected = textarea.value.substring(start, end).trim();
+            setLinkSelection({ start, end });
+            setLinkWord(selected || '');
+            setLinkTargetUrl('');
+            setIsLinkDialogOpen(true);
+        } else {
+            setLinkWord('');
+            setLinkTargetUrl('');
+            setIsLinkDialogOpen(true);
+        }
+    };
+
+    // apply link markdown to selected range in textarea
+    const handleApplyLinkToText = (e) => {
+        e.preventDefault();
+        if (!linkTargetUrl.trim()) return;
+
+        const formattedUrl = linkTargetUrl.trim().startsWith('http://') || linkTargetUrl.trim().startsWith('https://')
+            ? linkTargetUrl.trim()
+            : `https://${linkTargetUrl.trim()}`;
+
+        const anchor = linkWord.trim() || 'Link';
+        const markdown = `[${anchor}](${formattedUrl})`;
+
+        const textarea = contentTextareaRef.current;
+        const fullContent = formData.content || '';
+        const start = linkSelection.start;
+        const end = linkSelection.end;
+
+        const before = fullContent.substring(0, start);
+        const after = fullContent.substring(end);
+        const updated = `${before}${markdown}${after}`;
+
+        setFormData((prev) => ({ ...prev, content: updated }));
+        setIsLinkDialogOpen(false);
+        setLinkWord('');
+        setLinkTargetUrl('');
+
+        setTimeout(() => {
+            if (contentTextareaRef.current) {
+                contentTextareaRef.current.focus();
+                const nextPos = before.length + markdown.length;
+                contentTextareaRef.current.setSelectionRange(nextPos, nextPos);
+            }
+        }, 80);
+    };
+
+    // open image insertion dialog
+    const handleTriggerImageDialog = () => {
+        setImageSourceUrl('');
+        setImageTitleCaption('');
+        setIsImageDialogOpen(true);
+    };
+
+    // apply inline image markdown at current cursor position
+    const handleApplyImageToText = (e) => {
+        e.preventDefault();
+        if (!imageSourceUrl.trim()) return;
+
+        const formattedImg = imageSourceUrl.trim().startsWith('http://') || imageSourceUrl.trim().startsWith('https://')
+            ? imageSourceUrl.trim()
+            : `https://${imageSourceUrl.trim()}`;
+
+        const caption = imageTitleCaption.trim() || 'Article Illustration';
+        const markdown = `\n\n![${caption}](${formattedImg})\n\n`;
+
+        const textarea = contentTextareaRef.current;
+        const fullContent = formData.content || '';
+        const pos = textarea ? textarea.selectionStart || fullContent.length : fullContent.length;
+
+        const before = fullContent.substring(0, pos);
+        const after = fullContent.substring(pos);
+        const updated = `${before}${markdown}${after}`;
+
+        setFormData((prev) => ({ ...prev, content: updated }));
+        setIsImageDialogOpen(false);
+        setImageSourceUrl('');
+        setImageTitleCaption('');
+
+        setTimeout(() => {
+            if (contentTextareaRef.current) {
+                contentTextareaRef.current.focus();
+            }
+        }, 80);
+    };
 
     // handle article creation form submission
     const handleCreateBlog = async (e) => {
@@ -811,44 +922,40 @@ const BlogCard = () => {
                                     />
                                 </div>
 
-                                {/* article content body with formatting toolbar */}
+                                {/* article content body with interactive selection tools */}
                                 <div>
-                                    <div className="flex items-center justify-between mb-1.5">
+                                    <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                                         <label className="text-slate-300 font-semibold">
                                             Full Content <span className="text-cyan-400">*</span>
                                         </label>
                                         <div className="flex items-center gap-2">
                                             <button
                                                 type="button"
-                                                onClick={() => {
-                                                    const sampleImg = '\n\n![Image Caption](https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000)\n\n';
-                                                    setFormData((prev) => ({ ...prev, content: (prev.content || '') + sampleImg }));
-                                                }}
-                                                className="inline-flex items-center gap-1 px-2.5 py-1 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/30 text-cyan-300 rounded-lg text-[10px] font-semibold transition-colors cursor-pointer"
+                                                onClick={handleTriggerLinkDialog}
+                                                className="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-sm hover:shadow-cyan-500/20"
+                                                title="Select any word in the text below, then click here to link it up"
                                             >
-                                                <FaImage className="text-[10px]" /> + Insert Image
+                                                <FaLink className="text-[10px]" /> Link Selected Word
                                             </button>
                                             <button
                                                 type="button"
-                                                onClick={() => {
-                                                    const sampleLink = ' [External Website Title](https://example.com) ';
-                                                    setFormData((prev) => ({ ...prev, content: (prev.content || '') + sampleLink }));
-                                                }}
-                                                className="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-950/80 hover:bg-blue-900 border border-blue-500/30 text-blue-300 rounded-lg text-[10px] font-semibold transition-colors cursor-pointer"
+                                                onClick={handleTriggerImageDialog}
+                                                className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-950/80 hover:bg-blue-900 border border-blue-500/40 text-blue-300 rounded-lg text-xs font-semibold transition-colors cursor-pointer shadow-sm hover:shadow-blue-500/20"
                                             >
-                                                <FaLink className="text-[10px]" /> + Insert Link
+                                                <FaImage className="text-[10px]" /> Insert Image
                                             </button>
                                         </div>
                                     </div>
-                                    <p className="text-[10px] text-slate-400 mb-2">
-                                        Write paragraphs separated by empty lines. Click <strong>+ Insert Image</strong> to place pictures between paragraphs, and <strong>+ Insert Link</strong> to connect external websites.
+                                    <p className="text-[11px] text-cyan-300/80 mb-2">
+                                        💡 <strong>Tip:</strong> Select any word or phrase with your mouse, then click <strong>&quot;Link Selected Word&quot;</strong> to link it to an external URL. Click <strong>&quot;Insert Image&quot;</strong> to place photos between paragraphs.
                                     </p>
                                     <textarea
-                                        rows={7}
+                                        ref={contentTextareaRef}
+                                        rows={8}
                                         value={formData.content}
                                         onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                        placeholder="First paragraph of your article...&#10;&#10;![Chart or Photo](https://images.unsplash.com/...)&#10;&#10;Second paragraph referencing an [External Source](https://example.com)..."
-                                        className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono text-[11px]"
+                                        placeholder="Write your article paragraphs here...&#10;&#10;Select any word and click 'Link Selected Word' to add a website hyperlink.&#10;&#10;Insert photos between paragraphs using the 'Insert Image' button."
+                                        className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono text-[11px] leading-relaxed"
                                     />
                                 </div>
 
@@ -899,6 +1006,147 @@ const BlogCard = () => {
                                 </div>
                             </form>
                         )}
+                    </div>
+                </div>
+            )}
+
+            {/* link insertion helper dialog */}
+            {isLinkDialogOpen && (
+                <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+                    <div className="bg-[#0e172e] border border-cyan-400/60 rounded-2xl w-full max-w-md p-6 shadow-2xl relative text-left">
+                        <button
+                            onClick={() => setIsLinkDialogOpen(false)}
+                            className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                        >
+                            <FaTimes className="text-sm" />
+                        </button>
+
+                        <div className="flex items-center gap-2.5 mb-4">
+                            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                                <FaLink className="text-xs" />
+                            </div>
+                            <div>
+                                <h4 className="text-base font-bold text-white">Link Selected Word</h4>
+                                <p className="text-[11px] text-slate-400">Connect a keyword to an external website</p>
+                            </div>
+                        </div>
+
+                        <form onSubmit={handleApplyLinkToText} className="space-y-3.5 text-xs">
+                            <div>
+                                <label className="block text-slate-300 font-semibold mb-1">
+                                    Selected Word / Anchor Text
+                                </label>
+                                <input
+                                    type="text"
+                                    value={linkWord}
+                                    onChange={(e) => setLinkWord(e.target.value)}
+                                    placeholder="Word to highlight as link"
+                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-slate-300 font-semibold mb-1">
+                                    Destination Web Address (URL) <span className="text-cyan-400">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    value={linkTargetUrl}
+                                    onChange={(e) => setLinkTargetUrl(e.target.value)}
+                                    placeholder="https://example.com"
+                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
+                                    required
+                                    autoFocus
+                                />
+                            </div>
+
+                            <div className="pt-2 flex items-center justify-end gap-2.5">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsLinkDialogOpen(false)}
+                                    className="px-4 py-1.5 rounded-xl text-slate-400 hover:text-white bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold transition-all cursor-pointer shadow-md"
+                                >
+                                    Apply Link
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* image insertion helper dialog */}
+            {isImageDialogOpen && (
+                <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
+                    <div className="bg-[#0e172e] border border-blue-400/60 rounded-2xl w-full max-w-md p-6 shadow-2xl relative text-left">
+                        <button
+                            onClick={() => setIsImageDialogOpen(false)}
+                            className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                        >
+                            <FaTimes className="text-sm" />
+                        </button>
+
+                        <div className="flex items-center gap-2.5 mb-4">
+                            <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
+                                <FaImage className="text-xs" />
+                            </div>
+                            <div>
+                                <h4 className="text-base font-bold text-white">Insert Photo Between Paragraphs</h4>
+                                <p className="text-[11px] text-slate-400">Embed an inline picture with caption</p>
+                            </div>
+                        </div>
+
+                        <form onSubmit={handleApplyImageToText} className="space-y-3.5 text-xs">
+                            <div>
+                                <label className="block text-slate-300 font-semibold mb-1">
+                                    Photo URL <span className="text-cyan-400">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    value={imageSourceUrl}
+                                    onChange={(e) => setImageSourceUrl(e.target.value)}
+                                    placeholder="https://images.unsplash.com/..."
+                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
+                                    required
+                                    autoFocus
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-slate-300 font-semibold mb-1">
+                                    Photo Caption / Description
+                                </label>
+                                <input
+                                    type="text"
+                                    value={imageTitleCaption}
+                                    onChange={(e) => setImageTitleCaption(e.target.value)}
+                                    placeholder="e.g. Next.js Turbopack Performance Benchmark"
+                                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-white focus:outline-none focus:border-cyan-400"
+                                />
+                            </div>
+
+                            <div className="pt-2 flex items-center justify-end gap-2.5">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsImageDialogOpen(false)}
+                                    className="px-4 py-1.5 rounded-xl text-slate-400 hover:text-white bg-slate-800 transition-colors cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-5 py-1.5 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-semibold transition-all cursor-pointer shadow-md"
+                                >
+                                    Insert Image
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}
