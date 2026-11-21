@@ -51,7 +51,7 @@ const TechMarquee = () => {
                             <div
                                 key={itemKey}
                                 className={`tech-item-wrapper relative group flex flex-col items-center justify-center shrink-0 ${
-                                    isPinned ? 'z-50' : 'hover:z-40 z-10'
+                                    isPinned ? 'z-50' : 'hover:z-50 z-10'
                                 }`}
                             >
                                 {/* circular tech icon */}

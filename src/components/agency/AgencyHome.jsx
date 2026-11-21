@@ -324,7 +324,7 @@ export default function AgencyHome() {
 	return (
 		<div className="w-full space-y-16 md:space-y-24 bg-[#050b17] text-white" suppressHydrationWarning>
 			{/* hero banner flush with navbar untouched as requested */}
-			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-6 md:pt-14 md:pb-8 px-4 sm:px-6 lg:px-8 shadow-2xl">
+			<section className="w-full relative z-10 overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-4 md:pt-14 md:pb-6 px-4 sm:px-6 lg:px-8 shadow-2xl">
 				<div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -402,7 +402,7 @@ export default function AgencyHome() {
 			</section>
 
 			{/* enterprise tech icons marquee right beneath banner */}
-			<section className="w-full relative z-20 overflow-hidden -mt-12 md:-mt-16">
+			<section className="w-full relative z-30 -mt-16 md:-mt-20">
 				<TechMarquee />
 			</section>
 

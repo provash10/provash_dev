@@ -36,7 +36,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding-top: 4.25rem;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-top: 5.5rem;
   padding-bottom: 0.75rem;
 }
 
