@@ -1,11 +1,16 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./Navbar.css";
 import Login from "@/components/Credentials/Login/Login";
 
 // main agency navbar
 const Navbar = () => {
 	// console.log("rendering agency top navigation bar")
+	const pathname = usePathname();
+
 	return (
 		<div className="navbar-bg-gradient px-4 md:px-8 py-3 border-b border-slate-800/80 flex justify-between items-center text-white backdrop-blur-xl bg-slate-950/85 shadow-lg shadow-black/30">
 			<Link href="/" className="flex items-center gap-2 group">
@@ -23,19 +28,31 @@ const Navbar = () => {
 			<div className="hidden md:flex items-center gap-3">
 				<Link
 					href="/"
-					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
+					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
+						pathname === "/"
+							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
+					}`}
 				>
 					Home
 				</Link>
 				<Link
 					href="/services"
-					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
+					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
+						pathname.startsWith("/services")
+							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
+					}`}
 				>
 					Services
 				</Link>
 				<Link
 					href="/software"
-					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-cyan-600/30 border border-slate-800 hover:border-cyan-500"
+					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
+						pathname.startsWith("/software")
+							? "text-white bg-cyan-600/30 border-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.35)]"
+							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-cyan-600/30 border-slate-800 hover:border-cyan-500"
+					}`}
 				>
 					Software
 				</Link>
@@ -47,13 +64,21 @@ const Navbar = () => {
 				</Link>
 				<Link
 					href="/about"
-					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
+					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
+						pathname.startsWith("/about")
+							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
+					}`}
 				>
 					About
 				</Link>
 				<Link
 					href="/contact"
-					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
+					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
+						pathname.startsWith("/contact")
+							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
+					}`}
 				>
 					Contact
 				</Link>
