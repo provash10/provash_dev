@@ -361,6 +361,16 @@ export default function AgencyHome() {
 		}));
 	};
 
+	// software solutions card details accordion state
+	const [expandedSoftwareCards, setExpandedSoftwareCards] = useState({});
+
+	const toggleSoftwareCard = (cardId) => {
+		setExpandedSoftwareCards((prev) => ({
+			...prev,
+			[cardId]: !prev[cardId],
+		}));
+	};
+
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
 
@@ -789,107 +799,129 @@ export default function AgencyHome() {
 					</div>
 
 					{/* grid of software products */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-						{softwareProducts.map((software) => (
-							<div
-								key={software.id}
-								className={`group relative flex flex-col justify-between rounded-2xl p-6 bg-gradient-to-b from-[#0a1b38]/90 via-[#071329]/90 to-slate-950/95 border ${software.border} backdrop-blur-xl shadow-xl transition-all duration-500 hover:-translate-y-1`}
-							>
-								{/* ambient top glow */}
-								<div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+						{softwareProducts.map((software) => {
+							const isExpanded = !!expandedSoftwareCards[software.id];
+							return (
+								<div
+									key={software.id}
+									className={`group relative flex flex-col justify-between rounded-2xl p-6 bg-gradient-to-b from-[#0a1b38]/90 via-[#071329]/90 to-slate-950/95 border ${software.border} backdrop-blur-xl shadow-xl transition-all duration-500 hover:-translate-y-1`}
+								>
+									{/* ambient top glow */}
+									<div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-transparent rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-								<div className="relative z-10 space-y-4">
-									{/* top badge and category */}
-									<div className="flex items-center justify-between gap-2">
-										<span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-											{software.category}
-										</span>
-										<span className="text-[10px] px-2.5 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold">
-											{software.badge}
-										</span>
-									</div>
-
-									{/* title and tagline */}
-									<div>
-										<h3 className="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
-											{software.title}
-										</h3>
-										<p className="text-cyan-400/90 text-xs font-medium mt-1">
-											{software.tagline}
-										</p>
-									</div>
-
-									{/* short description */}
-									<p className="text-slate-300 text-xs leading-relaxed line-clamp-3">
-										{software.shortDesc}
-									</p>
-
-									{/* key highlights */}
-									<div className="space-y-1.5 pt-2 border-t border-slate-800/80">
-										<span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-											Key Highlights
-										</span>
-										<ul className="space-y-1">
-											{software.features.slice(0, 3).map((feat, idx) => (
-												<li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
-													<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
-													<span className="line-clamp-1">{feat}</span>
-												</li>
-											))}
-										</ul>
-									</div>
-
-									{/* tech stack pills */}
-									<div className="flex flex-wrap gap-1.5 pt-2">
-										{software.techStack.slice(0, 4).map((tech, idx) => (
-											<span
-												key={idx}
-												className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/90 text-slate-300 border border-slate-800 group-hover:border-cyan-500/30 transition-colors font-mono"
-											>
-												{tech}
+									<div className="relative z-10 space-y-4">
+										{/* top badge and category */}
+										<div className="flex items-center justify-between gap-2">
+											<span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+												{software.category}
 											</span>
-										))}
-										{software.techStack.length > 4 && (
-											<span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/90 text-slate-400 border border-slate-800">
-												+{software.techStack.length - 4} more
+											<span className="text-[10px] px-2.5 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold">
+												{software.badge}
 											</span>
+										</div>
+
+										{/* title and tagline */}
+										<div>
+											<div className="flex items-center justify-between gap-2">
+												<h3 className="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
+													{software.title}
+												</h3>
+												<button
+													type="button"
+													onClick={() => toggleSoftwareCard(software.id)}
+													className="p-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-110 active:scale-95"
+													title={isExpanded ? "Hide Details" : "View Details"}
+												>
+													<ChevronDown
+														className={`w-4 h-4 transition-transform duration-300 ${
+															isExpanded ? "rotate-180 text-cyan-400" : "text-slate-400"
+														}`}
+													/>
+												</button>
+											</div>
+											<p className="text-cyan-400/90 text-xs font-medium mt-1">
+												{software.tagline}
+											</p>
+										</div>
+
+										{/* collapsible details section */}
+										{isExpanded && (
+											<div className="space-y-4 pt-1 animate-in fade-in duration-300">
+												{/* short description */}
+												<p className="text-slate-300 text-xs leading-relaxed line-clamp-3">
+													{software.shortDesc}
+												</p>
+
+												{/* key highlights */}
+												<div className="space-y-1.5 pt-2 border-t border-slate-800/80">
+													<span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+														Key Highlights
+													</span>
+													<ul className="space-y-1">
+														{software.features.slice(0, 3).map((feat, idx) => (
+															<li key={idx} className="flex items-start gap-1.5 text-[11px] text-slate-300">
+																<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+																<span className="line-clamp-1">{feat}</span>
+															</li>
+														))}
+													</ul>
+												</div>
+
+												{/* tech stack pills */}
+												<div className="flex flex-wrap gap-1.5 pt-2">
+													{software.techStack.slice(0, 4).map((tech, idx) => (
+														<span
+															key={idx}
+															className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/90 text-slate-300 border border-slate-800 group-hover:border-cyan-500/30 transition-colors font-mono"
+														>
+															{tech}
+														</span>
+													))}
+													{software.techStack.length > 4 && (
+														<span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/90 text-slate-400 border border-slate-800">
+															+{software.techStack.length - 4} more
+														</span>
+													)}
+												</div>
+
+												{/* pricing and direct actions */}
+												<div className="relative z-10 pt-4 border-t border-cyan-500/20 space-y-3">
+													<div className="flex items-baseline justify-between">
+														<span className="text-[10px] text-slate-400 uppercase tracking-wider">
+															Starting Price
+														</span>
+														<span className="text-sm font-black text-cyan-300">
+															{software.startingPrice}
+														</span>
+													</div>
+
+													<div className="grid grid-cols-2 gap-2">
+														<a
+															href={software.liveUrl}
+															target="_blank"
+															rel="noopener noreferrer"
+															className="py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.7)] transition-all cursor-pointer"
+														>
+															<span>Vercel Demo</span>
+															<ExternalLink className="w-3 h-3" />
+														</a>
+
+														<Link
+															href={`/software/${software.slug}`}
+															className="py-2 px-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+														>
+															<span>Details</span>
+															<ArrowRight className="w-3 h-3" />
+														</Link>
+													</div>
+												</div>
+											</div>
 										)}
 									</div>
 								</div>
-
-								{/* pricing and direct actions */}
-								<div className="relative z-10 pt-5 mt-5 border-t border-cyan-500/20 space-y-3">
-									<div className="flex items-baseline justify-between">
-										<span className="text-[10px] text-slate-400 uppercase tracking-wider">
-											Starting Price
-										</span>
-										<span className="text-sm font-black text-cyan-300">
-											{software.startingPrice}
-										</span>
-									</div>
-
-									<div className="grid grid-cols-2 gap-2">
-										<a
-											href={software.liveUrl}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.7)] transition-all cursor-pointer"
-										>
-											<span>Vercel Demo</span>
-											<ExternalLink className="w-3 h-3" />
-										</a>
-
-										<Link
-											href={`/software/${software.slug}`}
-											className="py-2 px-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer"
-										>
-											<span>Details</span>
-											<ArrowRight className="w-3 h-3" />
-										</Link>
-									</div>
-								</div>
-							</div>
-						))}
+							);
+						})}
 					</div>
 				</section>
 
