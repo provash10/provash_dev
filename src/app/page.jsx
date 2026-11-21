@@ -1,5 +1,15 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import React from "react";
-import AgencyHome from "@/components/agency/AgencyHome";
+
+// dynamic client import prevents extension attribute mismatch
+const AgencyHome = dynamic(
+	() => import("@/components/agency/AgencyHome"),
+	{
+		ssr: false,
+	},
+);
 
 // home page entry
 export default function HomePage() {
