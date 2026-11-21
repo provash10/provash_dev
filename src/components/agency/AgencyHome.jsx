@@ -8,8 +8,6 @@ import {
 	ArrowRight,
 	CheckCircle2,
 	Layers,
-	ShieldCheck,
-	Zap,
 	Send,
 	ChevronDown,
 	Star,
@@ -369,27 +367,11 @@ export default function AgencyHome() {
 
 								<Link
 									href="/contact"
-									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-slate-900 via-blue-950/80 to-slate-900 hover:from-cyan-700 hover:to-blue-700 text-slate-200 hover:text-white font-semibold text-xs md:text-sm border border-slate-700/80 hover:border-cyan-400 shadow-[0_0_10px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
+									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-slate-900 via-blue-950/80 to-slate-950 hover:from-cyan-700 hover:to-blue-700 text-slate-200 hover:text-white font-semibold text-xs md:text-sm border border-slate-700/80 hover:border-cyan-400 shadow-[0_0_10px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
 								>
 									<MessageSquare className="w-4 h-4 text-cyan-400" />
 									<span>Contact Us</span>
 								</Link>
-							</div>
-
-							{/* quick feature highlights */}
-							<div className="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 text-xs text-slate-300">
-								<div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800">
-									<ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-									<span>Enterprise-Grade Code</span>
-								</div>
-								<div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800">
-									<Zap className="w-3.5 h-3.5 text-cyan-400" />
-									<span>Ultra-Fast Delivery</span>
-								</div>
-								<div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800">
-									<CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
-									<span>Guaranteed Support</span>
-								</div>
 							</div>
 						</div>
 
