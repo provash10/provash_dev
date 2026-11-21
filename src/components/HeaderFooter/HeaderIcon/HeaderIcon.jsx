@@ -65,23 +65,41 @@ const HeaderIcon = () => {
                 })}
             </div>
 
-            {/* Mobile View: Top Header Bar */}
+            {/* mobile view top header bar */}
             <div className='fixed top-0 left-0 right-0 h-16 bg-slate-950/80 backdrop-blur-md border-b border-slate-900 z-40 flex md:hidden items-center justify-between px-6 shadow-md'>
                 <div>
-                    <img src="/img/devaioz_tlogo.png" alt="DEVAIOZ Logo" className="h-7 w-auto" />
+                    {/* devaioz logo commented out pending domain purchase */}
+                    {/* <img src="/img/devaioz_tlogo.png" alt="devaioz logo" className="h-7 w-auto" /> */}
+                    <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-cyan-500/30">
+                        <span className="text-sm font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+                            PROVASH
+                        </span>
+                        <span className="text-[10px] font-extrabold px-1 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+                            DEV
+                        </span>
+                    </div>
                 </div>
                 <button onClick={toggleMenu} className='text-blue-500 hover:text-blue-400 p-2 focus:outline-none cursor-pointer' aria-label="Open Menu">
                     <FaBars size={24} />
                 </button>
             </div>
 
-            {/* Mobile View: Full-Screen Drawer Menu */}
+            {/* mobile view full screen drawer menu */}
             {isOpen && (
                 <div className='fixed inset-0 bg-slate-950/98 backdrop-blur-lg z-50 flex flex-col p-6 animate-in fade-in duration-200 md:hidden'>
-                    {/* Drawer Header */}
+                    {/* drawer header */}
                     <div className='flex items-center justify-between h-12 flex-shrink-0'>
                         <div>
-                            <img src="/img/devaioz_tlogo.png" alt="DEVAIOZ Logo" className="h-7 w-auto" />
+                            {/* devaioz logo commented out pending domain purchase */}
+                            {/* <img src="/img/devaioz_tlogo.png" alt="devaioz logo" className="h-7 w-auto" /> */}
+                            <div className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-cyan-500/30">
+                                <span className="text-sm font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+                                    PROVASH
+                                </span>
+                                <span className="text-[10px] font-extrabold px-1 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+                                    DEV
+                                </span>
+                            </div>
                         </div>
                         <button onClick={toggleMenu} className='text-blue-500 hover:text-blue-400 p-2 focus:outline-none cursor-pointer' aria-label="Close Menu">
                             <FaTimes size={26} />

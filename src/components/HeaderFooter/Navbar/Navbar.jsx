@@ -8,12 +8,17 @@ const Navbar = () => {
 	// console.log("rendering agency top navigation bar")
 	return (
 		<div className="navbar-bg-gradient px-4 md:px-8 py-3 border-b border-slate-900 flex justify-between items-center text-white sticky top-0 z-50 backdrop-blur-md">
-			<Link href="/" className="flex items-center gap-2">
-				<img
-					src="/img/devaioz_tlogo.png"
-					alt="DEVAIOZ Agency Logo"
-					className="h-8 w-auto object-contain"
-				/>
+			<Link href="/" className="flex items-center gap-2 group">
+				{/* devaioz logo commented out pending domain purchase */}
+				{/* <img src="/img/devaioz_tlogo.png" alt="devaioz logo" className="h-8 w-auto object-contain" /> */}
+				<div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 group-hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+					<span className="text-base sm:text-lg font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+						PROVASH
+					</span>
+					<span className="text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+						DEV
+					</span>
+				</div>
 			</Link>
 			<div className="hidden md:flex items-center gap-3">
 				<Link

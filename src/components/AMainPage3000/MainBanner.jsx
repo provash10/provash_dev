@@ -26,7 +26,7 @@ const MainBanner = () => {
                 >
                     Portfolio
                 </Link>
-                {/* <img src="/img/devaioz_tlogo.png" alt="DEVAIOZ Logo" className="h-8 md:h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.2)]" /> */}
+                {/* <img src="/img/devaioz_tlogo.png" alt="devaioz logo" className="h-8 md:h-12 w-auto object-contain" /> */}
             </h1>
 
             {/* Profile card wrapper with glassmorphism and custom top + right border highlight (diagonal shape) + solid 3D stand shadow */}

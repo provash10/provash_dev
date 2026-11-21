@@ -15,7 +15,7 @@ const AboutCard = () => {
     const experiences = [
         {
             role: 'Lead MERN Stack & Next.js Developer',
-            company: 'Devaioz & Client Projects',
+            company: 'Provash Dev & Client Projects',
             period: '2023 - Present',
             description: 'Building high-performance server-side rendered (SSR) web applications, component-driven UI libraries, and optimizing Lighthouse performance scores.'
         },

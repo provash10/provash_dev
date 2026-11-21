@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-	title: "Provash Agency | Scalable Web Apps, YouTube Automation & Marketing",
+	title: "Provash Dev | Scalable Web Applications & Enterprise Software Architecture",
 	description:
-		"Premier Digital Agency providing Web Development, YouTube Automation, and Social Media Marketing solutions.",
+		"Full-Stack Web Engineering Studio specialized in Next.js 16, React 19, TypeScript 5, Express.js APIs, and scalable PostgreSQL Prisma SaaS platforms.",
 	icons: {
-		icon: "/img/devaiozfavicon.png",
+		icon: "/icon.png",
 	},
 };
 

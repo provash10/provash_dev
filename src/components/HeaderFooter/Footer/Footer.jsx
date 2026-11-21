@@ -13,17 +13,21 @@ const Footer = () => {
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 					{/* column 1: brand & mission */}
 					<div className="lg:col-span-2 space-y-4">
-						<Link href="/" className="inline-block">
-							<img
-								src="/img/devaioz_tlogo.png"
-								alt="DEVAIOZ Agency Logo"
-								className="h-9 w-auto object-contain"
-							/>
+						<Link href="/" className="inline-block group">
+							{/* devaioz logo commented out pending domain purchase */}
+							{/* <img src="/img/devaioz_tlogo.png" alt="devaioz logo" className="h-9 w-auto object-contain" /> */}
+							<div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 group-hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+								<span className="text-base sm:text-lg font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
+									PROVASH
+								</span>
+								<span className="text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">
+									DEV
+								</span>
+							</div>
 						</Link>
 						<p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-							DEVAIOZ is a full-service digital agency and software engineering studio.
-							We engineer high-performance web applications, revenue-generating YouTube
-							automation systems, and scalable digital marketing funnels for global brands.
+							Provash Dev is a full-service digital engineering studio.
+							We engineer high-performance web applications, scalable cloud backend systems, and modern SaaS platforms for startups and enterprise businesses.
 						</p>
 						<div className="flex items-center gap-3 pt-2">
 							<a
@@ -157,7 +161,7 @@ const Footer = () => {
 
 				{/* bottom copyright strip */}
 				<div className="mt-12 pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-					<p>© {new Date().getFullYear()} DEVAIOZ Agency. All rights reserved.</p>
+					<p>© {new Date().getFullYear()} Provash Dev. All rights reserved.</p>
 					<p className="flex items-center gap-1">
 						<span>Crafted with</span>
 						<Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
