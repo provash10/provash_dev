@@ -454,12 +454,12 @@ export default function AgencyHome() {
 
 	return (
 		<div className="w-full space-y-16 md:space-y-24 bg-[#050b17] text-white" suppressHydrationWarning>
-			{/* hero banner with on banner tech stack at bottom */}
-			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-10 md:pt-14 md:pb-14 px-4 sm:px-6 lg:px-8 shadow-2xl">
+			{/* hero banner flush with navbar untouched as requested */}
+			<section className="w-full relative overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-14 md:pt-14 md:pb-20 px-4 sm:px-6 lg:px-8 shadow-2xl">
 				<div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-				<div className="relative z-10 max-w-7xl mx-auto space-y-10 md:space-y-12">
+				<div className="relative z-10 max-w-7xl mx-auto">
 					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 						{/* left column headline description and cta */}
 						<div className="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -528,20 +528,22 @@ export default function AgencyHome() {
 							<TechArchitectureHub />
 						</div>
 					</div>
+				</div>
+			</section>
 
-					{/* enterprise tech stack showcase on banner at bottom */}
-					<div className="rounded-3xl bg-[#09152a]/75 backdrop-blur-xl border border-cyan-500/25 p-5 md:p-7 shadow-[0_4px_30px_rgba(6,182,212,0.12)] space-y-4">
-						<div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-cyan-500/20 pb-3">
-							<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs md:text-sm uppercase tracking-wider">
-								<Sparkles className="w-4 h-4 text-cyan-400" />
-								<span>Enterprise Technologies & Stack</span>
-							</div>
-							<span className="text-[11px] text-slate-400 font-medium">
-								Interactive viva notes, official docs & architecture overview
-							</span>
+			{/* enterprise tech stack showcase overlapping banner bottom */}
+			<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-10 md:-mt-14 z-20">
+				<div className="rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 p-5 md:p-7 shadow-[0_10px_40px_rgba(0,0,0,0.7),0_0_30px_rgba(6,182,212,0.15)] space-y-4">
+					<div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-cyan-500/20 pb-3">
+						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs md:text-sm uppercase tracking-wider">
+							<Sparkles className="w-4 h-4 text-cyan-400" />
+							<span>Enterprise Technologies & Stack</span>
 						</div>
-						<TechIcon />
+						<span className="text-[11px] text-slate-400 font-medium">
+							Interactive viva notes, official docs & architecture overview
+						</span>
 					</div>
+					<TechIcon />
 				</div>
 			</section>
 
