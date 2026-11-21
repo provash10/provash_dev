@@ -371,6 +371,16 @@ export default function AgencyHome() {
 		}));
 	};
 
+	// complete tech stack card details accordion state
+	const [expandedTechCards, setExpandedTechCards] = useState({});
+
+	const toggleTechCard = (cardIdx) => {
+		setExpandedTechCards((prev) => ({
+			...prev,
+			[cardIdx]: !prev[cardIdx],
+		}));
+	};
+
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
 
@@ -940,67 +950,90 @@ export default function AgencyHome() {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-						{enterpriseTechStack.map((stack, idx) => (
-							<div
-								key={idx}
-								className={`group relative rounded-3xl p-6 sm:p-8 bg-[#09152a]/90 backdrop-blur-xl border ${stack.color} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1`}
-							>
-								<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${stack.glow} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+						{enterpriseTechStack.map((stack, idx) => {
+							const isExpanded = !!expandedTechCards[idx];
+							return (
+								<div
+									key={idx}
+									className={`group relative rounded-3xl p-6 sm:p-8 bg-[#09152a]/90 backdrop-blur-xl border ${stack.color} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1`}
+								>
+									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${stack.glow} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
 
-								<div className="relative z-10 space-y-5">
-									<div className="flex items-center justify-between">
-										<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-											{stack.icon}
+									<div className="relative z-10 space-y-5">
+										<div className="flex items-center justify-between">
+											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
+												{stack.icon}
+											</div>
+											<span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
+												{stack.tag}
+											</span>
 										</div>
-										<span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
-											{stack.tag}
-										</span>
-									</div>
 
-									<div>
-										<h3 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
-											{stack.category}
-										</h3>
-										<p className="text-slate-300 text-xs leading-relaxed mt-1.5">
-											{stack.description}
-										</p>
-									</div>
-
-									{/* technologies table list */}
-									<div className="space-y-2 pt-2">
-										<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 block">
-											Core Frameworks & Tools
-										</span>
-										<div className="space-y-1.5">
-											{stack.technologies.map((item, i) => (
-												<div
-													key={i}
-													className="p-2 rounded-xl bg-slate-950/70 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors flex items-center justify-between gap-3 text-xs"
+										<div>
+											<div className="flex items-center justify-between gap-2">
+												<h3 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
+													{stack.category}
+												</h3>
+												<button
+													type="button"
+													onClick={() => toggleTechCard(idx)}
+													className="p-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-110 active:scale-95"
+													title={isExpanded ? "Hide Details" : "View Details"}
 												>
-													<span className="font-bold text-cyan-200 flex-shrink-0">
-														{item.name}
-													</span>
-													<span className="text-slate-400 text-[11px] text-right truncate">
-														{item.role}
-													</span>
-												</div>
-											))}
+													<ChevronDown
+														className={`w-4 h-4 transition-transform duration-300 ${
+															isExpanded ? "rotate-180 text-cyan-400" : "text-slate-400"
+														}`}
+													/>
+												</button>
+											</div>
+											<p className="text-slate-300 text-xs leading-relaxed mt-1.5">
+												{stack.description}
+											</p>
 										</div>
+
+										{/* collapsible details section */}
+										{isExpanded && (
+											<div className="space-y-4 pt-1 animate-in fade-in duration-300">
+												{/* technologies table list */}
+												<div className="space-y-2 pt-2">
+													<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 block">
+														Core Frameworks & Tools
+													</span>
+													<div className="space-y-1.5">
+														{stack.technologies.map((item, i) => (
+															<div
+																key={i}
+																className="p-2 rounded-xl bg-slate-950/70 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors flex items-center justify-between gap-3 text-xs"
+															>
+																<span className="font-bold text-cyan-200 flex-shrink-0">
+																	{item.name}
+																</span>
+																<span className="text-slate-400 text-[11px] text-right truncate">
+																	{item.role}
+																</span>
+															</div>
+														))}
+													</div>
+												</div>
+
+												{/* card footer with developer portfolio link */}
+												<div className="relative z-10 pt-4 border-t border-cyan-500/20">
+													<Link
+														href="/portfolio"
+														className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
+													>
+														<span>View in Developer Portfolio</span>
+														<ArrowRight className="w-3.5 h-3.5" />
+													</Link>
+												</div>
+											</div>
+										)}
 									</div>
 								</div>
-
-								<div className="relative z-10 pt-5 mt-5 border-t border-cyan-500/20">
-									<Link
-										href="/portfolio"
-										className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
-									>
-										<span>View in Developer Portfolio</span>
-										<ArrowRight className="w-3.5 h-3.5" />
-									</Link>
-								</div>
-							</div>
-						))}
+							);
+						})}
 					</div>
 				</section>
 
