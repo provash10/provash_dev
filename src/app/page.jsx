@@ -1,20 +1,10 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import React from "react";
-
-// dynamic client import prevents extension attribute mismatch
-const AgencyHome = dynamic(
-	() => import("@/components/agency/AgencyHome"),
-	{
-		ssr: false,
-	},
-);
+import AgencyHome from "@/components/agency/AgencyHome";
 
 // home page entry
 export default function HomePage() {
 	return (
-		<div className="w-full" suppressHydrationWarning>
+		<div className="w-full">
 			<AgencyHome />
 		</div>
 	);
