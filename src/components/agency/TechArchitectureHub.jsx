@@ -69,13 +69,13 @@ export default function TechArchitectureHub() {
 			</div>
 
 			{/* left middle orbital badge: typescript */}
-			<div className="absolute bottom-28 -left-3 sm:left-0 z-20 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-blue-400/40 text-blue-200 text-xs font-bold shadow-[0_0_15px_rgba(56,189,248,0.25)] backdrop-blur-md flex items-center gap-1.5 hover:scale-105 transition-transform">
+			<div className="absolute bottom-32 sm:bottom-34 md:bottom-36 -left-3 sm:left-0 z-20 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-blue-400/40 text-blue-200 text-xs font-bold shadow-[0_0_15px_rgba(56,189,248,0.25)] backdrop-blur-md flex items-center gap-1.5 hover:scale-105 transition-transform">
 				<Terminal className="w-3.5 h-3.5 text-blue-400" />
 				<span>TypeScript 5 Strict</span>
 			</div>
 
 			{/* right middle orbital badge: postgresql & prisma */}
-			<div className="absolute bottom-28 -right-3 sm:right-0 z-20 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-[0_0_15px_rgba(129,140,248,0.25)] backdrop-blur-md flex items-center gap-1.5 hover:scale-105 transition-transform">
+			<div className="absolute bottom-32 sm:bottom-34 md:bottom-36 -right-3 sm:right-0 z-20 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-[0_0_15px_rgba(129,140,248,0.25)] backdrop-blur-md flex items-center gap-1.5 hover:scale-105 transition-transform">
 				<Database className="w-3.5 h-3.5 text-indigo-400" />
 				<span>PostgreSQL & Prisma ORM</span>
 			</div>
