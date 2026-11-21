@@ -268,7 +268,7 @@ export default function PricingAndPayment() {
 									</p>
 									<p className="text-slate-400">
 										Send money to:{" "}
-										<strong className="text-cyan-400">+8801700000000</strong> (Personal)
+										<strong className="text-cyan-400">+8801710490345</strong> (Personal)
 									</p>
 									<p className="text-slate-400">
 										Reference: Use your transaction ID or Name

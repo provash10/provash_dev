@@ -65,8 +65,8 @@ const ContactCard = () => {
         {
             icon: <FaWhatsapp className="text-xl text-emerald-400" />,
             title: 'WhatsApp / Phone',
-            value: '+880 1700-000000',
-            link: 'https://wa.me/8801700000000'
+            value: '+880 1710-490345',
+            link: 'https://wa.me/8801710490345'
         },
         {
             icon: <FaMapMarkerAlt className="text-xl text-rose-400" />,
@@ -79,7 +79,7 @@ const ContactCard = () => {
     const socialLinks = [
         { icon: <FaGithub size={18} />, label: 'GitHub', url: 'https://github.com/provash10' },
         { icon: <FaLinkedin size={18} />, label: 'LinkedIn', url: 'https://linkedin.com' },
-        { icon: <FaWhatsapp size={18} />, label: 'WhatsApp', url: 'https://wa.me/8801700000000' },
+        { icon: <FaWhatsapp size={18} />, label: 'WhatsApp', url: 'https://wa.me/8801710490345' },
         { icon: <FaTelegram size={18} />, label: 'Telegram', url: 'https://t.me' },
         { icon: <FaDiscord size={18} />, label: 'Discord', url: 'https://discord.com' },
         { icon: <FaTwitter size={18} />, label: 'X / Twitter', url: 'https://x.com' }

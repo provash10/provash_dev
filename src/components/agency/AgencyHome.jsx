@@ -943,18 +943,23 @@ export default function AgencyHome() {
 					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 						{/* left direct contact cards */}
 						<div className="lg:col-span-5 space-y-4">
-							<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-5 flex items-center gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
-								<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">
+							<a
+								href="https://wa.me/8801710490345"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-5 flex items-center gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)] block group"
+							>
+								<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0 group-hover:scale-105 transition-transform">
 									<Phone className="w-5 h-5 text-cyan-400" />
 								</div>
 								<div>
 									<span className="text-[10px] text-cyan-400 font-bold uppercase tracking-wider">
 										Phone & WhatsApp
 									</span>
-									<h4 className="text-sm font-bold text-white">+880 1832-720448</h4>
+									<h4 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">+880 1710-490345</h4>
 									<p className="text-xs text-slate-400">Direct Consultation & Inquiries</p>
 								</div>
-							</div>
+							</a>
 
 							<div className="rounded-2xl bg-[#09152a]/90 border border-cyan-500/25 p-5 flex items-center gap-4 hover:border-cyan-400/60 transition-all shadow-[0_0_15px_rgba(6,182,212,0.08)]">
 								<div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 flex-shrink-0">

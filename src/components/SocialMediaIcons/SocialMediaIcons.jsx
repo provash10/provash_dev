@@ -17,7 +17,7 @@ const SocialMediaIcons = () => {
         },
         {
             name: 'WhatsApp',
-            url: 'https://wa.me/',
+            url: 'https://wa.me/8801710490345',
             icon: <FaWhatsapp size={17} className="text-[#25D366] hover:text-green-300 transition-colors" />
         },
         {
