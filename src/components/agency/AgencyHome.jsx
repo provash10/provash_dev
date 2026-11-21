@@ -389,9 +389,9 @@ export default function AgencyHome() {
 			</section>
 
 			{/* main content container with max width */}
-			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24 relative pt-12 md:pt-16 pb-16 md:pb-24" suppressHydrationWarning>
+			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 md:space-y-14 relative pt-6 md:pt-8 pb-10 md:pb-14" suppressHydrationWarning>
 				{/* services section positioned right below banner as requested */}
-				<section id="services" className="space-y-16 scroll-mt-24">
+				<section id="services" className="space-y-8 md:space-y-10 scroll-mt-24">
 					{/* section header */}
 					<div className="text-center max-w-3xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
@@ -594,7 +594,7 @@ export default function AgencyHome() {
 				</section>
 
 				{/* proprietary software and saas suite showcase section */}
-				<section id="software" className="space-y-12 scroll-mt-24">
+				<section id="software" className="space-y-8 md:space-y-10 scroll-mt-24">
 					{/* section header with direct catalog link */}
 					<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
 						<div className="space-y-2">
@@ -795,7 +795,7 @@ export default function AgencyHome() {
 				</section>
 
 				{/* markivo what our client say testimonials */}
-				<section className="space-y-10">
+				<section className="space-y-8">
 					<div className="text-center max-w-2xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
 							<Star className="w-4 h-4 text-cyan-400 fill-cyan-400" />
@@ -843,7 +843,7 @@ export default function AgencyHome() {
 				</section>
 
 				{/* markivo frequently asked questions accordion */}
-				<section className="space-y-10 max-w-4xl mx-auto">
+				<section className="space-y-8 max-w-4xl mx-auto">
 					<div className="text-center space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
 							<HelpCircle className="w-4 h-4 text-cyan-400" />
@@ -899,7 +899,7 @@ export default function AgencyHome() {
 				</section>
 
 				{/* markivo get in touch project consultation */}
-				<section id="consultation" className="space-y-8 scroll-mt-24">
+				<section id="consultation" className="space-y-6 md:space-y-8 scroll-mt-24">
 					<div className="text-center max-w-3xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
 							<MessageSquare className="w-4 h-4 text-cyan-400" />
