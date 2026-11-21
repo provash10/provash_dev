@@ -24,5 +24,6 @@ body {
 
 /* ensure dev overlay never blocks user interaction */
 nextjs-portal {
+  display: none !important;
   pointer-events: none !important;
 }

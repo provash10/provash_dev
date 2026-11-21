@@ -43,6 +43,18 @@ export default function RootLayout({ children }) {
 										return orig.apply(this, arguments);
 									};
 								} catch (err) {}
+								window.addEventListener('unhandledrejection', function(e) {
+									if (e.reason && (String(e.reason).includes('chrome-extension') || String(e.reason).includes('M_ID') || String(e.reason).includes('bis_skin_checked'))) {
+										e.preventDefault();
+										e.stopImmediatePropagation();
+									}
+								}, true);
+								window.addEventListener('error', function(e) {
+									if (e.filename && e.filename.includes('chrome-extension')) {
+										e.preventDefault();
+										e.stopImmediatePropagation();
+									}
+								}, true);
 							})();
 						`,
 					}}
