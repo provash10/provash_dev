@@ -351,6 +351,16 @@ export default function AgencyHome() {
 	// web development tab filter state
 	const [activeWebTab, setActiveWebTab] = useState("all");
 
+	// web development card details accordion state
+	const [expandedWebCards, setExpandedWebCards] = useState({});
+
+	const toggleWebCard = (cardId) => {
+		setExpandedWebCards((prev) => ({
+			...prev,
+			[cardId]: !prev[cardId],
+		}));
+	};
+
 	// faq accordion state
 	const [activeFaq, setActiveFaq] = useState(0);
 
@@ -632,97 +642,120 @@ export default function AgencyHome() {
 
 						{/* web development three cards grid */}
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-							{filteredWebDev.map((opt) => (
-								<div
-									key={opt.id}
-									className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${opt.border} ${opt.glow} transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
-								>
-									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${opt.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
+							{filteredWebDev.map((opt) => {
+								const isExpanded = !!expandedWebCards[opt.id];
+								return (
+									<div
+										key={opt.id}
+										className={`group relative rounded-3xl p-6 sm:p-7 bg-[#09152a]/90 backdrop-blur-xl border ${opt.border} ${opt.glow} transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
+									>
+										<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${opt.gradient} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
 
-									<div className="relative z-10 space-y-4">
-										<div className="flex items-center justify-between">
-											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
-												{opt.icon}
+										<div className="relative z-10 space-y-4">
+											<div className="flex items-center justify-between">
+												<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
+													{opt.icon}
+												</div>
+												<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+													{opt.badge}
+												</span>
 											</div>
-											<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
-												{opt.badge}
-											</span>
-										</div>
 
-										<div>
-											<span className="text-[10px] text-cyan-400 font-extrabold uppercase tracking-widest">
-												{opt.optionNumber}
-											</span>
-											<h4 className="text-xl font-bold text-white mt-0.5 group-hover:text-cyan-200 transition-colors">
-												{opt.title}
-											</h4>
-											<p className="text-[11px] text-slate-400 font-medium">
-												{opt.subtitle}
-											</p>
-											<p className="text-slate-300 text-xs leading-relaxed mt-2.5">
-												{opt.description}
-											</p>
-										</div>
-
-										{/* tech stack pills */}
-										<div className="space-y-1.5 pt-2">
-											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
-												Tech Stack
-											</span>
-											<div className="flex flex-wrap gap-1.5">
-												{opt.techStack.map((tech, i) => (
-													<span
-														key={i}
-														className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-950 border border-cyan-500/20 text-slate-300 font-medium"
+											<div>
+												<span className="text-[10px] text-cyan-400 font-extrabold uppercase tracking-widest">
+													{opt.optionNumber}
+												</span>
+												<div className="flex items-center justify-between gap-2 mt-0.5">
+													<h4 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
+														{opt.title}
+													</h4>
+													<button
+														type="button"
+														onClick={() => toggleWebCard(opt.id)}
+														className="p-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-110 active:scale-95"
+														title={isExpanded ? "Hide Details" : "View Details"}
 													>
-														{tech}
-													</span>
-												))}
+														<ChevronDown
+															className={`w-4 h-4 transition-transform duration-300 ${
+																isExpanded ? "rotate-180 text-cyan-400" : "text-slate-400"
+															}`}
+														/>
+													</button>
+												</div>
+												<p className="text-[11px] text-slate-400 font-medium mt-1">
+													{opt.subtitle}
+												</p>
 											</div>
-										</div>
 
-										{/* deliverables list */}
-										<div className="space-y-1.5 pt-2">
-											<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
-												<CheckCheck className="w-3.5 h-3.5 text-cyan-400" />
-												Key Deliverables
-											</span>
-											<div className="space-y-1.5">
-												{opt.deliverables.map((item, idx) => (
-													<div
-														key={idx}
-														className="flex items-start gap-2 text-xs text-slate-300"
-													>
-														<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
-														<span>{item}</span>
+											{/* collapsible details section */}
+											{isExpanded && (
+												<div className="space-y-4 pt-1 animate-in fade-in duration-300">
+													<p className="text-slate-300 text-xs leading-relaxed">
+														{opt.description}
+													</p>
+
+													{/* tech stack pills */}
+													<div className="space-y-1.5 pt-1">
+														<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+															Tech Stack
+														</span>
+														<div className="flex flex-wrap gap-1.5">
+															{opt.techStack.map((tech, i) => (
+																<span
+																	key={i}
+																	className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-950 border border-cyan-500/20 text-slate-300 font-medium"
+																>
+																	{tech}
+																</span>
+															))}
+														</div>
 													</div>
-												))}
-											</div>
+
+													{/* deliverables list */}
+													<div className="space-y-1.5 pt-1">
+														<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+															<CheckCheck className="w-3.5 h-3.5 text-cyan-400" />
+															Key Deliverables
+														</span>
+														<div className="space-y-1.5">
+															{opt.deliverables.map((item, idx) => (
+																<div
+																	key={idx}
+																	className="flex items-start gap-2 text-xs text-slate-300"
+																>
+																	<CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+																	<span>{item}</span>
+																</div>
+															))}
+														</div>
+													</div>
+												</div>
+											)}
+										</div>
+
+										{/* card footer with view project action button */}
+										<div className="relative z-10 pt-5 mt-6 border-t border-cyan-500/20">
+											<Link
+												href={
+													opt.id === "frontend"
+														? "/showcase/allprojects?category=frontend"
+														: opt.id === "backend"
+															? "/showcase/allprojects?category=backend"
+															: "/showcase/allprojects?category=fullstack"
+												}
+												className={`w-full py-3 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+													opt.popular
+														? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
+														: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
+												}`}
+											>
+												<span>View {opt.title.replace(" Development", "")} Projects</span>
+												<ArrowRight className="w-4 h-4" />
+											</Link>
 										</div>
 									</div>
-
-									{/* card footer with view project action button */}
-									<div className="relative z-10 pt-5 mt-6 border-t border-cyan-500/20">
-										<Link
-											href={
-												opt.id === "frontend"
-													? "/showcase/allprojects?category=frontend"
-													: opt.id === "backend"
-														? "/showcase/allprojects?category=backend"
-														: "/showcase/allprojects?category=fullstack"
-											}
-											className={`w-full py-3 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
-												opt.popular
-													? "bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95"
-													: "bg-slate-900/90 hover:bg-slate-800 text-cyan-300 hover:text-white border border-cyan-500/40 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] hover:scale-105 active:scale-95"
-											}`}
-										>
-											<span>View {opt.title.replace(" Development", "")} Projects</span>
-											<ArrowRight className="w-4 h-4" />
-										</Link>
-									</div>
-								</div>
-							))}
+								);
+							})}
 						</div>
 					</div>
 
