@@ -322,7 +322,7 @@ export default function AgencyHome() {
 			: webDevOptions.filter((opt) => opt.id === activeWebTab);
 
 	return (
-		<div className="w-full space-y-16 md:space-y-24 bg-[#050b17] text-white" suppressHydrationWarning>
+		<div className="w-full bg-[#050b17] text-white" suppressHydrationWarning>
 			{/* hero banner flush with navbar untouched as requested */}
 			<section className="w-full relative z-10 overflow-hidden bg-gradient-to-b from-[#071329] via-[#091b3a] to-slate-950 border-b border-slate-800/80 pt-8 pb-4 md:pt-14 md:pb-6 px-4 sm:px-6 lg:px-8 shadow-2xl">
 				<div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -401,13 +401,13 @@ export default function AgencyHome() {
 				</div>
 			</section>
 
-			{/* enterprise tech icons marquee right beneath banner */}
-			<section className="w-full relative z-30 -mt-16 md:-mt-20">
+			{/* enterprise tech icons marquee attached directly to banner */}
+			<section className="w-full relative z-30 -mt-20 sm:-mt-22 md:-mt-24">
 				<TechMarquee />
 			</section>
 
 			{/* main content container with max width */}
-			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24 relative pt-4" suppressHydrationWarning>
+			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24 relative pt-12 md:pt-16 pb-16 md:pb-24" suppressHydrationWarning>
 				{/* services section positioned right below banner as requested */}
 				<section id="services" className="space-y-16 scroll-mt-24">
 					{/* section header */}
