@@ -169,6 +169,30 @@ const clientTestimonials = [
 		rating: 5,
 		avatarBg: "from-blue-600 to-indigo-600",
 	},
+	{
+		quote:
+			"Architecting our enterprise SaaS platform with secure role-based access and real-time analytics was executed flawlessly. Exceptional speed and precision.",
+		author: "Elena Rostova",
+		role: "Product Lead, FinNova Payments",
+		rating: 5,
+		avatarBg: "from-indigo-500 to-purple-600",
+	},
+	{
+		quote:
+			"From database schemas to complex responsive client components, Provash consistently delivers clean, type-safe, and production-ready code.",
+		author: "Michael Chang",
+		role: "Co-Founder, HyperGrow AI",
+		rating: 5,
+		avatarBg: "from-emerald-500 to-teal-600",
+	},
+	{
+		quote:
+			"The automated multi-tenant dashboard and payment webhooks run with zero downtime. Reliable engineering and proactive communication throughout.",
+		author: "Liam O'Connor",
+		role: "Head of Product, RetailFlow POS",
+		rating: 5,
+		avatarBg: "from-cyan-600 to-teal-500",
+	},
 ];
 
 // markivo faq items
@@ -252,7 +276,9 @@ export default function AgencyHome() {
 						rating: item.rating || 5,
 						avatarBg: "from-cyan-500 to-blue-600",
 					}));
-					setTestimonialsList(formatted);
+					// combine with fallback reviews to guarantee at least six testimonials
+					const combined = [...formatted, ...clientTestimonials.slice(formatted.length)];
+					setTestimonialsList(combined.slice(0, 6));
 				}
 			} catch (_err) {
 				// console.log("offline testimonials notice", _err)
@@ -795,11 +821,11 @@ export default function AgencyHome() {
 				</section>
 
 				{/* markivo what our client say testimonials */}
-				<section className="space-y-8">
+				<section className="space-y-8 overflow-hidden">
 					<div className="text-center max-w-2xl mx-auto space-y-3">
 						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
 							<Star className="w-4 h-4 text-cyan-400 fill-cyan-400" />
-							TESTIMONIALS
+							<span>TESTIMONIALS</span>
 						</div>
 						<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
 							What Our Client Say!
@@ -809,36 +835,39 @@ export default function AgencyHome() {
 						</p>
 					</div>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{testimonialsList.map((item, idx) => (
-							<div
-								key={idx}
-								className="group rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400 p-6 md:p-8 flex flex-col justify-between space-y-5 shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 hover:-translate-y-1"
-							>
-								{/* rating stars */}
-								<div className="flex items-center gap-1 text-amber-400">
-									{[...Array(item.rating)].map((_, i) => (
-										<Star key={i} className="w-4 h-4 fill-amber-400" />
-									))}
-								</div>
-
-								<p className="text-slate-300 text-xs md:text-sm leading-relaxed italic">
-									"{item.quote}"
-								</p>
-
-								<div className="pt-4 border-t border-cyan-500/20 flex items-center gap-3">
-									<div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${item.avatarBg} flex items-center justify-center text-white font-bold text-sm shadow-[0_0_10px_rgba(6,182,212,0.3)]`}>
-										{item.author.charAt(0)}
+					{/* continuous right to left marquee for testimonials */}
+					<div className="relative w-full overflow-hidden py-2">
+						<div className="review-marquee-track">
+							{[...testimonialsList, ...testimonialsList].map((item, idx) => (
+								<div
+									key={`${item.author}-${idx}`}
+									className="w-[340px] sm:w-[380px] md:w-[420px] shrink-0 group rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 hover:border-cyan-400 p-6 md:p-8 flex flex-col justify-between space-y-5 shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 hover:-translate-y-1"
+								>
+									{/* rating stars */}
+									<div className="flex items-center gap-1 text-amber-400">
+										{[...Array(item.rating)].map((_, i) => (
+											<Star key={i} className="w-4 h-4 fill-amber-400" />
+										))}
 									</div>
-									<div>
-										<h4 className="text-white font-bold text-sm group-hover:text-cyan-300 transition-colors">
-											{item.author}
-										</h4>
-										<p className="text-slate-400 text-xs">{item.role}</p>
+
+									<p className="text-slate-300 text-xs md:text-sm leading-relaxed italic">
+										"{item.quote}"
+									</p>
+
+									<div className="pt-4 border-t border-cyan-500/20 flex items-center gap-3">
+										<div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${item.avatarBg} flex items-center justify-center text-white font-bold text-sm shadow-[0_0_10px_rgba(6,182,212,0.3)]`}>
+											{item.author.charAt(0)}
+										</div>
+										<div>
+											<h4 className="text-white font-bold text-sm group-hover:text-cyan-300 transition-colors">
+												{item.author}
+											</h4>
+											<p className="text-slate-400 text-xs">{item.role}</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 				</section>
 

@@ -39,3 +39,26 @@ dialog[data-nextjs-dialog] {
   display: none !important;
   pointer-events: none !important;
 }
+
+/* review testimonials continuous right to left marquee */
+@keyframes reviewMarqueeScrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.review-marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: reviewMarqueeScrollLeft 45s linear infinite;
+  will-change: transform;
+}
+
+.review-marquee-track:hover {
+  animation-play-state: paused;
+}
+
