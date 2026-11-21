@@ -37,8 +37,8 @@ const TechMarquee = () => {
     return (
         <div className="relative w-full">
             {/* left and right gradient fade masks for marquee edge smoothing */}
-            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-[#09152a] to-transparent z-30" />
-            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[#09152a] to-transparent z-30" />
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-[#050b17] to-transparent z-30" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[#050b17] to-transparent z-30" />
 
             {/* marquee scroll viewport moving right to left */}
             <div className="tech-marquee-container">

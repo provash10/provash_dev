@@ -401,24 +401,13 @@ export default function AgencyHome() {
 				</div>
 			</section>
 
-			{/* enterprise tech stack showcase overlapping banner bottom */}
-			<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-34 md:-mt-50 z-20">
-				<div className="rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 p-5 md:p-7 shadow-[0_10px_40px_rgba(0,0,0,0.7),0_0_30px_rgba(6,182,212,0.15)] space-y-4">
-					<div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-cyan-500/20 pb-3">
-						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs md:text-sm uppercase tracking-wider">
-							<Sparkles className="w-4 h-4 text-cyan-400" />
-							<span>Enterprise Technologies & Stack</span>
-						</div>
-						<span className="text-[11px] text-slate-400 font-medium">
-							Interactive viva notes, official docs & architecture overview
-						</span>
-					</div>
-					<TechMarquee />
-				</div>
+			{/* enterprise tech icons marquee right beneath banner */}
+			<section className="w-full relative z-20 overflow-hidden -mt-8 md:-mt-12">
+				<TechMarquee />
 			</section>
 
-			{/* main content container with max-w */}
-			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24 relative -mt-6 md:-mt-10" suppressHydrationWarning>
+			{/* main content container with max width */}
+			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24 relative pt-4" suppressHydrationWarning>
 				{/* services section positioned right below banner as requested */}
 				<section id="services" className="space-y-16 scroll-mt-24">
 					{/* section header */}
@@ -435,7 +424,7 @@ export default function AgencyHome() {
 						</p>
 					</div>
 
-					{/* 1. web development solutions section with three options */}
+					{/* primary web development solutions section with three options */}
 					<div className="space-y-6">
 						<div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-cyan-500/20">
 							<div>
