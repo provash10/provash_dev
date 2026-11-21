@@ -14,7 +14,6 @@ import {
 	ChevronDown,
 	Star,
 	Clock,
-	Cpu,
 	CheckCheck,
 	Phone,
 	Mail,
@@ -23,7 +22,6 @@ import {
 	ExternalLink,
 	HelpCircle,
 	Server,
-	Database,
 	Laptop,
 } from "lucide-react";
 import TechArchitectureHub from "@/components/agency/TechArchitectureHub";
@@ -146,119 +144,6 @@ const webDevOptions = [
 	},
 ];
 
-// complete enterprise tech stack breakdown matching frontend and backend specification
-const enterpriseTechStack = [
-	{
-		category: "Frontend Architecture",
-		tag: "CLIENT & UI/UX ECOSYSTEM",
-		icon: <Laptop className="w-5 h-5 text-cyan-400" />,
-		color: "border-cyan-500/30 hover:border-cyan-400",
-		glow: "from-cyan-500/15 via-blue-500/5 to-transparent",
-		description:
-			"Blazing-fast client applications with modern SSR, state synchronization, and component ownership.",
-		technologies: [
-			{ name: "Next.js 16", role: "App Router, SSR, SSG & Server Components" },
-			{ name: "React 19", role: "Modern UI Primitives, Actions & Hooks" },
-			{ name: "TypeScript 5", role: "Strict Static Type Checking & Interfaces" },
-			{ name: "Bun Runtime", role: "Ultra-Fast Bundler & Package Execution" },
-			{ name: "Tailwind CSS v4", role: "Utility-First Responsive Styling & PostCSS" },
-			{ name: "TanStack Query v5", role: "Async Server State & Cache Invalidation" },
-			{ name: "Shadcn UI & Radix", role: "Accessible Component Primitives" },
-			{ name: "Zod", role: "Client Form & Data Schema Validation" },
-			{ name: "Biome", role: "Rust-Powered Linter & Code Formatter" },
-			{ name: "Framer Motion", role: "Interactive Animations & Micro-Gestures" },
-		],
-	},
-	{
-		category: "Backend & Cloud Architecture",
-		tag: "RESTFUL MODULAR API & SECURITY",
-		icon: <Server className="w-5 h-5 text-blue-400" />,
-		color: "border-blue-500/30 hover:border-blue-400",
-		glow: "from-blue-500/15 via-indigo-500/5 to-transparent",
-		description:
-			"Modular, scalable backend services adhering to Level-2 Enterprise Architectural Standards.",
-		technologies: [
-			{ name: "Node.js & Bun", role: "Non-Blocking Asynchronous Server Runtime" },
-			{ name: "Express.js", role: "Modular Enterprise REST Architecture" },
-			{ name: "TypeScript 5", role: "End-to-End Type Safety across DTOs" },
-			{ name: "PostgreSQL", role: "ACID Relational Enterprise Database" },
-			{ name: "Prisma ORM", role: "Type-Safe DB Client & Auto Migrations" },
-			{ name: "JWT & RBAC", role: "Stateless Tokens & Role Authorization" },
-			{ name: "Redis", role: "Sub-Millisecond In-Memory Caching" },
-			{ name: "Zod Middleware", role: "Request Body, Query & Params Validation" },
-			{ name: "Cloudinary & Multer", role: "Cloud Media Storage & Streaming CDN" },
-			{ name: "Nodemailer & EJS", role: "Automated Transactional Email Templates" },
-			{ name: "Helmet & CORS", role: "API Hardening & Cross-Origin Security" },
-		],
-	},
-	{
-		category: "DevOps, Database & Gateways",
-		tag: "INFRASTRUCTURE & PAYMENTS",
-		icon: <Database className="w-5 h-5 text-teal-400" />,
-		color: "border-teal-500/30 hover:border-teal-400",
-		glow: "from-teal-500/15 via-cyan-500/5 to-transparent",
-		description:
-			"Zero-downtime deployment pipelines, resilient database layers, and instant payment checkout.",
-		technologies: [
-			{ name: "Docker", role: "Containerized Microservices & Environments" },
-			{ name: "PostgreSQL RDBMS", role: "Relational Data Modeling & Indexing" },
-			{ name: "Redis Cache", role: "Session Storage & API Rate Limiting" },
-			{ name: "Vercel / Cloud VPS", role: "Global Edge CDN & Cloud Deployments" },
-			{ name: "GitHub Actions", role: "Automated CI/CD Test & Deploy Pipelines" },
-			{ name: "bKash Checkout", role: "Direct Mobile Banking PGW Integration" },
-			{ name: "Nagad Gateway", role: "Instant MFS Online Merchant API" },
-			{ name: "Stripe & Cards", role: "Global Credit/Debit Card Processing" },
-			{ name: "Beekeeper Studio", role: "Database GUI Inspection & SQL Audits" },
-		],
-	},
-];
-
-// markivo agency core pillars
-const agencyPillars = [
-	{
-		id: "frontend",
-		title: "High-Performance Frontend Systems",
-		badge: "Modern UI/UX",
-		description:
-			"Lightning-fast Next.js 16 and React 19 interfaces with responsive styling, fluid micro-animations, and 99+ Google Lighthouse scores.",
-		metric: "<0.4s",
-		metricLabel: "First Contentful Paint",
-		icon: <Laptop className="w-6 h-6 text-cyan-400" />,
-		accentColor: "border-cyan-500/30 group-hover:border-cyan-400/70",
-		glowColor: "from-cyan-500/20 via-blue-500/10 to-transparent",
-		linkText: "Explore Frontend",
-		linkHref: "/#services",
-	},
-	{
-		id: "backend",
-		title: "Scalable APIs & Cloud Microservices",
-		badge: "Level-2 Architecture",
-		description:
-			"Modular Express.js and Bun REST APIs backed by PostgreSQL and Prisma ORM, engineered for enterprise security, caching, and 99.9% uptime.",
-		metric: "99.99%",
-		metricLabel: "Production Uptime",
-		icon: <Server className="w-6 h-6 text-blue-400" />,
-		accentColor: "border-blue-500/30 group-hover:border-blue-400/70",
-		glowColor: "from-blue-500/20 via-indigo-500/10 to-transparent",
-		linkText: "Explore APIs",
-		linkHref: "/#services",
-	},
-	{
-		id: "fullstack",
-		title: "Full-Stack Turnkey SaaS Platforms",
-		badge: "End-to-End",
-		description:
-			"Complete production-ready web applications with multi-tenant architecture, JWT authentication, RBAC dashboards, and online payment gateways.",
-		metric: "100%",
-		metricLabel: "Code Ownership",
-		icon: <Layers className="w-6 h-6 text-teal-400" />,
-		accentColor: "border-teal-500/30 group-hover:border-teal-400/70",
-		glowColor: "from-teal-500/20 via-emerald-500/10 to-transparent",
-		linkText: "Explore SaaS Suite",
-		linkHref: "/#services",
-	},
-];
-
 // markivo client testimonials
 const clientTestimonials = [
 	{
@@ -331,16 +216,6 @@ export default function AgencyHome() {
 		setExpandedSoftwareCards((prev) => ({
 			...prev,
 			[cardId]: !prev[cardId],
-		}));
-	};
-
-	// complete tech stack card details accordion state
-	const [expandedTechCards, setExpandedTechCards] = useState({});
-
-	const toggleTechCard = (cardIdx) => {
-		setExpandedTechCards((prev) => ({
-			...prev,
-			[cardIdx]: !prev[cardIdx],
 		}));
 	};
 
@@ -895,160 +770,6 @@ export default function AgencyHome() {
 								</div>
 							);
 						})}
-					</div>
-				</section>
-
-				{/* complete enterprise tech stack breakdown matching frontend and backend specification */}
-				<section className="space-y-10">
-					<div className="text-center max-w-3xl mx-auto space-y-3">
-						<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-[0_0_15px_rgba(6,182,212,0.25)]">
-							<Cpu className="w-4 h-4 text-cyan-400" />
-							FULL-STACK ARCHITECTURE SPECIFICATION
-						</div>
-						<h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-							Modern Frontend & Backend Tech Stack
-						</h2>
-						<p className="text-slate-300 text-xs md:text-sm max-w-2xl mx-auto">
-							Engineered with strict enterprise standards: Next.js 16, React 19, Bun, Express.js, TypeScript 5, and PostgreSQL Prisma ORM.
-						</p>
-					</div>
-
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-						{enterpriseTechStack.map((stack, idx) => {
-							const isExpanded = !!expandedTechCards[idx];
-							return (
-								<div
-									key={idx}
-									className={`group relative rounded-3xl p-6 sm:p-8 bg-[#09152a]/90 backdrop-blur-xl border ${stack.color} shadow-[0_4px_25px_rgba(6,182,212,0.12)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1`}
-								>
-									<div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${stack.glow} rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
-
-									<div className="relative z-10 space-y-5">
-										<div className="flex items-center justify-between">
-											<div className="p-3 rounded-2xl bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
-												{stack.icon}
-											</div>
-											<span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
-												{stack.tag}
-											</span>
-										</div>
-
-										<div>
-											<div className="flex items-center justify-between gap-2">
-												<h3 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
-													{stack.category}
-												</h3>
-												<button
-													type="button"
-													onClick={() => toggleTechCard(idx)}
-													className="p-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-white transition-all duration-200 shadow-md cursor-pointer hover:scale-110 active:scale-95"
-													title={isExpanded ? "Hide Details" : "View Details"}
-												>
-													<ChevronDown
-														className={`w-4 h-4 transition-transform duration-300 ${
-															isExpanded ? "rotate-180 text-cyan-400" : "text-slate-400"
-														}`}
-													/>
-												</button>
-											</div>
-											<p className="text-slate-300 text-xs leading-relaxed mt-1.5">
-												{stack.description}
-											</p>
-										</div>
-
-										{/* collapsible details section */}
-										{isExpanded && (
-											<div className="space-y-4 pt-1 animate-in fade-in duration-300">
-												{/* technologies table list */}
-												<div className="space-y-2 pt-2">
-													<span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300 block">
-														Core Frameworks & Tools
-													</span>
-													<div className="space-y-1.5">
-														{stack.technologies.map((item, i) => (
-															<div
-																key={i}
-																className="p-2 rounded-xl bg-slate-950/70 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors flex items-center justify-between gap-3 text-xs"
-															>
-																<span className="font-bold text-cyan-200 flex-shrink-0">
-																	{item.name}
-																</span>
-																<span className="text-slate-400 text-[11px] text-right truncate">
-																	{item.role}
-																</span>
-															</div>
-														))}
-													</div>
-												</div>
-
-												{/* card footer with developer portfolio link */}
-												<div className="relative z-10 pt-4 border-t border-cyan-500/20">
-													<Link
-														href="/portfolio"
-														className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
-													>
-														<span>View in Developer Portfolio</span>
-														<ArrowRight className="w-3.5 h-3.5" />
-													</Link>
-												</div>
-											</div>
-										)}
-									</div>
-								</div>
-							);
-						})}
-					</div>
-				</section>
-
-				{/* markivo three core agency pillars */}
-				<section className="space-y-6">
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{agencyPillars.map((pillar) => (
-							<div
-								key={pillar.id}
-								className={`group relative rounded-3xl p-6 md:p-8 bg-[#09152a]/85 backdrop-blur-xl border ${pillar.accentColor} shadow-[0_4px_25px_rgba(6,182,212,0.1)] hover:shadow-[0_8px_35px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1.5`}
-							>
-								<div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl ${pillar.glowColor} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500`} />
-
-								<div className="relative z-10 space-y-4">
-									<div className="flex items-center justify-between">
-										<div className="p-3 rounded-2xl bg-cyan-950/70 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 group-hover:border-cyan-300 transition-all duration-300">
-											{pillar.icon}
-										</div>
-										<span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
-											{pillar.badge}
-										</span>
-									</div>
-
-									<h3 className="text-lg md:text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
-										{pillar.title}
-									</h3>
-
-									<p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-										{pillar.description}
-									</p>
-								</div>
-
-								<div className="relative z-10 pt-6 mt-6 border-t border-cyan-500/20 flex items-center justify-between">
-									<div>
-										<span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-cyan-200 to-white">
-											{pillar.metric}
-										</span>
-										<p className="text-[10px] text-slate-400 font-medium">
-											{pillar.metricLabel}
-										</p>
-									</div>
-
-									<Link
-										href={pillar.linkHref}
-										className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-300 hover:text-white group-hover:translate-x-1 transition-all"
-									>
-										<span>{pillar.linkText}</span>
-										<ArrowRight className="w-3.5 h-3.5" />
-									</Link>
-								</div>
-							</div>
-						))}
 					</div>
 				</section>
 
