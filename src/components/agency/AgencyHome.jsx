@@ -26,7 +26,7 @@ import {
 	User,
 } from "lucide-react";
 import TechArchitectureHub from "@/components/agency/TechArchitectureHub";
-import TechIcon from "@/components/TechIcon/TechIcon";
+import TechMarquee from "@/components/TechMarquee/TechMarquee";
 import Footer from "@/components/HeaderFooter/Footer/Footer";
 import { softwareProducts } from "@/data/softwareData";
 
@@ -413,7 +413,7 @@ export default function AgencyHome() {
 							Interactive viva notes, official docs & architecture overview
 						</span>
 					</div>
-					<TechIcon />
+					<TechMarquee />
 				</div>
 			</section>
 
