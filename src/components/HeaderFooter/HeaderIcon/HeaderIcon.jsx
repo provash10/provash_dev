@@ -17,7 +17,7 @@ const HeaderIcon = () => {
         const handleHashChange = () => {
             setActiveHash(window.location.hash || '/');
         };
-        // Initial check
+        // initial check
         handleHashChange();
         
         window.addEventListener('hashchange', handleHashChange);
@@ -43,10 +43,10 @@ const HeaderIcon = () => {
 
     return (
         <>
-            {/* Desktop View: Floating Navbar on the right */}
+            {/* desktop view floating navbar on the right */}
             <div className='fixed right-8 md:right-10 lg:right-12 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3'>
                 {menuItems.map((item, index) => {
-                    // Check if current item is active. Default to home ('/') if hash is empty.
+                    // check if current item is active
                     const isActive = pathname === item.href || activeHash === item.href || (item.href === '/' && (pathname === '/' || activeHash === '/' || activeHash === '' || activeHash === '#'));
                     return (
                         <Link 

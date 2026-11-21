@@ -26,7 +26,7 @@ import { javaScriptOverview } from './TechIconOverview/JavaScriptOverview';
 
 export const techStackData = [
     // -------------------------------------------------------------
-    // 1. FRONTEND & UI (Languages, Libraries, Frameworks & Motion)
+    // frontend and ui ecosystem
     // -------------------------------------------------------------
     {
         id: 'javascript',
@@ -241,7 +241,7 @@ export const techStackData = [
     },
 
     // -------------------------------------------------------------
-    // 2. BACKEND & APIS (Runtime, Frameworks & Middlewares)
+    // backend and apis runtime and frameworks
     // -------------------------------------------------------------
     {
         id: 'nodejs',
@@ -348,7 +348,7 @@ export const techStackData = [
     },
 
     // -------------------------------------------------------------
-    // 3. DATABASE, ORM & CACHING
+    // database orm and caching
     // -------------------------------------------------------------
     {
         id: 'mongodb',
@@ -432,7 +432,7 @@ export const techStackData = [
     },
 
     // -------------------------------------------------------------
-    // 4. TOOLS, CLOUD & MANAGEMENT
+    // tools cloud and management
     // -------------------------------------------------------------
     {
         id: 'firebase',

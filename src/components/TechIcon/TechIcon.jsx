@@ -28,7 +28,7 @@ const TechIcon = () => {
         setPinnedTechId((prev) => (prev === techId ? null : techId));
     };
 
-    // Close pinned popover menu when clicking outside any tech icon item
+    // close pinned popover menu when clicking outside any tech icon item
     useEffect(() => {
         if (!pinnedTechId) return;
 
