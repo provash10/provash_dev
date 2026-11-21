@@ -40,12 +40,6 @@ const Navbar = () => {
 					Software
 				</Link>
 				<Link
-					href="/#pricing"
-					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
-				>
-					Pricing
-				</Link>
-				<Link
 					href="/portfolio"
 					className="text-sm font-bold px-4 py-1.5 rounded-full text-cyan-300 hover:text-white transition-all bg-slate-900 hover:bg-cyan-600/40 border border-cyan-500/50 hover:border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.25)]"
 				>

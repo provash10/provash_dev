@@ -96,7 +96,7 @@ const Footer = () => {
 								</Link>
 							</li>
 							<li>
-								<Link href="/#pricing" className="hover:text-cyan-300 transition-colors">
+								<Link href="/software" className="hover:text-cyan-300 transition-colors">
 									Custom SaaS Engineering
 								</Link>
 							</li>
@@ -120,8 +120,8 @@ const Footer = () => {
 								</Link>
 							</li>
 							<li>
-								<Link href="/#pricing" className="hover:text-cyan-300 transition-colors">
-									Pricing Plans
+								<Link href="/software" className="hover:text-cyan-300 transition-colors">
+									Software Catalog
 								</Link>
 							</li>
 							<li>
