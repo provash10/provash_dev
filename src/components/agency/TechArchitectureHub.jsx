@@ -57,13 +57,13 @@ export default function TechArchitectureHub() {
 			</div>
 
 			{/* top left orbital badge: nextjs */}
-			<div className="absolute top-2 left-4 sm:left-6 z-20 px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.3)] backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-transform">
+			<div className="absolute top-20 sm:top-24 md:top-26 -left-2 sm:left-0 md:left-2 z-20 px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.3)] backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-transform">
 				<Sparkles className="w-3.5 h-3.5 text-cyan-400" />
 				<span>Next.js 16 (App Router)</span>
 			</div>
 
 			{/* top right orbital badge: react */}
-			<div className="absolute top-6 right-2 sm:right-4 z-20 px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-blue-500/40 text-blue-300 text-xs font-bold shadow-[0_0_20px_rgba(59,130,246,0.25)] backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-transform">
+			<div className="absolute top-20 sm:top-24 md:top-26 -right-2 sm:right-0 md:right-2 z-20 px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-blue-500/40 text-blue-300 text-xs font-bold shadow-[0_0_20px_rgba(59,130,246,0.25)] backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-transform">
 				<Code2 className="w-3.5 h-3.5 text-blue-400" />
 				<span>React 19 Server Components</span>
 			</div>
