@@ -1,0 +1,149 @@
+================================================================================
+           PROVASH DEV - FRONTEND WEB & INTEGRATION POSTMAN TESTING GUIDE
+================================================================================
+Folder Location: provash_dev-main/Docs/postman/
+Generated At: 2026-11-21
+Frontend Next.js Server URL: http://localhost:3000
+Backend API Base URL: http://localhost:5000/api/v1
+Framework: Next.js 16.2.10 (Turbopack) | React 19
+
+================================================================================
+1. এই ফোল্ডারের ফাইলসমূহ (FILES IN THIS DIRECTORY)
+================================================================================
+1. Provash_Dev_Frontend_Collection.postman_collection.json
+   - সম্পূর্ণ ফ্রন্টএন্ড ওয়েব রাউট ও ইন্টিগ্রেশন কালেকশন (Postman Collection v2.1.0)
+   - এতে রয়েছে Next.js পাবলিক পেজসমূহ (Home, About, Services, Portfolio, Software Hub, 
+     Blog, Contact), ডাইনামিক সফটওয়্যার পেজ, লগইন/রেজিস্টার UI, রোল-বেসড ড্যাশবোর্ড পেজ 
+     (Admin, Super Admin, PM, User), পেমেন্ট ফ্লো পেজ, এবং ব্যাকএন্ড ইন্টিগ্রেশন টেস্ট।
+   - এতে Status 200 OK এবং HTML Content-Type ভ্যালিডেশন স্ক্রিপ্ট যুক্ত আছে।
+
+2. Provash_Dev_Frontend_Environment.postman_environment.json
+   - পোস্টম্যান এনভায়রনমেন্ট ভ্যারিয়েবল (frontendUrl: http://localhost:3000, 
+     backendUrl: http://localhost:5000/api/v1)।
+
+3. frontend-postman-testing-guide.txt
+   - এই বিস্তারিত নির্দেশিকা ফাইল।
+
+================================================================================
+2. পোস্টম্যানে ফাইল ইমপোর্ট করার নিয়ম (HOW TO IMPORT INTO POSTMAN)
+================================================================================
+ধাপ ১: Postman ওপেন করুন।
+ধাপ ২: উপরের বাম কোণে "Import" বাটনে ক্লিক করুন।
+ধাপ ৩: "Upload Files"-এ ক্লিক করে নির্বাচন করুন:
+       a) Provash_Dev_Frontend_Collection.postman_collection.json
+       b) Provash_Dev_Frontend_Environment.postman_environment.json
+ধাপ ৪: "Import" সম্পন্ন করুন।
+ধাপ ৫: পোস্টম্যানের উপরের ডান পাশের Environment ড্রপডাউন থেকে নির্বাচন করুন:
+       "Provash Dev - Frontend Local Environment"
+
+================================================================================
+3. ফ্রন্টএন্ড ও ব্যাকএন্ড সার্ভার চালু করা (STARTING SERVERS)
+================================================================================
+ফুল-স্ট্যাক সম্পূর্ণ টেস্টিং নিশ্চিত করতে উভয় সার্ভার চালু রাখুন:
+
+১. ফ্রন্টএন্ড সার্ভার চালু করুন (Terminal 1):
+   cd "c:\Projects\1. nl\provash_dev-main"
+   bun run dev
+   (টার্মিনালে দেখতে পাবেন: ▲ Next.js 16.2.10 (Turbopack) - Local: http://localhost:3000)
+
+২. ব্যাকএন্ড সার্ভার চালু করুন (Terminal 2):
+   cd "c:\Projects\1. nl\provash_dev-backend"
+   bun run dev
+   (টার্মিনালে দেখতে পাবেন: [INFO] Server running on http://localhost:5000)
+
+================================================================================
+4. পোস্টম্যানে ফ্রন্টএন্ড কীভাবে টেস্ট করবেন (TESTING FRONTEND IN POSTMAN)
+================================================================================
+পোস্টম্যানে ফ্রন্টএন্ড ওয়েব পেজ টেস্ট করার উদ্দেশ্য হলো:
+1. সার্ভার-সাইড রেন্ডারিং (SSR) স্ট্যাটাস যাচাই (HTTP 200 OK)।
+2. রেন্ডার হওয়া HTML রেসপন্স বডি ঠিকমতো সার্ভ হচ্ছে কিনা দেখা।
+3. পেজের রেসপন্স টাইম (Latency) এবং সার্ভার হেডার যাচাই করা।
+4. ব্রাউজার ছাড়াও পোস্টম্যান দিয়ে অটোমেটেড এন্ড-টু-এন্ড ইন্টিগ্রেশন চেক করা।
+
+ধাপ ১: পাবলিক ল্যান্ডিং ও হিরো সেকশন যাচাই (Public Pages)
+--------------------------------------------------------
+- কালেকশনের "01. Public Web Pages (SSR & Static)" ফোল্ডারে যান:
+  1. "Homepage (Agency Landing & Hero)"
+     - Method: GET | URL: {{frontendUrl}}/
+     - "Send" চাপুন। 
+     - রেসপন্সে দেখুন: Status: 200 OK, Content-Type: text/html
+     - Test Results ট্যাবে দুটি গ্রিন পাস দেখতে পাবেন:
+       * Status code is 200 OK (PASS)
+       * Content-Type is text/html (PASS)
+     - বডিতে "Preview" ট্যাবে ক্লিক করলে পোস্টম্যানের ভেতরেই ল্যান্ডিং পেজের ভিজ্যুয়াল 
+       প্রিভিউ দেখতে পাবেন।
+
+  2. "About Page" (GET {{frontendUrl}}/about)
+  3. "Services Page" (GET {{frontendUrl}}/services)
+  4. "Portfolio Page" (GET {{frontendUrl}}/portfolio)
+  5. "Software Hub Page" (GET {{frontendUrl}}/software)
+  6. "Dynamic Software Product Detail Page" (GET {{frontendUrl}}/software/gympro-saas)
+     - Next.js dynamic App Router ([slug]) কাজ করছে কিনা তা এই টেস্ট নিশ্চিত করে।
+  7. "Blog Listing Page" (GET {{frontendUrl}}/blog)
+  8. "Contact Page" (GET {{frontendUrl}}/contact)
+
+ধাপ ২: অথেনটিকেশন পেজসমূহ (Auth Pages)
+--------------------------------------
+- "02. Authentication & Auth Pages" ফোল্ডারে যান:
+  1. "Login Page UI" (GET {{frontendUrl}}/login)
+  2. "Register Page UI" (GET {{frontendUrl}}/register)
+
+ধাপ ৩: রোল-বেসড ড্যাশবোর্ড ওয়েব রাউট (Role Dashboards)
+------------------------------------------------------
+- "03. Role Dashboards (Client & Staff)" ফোল্ডারে যান:
+  1. "Dashboard Home Page" (GET {{frontendUrl}}/dashboard)
+  2. "User / Client Dashboard Page" (GET {{frontendUrl}}/dashboard/user)
+  3. "Admin Dashboard Page" (GET {{frontendUrl}}/dashboard/admin)
+  4. "Project Manager Dashboard Page" (GET {{frontendUrl}}/dashboard/project-manager)
+  5. "Super Admin Dashboard Page" (GET {{frontendUrl}}/dashboard/super-admin)
+
+ধাপ ৪: পেমেন্ট ফ্লো পেজসমূহ (Payment Pages)
+-------------------------------------------
+- "04. Payment Checkout & Redirects" ফোল্ডারে যান:
+  1. "Checkout Page" (GET {{frontendUrl}}/payment/checkout)
+  2. "Payment Success Confirmation Page" (GET {{frontendUrl}}/payment/success?trxId=SANDBOX_DEMO_TRX)
+  3. "Payment Failed Notification Page" (GET {{frontendUrl}}/payment/failed?reason=declined)
+
+ধাপ ৫: শোকেস পোর্টফোলিও রাউট (Showcase Pages)
+----------------------------------------------
+- "05. Showcase Portfolio Routes" ফোল্ডারে যান:
+  1. "Showcase - All Projects" (GET {{frontendUrl}}/showcase/allprojects)
+  2. "Showcase - Featured Work" (GET {{frontendUrl}}/showcase/featured-work)
+  3. "Showcase - Services" (GET {{frontendUrl}}/showcase/services)
+
+ধাপ ৬: ফুল-স্ট্যাক ইন্টিগ্রেশন ভেরিফিকেশন (Full-Stack Integration)
+-----------------------------------------------------------------
+- "06. Full-Stack Integration Verification" ফোল্ডারে যান:
+  1. "Backend Connection Check from Frontend" (GET {{backendUrl}}/services)
+     - ফ্রন্টএন্ড যেসব API কল করে ডেটা লোড করে, তা সঠিকভাবে 200 OK রেসপন্স দেয় কিনা।
+  2. "Direct Software Feed to Frontend" (GET {{backendUrl}}/software)
+  3. "Testimonials Feed to Frontend" (GET {{backendUrl}}/testimonials)
+
+================================================================================
+5. এক ক্লিকে সম্পূর্ণ ফ্রন্টএন্ড অডিট (POSTMAN RUNNER)
+================================================================================
+আপনার সম্পূর্ণ ফ্রন্টএন্ড অ্যাপ্লিকেশনের সব রাউট একসাথে সুস্থ আছে কিনা তা মাত্র ৫ সেকেন্ডে 
+চেক করতে পারবেন:
+1. বাম পাশের "Provash Dev - Frontend Web Routes & Integration Collection"-এর পাশে তিনটি ডট (...) চাপুন।
+2. "Run collection" নির্বাচন করুন।
+3. Environment হিসেবে "Provash Dev - Frontend Local Environment" সিলেক্ট করুন।
+4. "Run Provash Dev - Frontend Web Routes..." বাটনে ক্লিক করুন।
+5. পোস্টম্যান নিমেষেই সমস্ত পেজ রিকোয়েস্ট পাঠিয়ে সবকটির স্ট্যাটাস কোড (200 OK) এবং 
+   পারফরম্যান্স রেসপন্স টাইম রিপোর্ট আকারে প্রদর্শন করবে।
+
+================================================================================
+6. সাধারণ সমস্যা ও সমাধান (TROUBLESHOOTING)
+================================================================================
+সমস্যা ১: "Error: connect ECONNREFUSED 127.0.0.1:3000"
+সমাধান: ফ্রন্টএন্ড নেক্সট.জেএস সার্ভার চালু নেই। টার্মিনালে `bun run dev` চালান।
+
+সমস্যা ২: "404 Not Found"
+সমাধান: রাউট পাথে কোনো টাইপো হয়েছে কিনা দেখুন। এই কালেকশনে প্রোভাইড করা প্রতিটি পাথ 
+Next.js App Router-এর সাথে শতভাগ মিলে যায়।
+
+সমস্যা ৩: ইন্টিগ্রেশন ফোল্ডারের রিকোয়েস্টে "ECONNREFUSED 127.0.0.1:5000"
+সমাধান: ব্যাকএন্ড সার্ভার চালু নেই। `provash_dev-backend` ফোল্ডারে গিয়ে `bun run dev` চালান।
+
+================================================================================
+সফল টেস্টিংয়ের শুভকামনা! কোনো সহায়তা প্রয়োজন হলে নির্দ্বিধায় জিজ্ঞাসা করুন।
+================================================================================
