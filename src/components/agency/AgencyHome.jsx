@@ -23,6 +23,7 @@ import {
 	HelpCircle,
 	Server,
 	Laptop,
+	User,
 } from "lucide-react";
 import TechArchitectureHub from "@/components/agency/TechArchitectureHub";
 import TechIcon from "@/components/TechIcon/TechIcon";
@@ -333,7 +334,7 @@ export default function AgencyHome() {
 						<div className="lg:col-span-7 space-y-6 text-center lg:text-left">
 							<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
 								<Sparkles className="w-4 h-4 text-cyan-400" />
-								Full-Service Digital Agency & Engineering Studio
+								<span>Full-Service Engineering Studio • Led by Provash</span>
 							</div>
 
 							<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-snug">
@@ -354,23 +355,24 @@ export default function AgencyHome() {
 									href="/#services"
 									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:via-blue-500 hover:to-cyan-400 text-white font-bold text-xs md:text-sm border border-cyan-300/60 shadow-[0_0_20px_rgba(6,182,212,0.6)] hover:shadow-[0_0_30px_rgba(6,182,212,0.9)] hover:scale-105 active:scale-95 transition-all duration-300"
 								>
-									Explore Services
+									<span>Explore Services</span>
 									<ArrowRight className="w-4 h-4" />
 								</Link>
 
 								<Link
-									href="/portfolio"
+									href="/about"
 									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900/90 text-cyan-300 hover:text-white font-bold text-xs md:text-sm border border-cyan-500/50 hover:border-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 backdrop-blur-md"
 								>
-									<Layers className="w-4 h-4" />
-									View Developer Portfolio
+									<User className="w-4 h-4" />
+									<span>About Founder</span>
 								</Link>
 
 								<Link
-									href="/#consultation"
+									href="/contact"
 									className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-slate-900 via-blue-950/80 to-slate-900 hover:from-cyan-700 hover:to-blue-700 text-slate-200 hover:text-white font-semibold text-xs md:text-sm border border-slate-700/80 hover:border-cyan-400 shadow-[0_0_10px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300"
 								>
-									Get a Free Quote
+									<MessageSquare className="w-4 h-4 text-cyan-400" />
+									<span>Contact Us</span>
 								</Link>
 							</div>
 
