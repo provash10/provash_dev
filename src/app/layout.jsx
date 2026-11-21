@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html
 			lang="en"
-			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+			className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
 			suppressHydrationWarning
 		>
 			<head>
@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
 				/>
 			</head>
 			<body
-				className="min-h-full flex flex-col bg-slate-950 text-slate-100"
+				className="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased overflow-x-hidden overflow-y-auto"
 				suppressHydrationWarning
 			>
 				<QueryProvider>
