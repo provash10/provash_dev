@@ -327,7 +327,7 @@ export default function AgencyHome() {
 				<div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
 				<div className="relative z-10 max-w-7xl mx-auto">
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center -mb-8 sm:-mb-10 lg:-mb-12">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center -mb-4 sm:-mb-6 lg:-mb-7">
 						{/* left column headline description and cta */}
 						<div className="lg:col-span-7 space-y-6 text-center lg:text-left">
 							<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 text-xs md:text-sm font-semibold shadow-inner">
