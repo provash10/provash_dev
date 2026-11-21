@@ -65,7 +65,7 @@ const Navbar = () => {
 				<Link
 					href="/blogs"
 					className={`text-sm font-semibold px-4 py-1.5 rounded-full transition-all border ${
-						pathname.startsWith("/blog")
+						pathname.startsWith("/blogs")
 							? "text-white bg-blue-600/30 border-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
 							: "text-slate-300 hover:text-white bg-slate-950/70 hover:bg-blue-600/30 border-slate-800 hover:border-blue-500"
 					}`}
