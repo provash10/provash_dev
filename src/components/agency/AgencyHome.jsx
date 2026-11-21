@@ -548,7 +548,7 @@ export default function AgencyHome() {
 			</section>
 
 			{/* main content container with max-w */}
-			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24" suppressHydrationWarning>
+			<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 md:space-y-24 relative -mt-6 md:-mt-10" suppressHydrationWarning>
 				{/* services section positioned right below banner as requested */}
 				<section id="services" className="space-y-16 scroll-mt-24">
 					{/* section header */}
