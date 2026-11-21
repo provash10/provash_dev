@@ -1,7 +1,19 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaSearch, FaClock, FaArrowRight, FaTimes, FaPenNib, FaCheckCircle, FaLayerGroup, FaFolderOpen } from 'react-icons/fa';
+import {
+    FaSearch,
+    FaClock,
+    FaArrowRight,
+    FaTimes,
+    FaPenNib,
+    FaCheckCircle,
+    FaLayerGroup,
+    FaFolderOpen,
+    FaExternalLinkAlt,
+    FaImage,
+    FaLink
+} from 'react-icons/fa';
 
 const defaultCategoriesTaxonomy = [
     {
@@ -51,6 +63,158 @@ const defaultCategoriesTaxonomy = [
         ]
     }
 ];
+
+// render inline external links and text segments
+const renderInlineContent = (text) => {
+    if (!text) return null;
+
+    // match markdown links
+    const linkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+    const matches = [...text.matchAll(linkRegex)];
+    const parts = [];
+    let lastIndex = 0;
+    let linkIdx = 0;
+
+    for (const match of matches) {
+        if (match.index > lastIndex) {
+            parts.push(text.substring(lastIndex, match.index));
+        }
+        const linkTitle = match[1];
+        const linkHref = match[2];
+        parts.push(
+            <a
+                key={`link-${linkIdx++}`}
+                href={linkHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:text-cyan-300 underline font-semibold inline-flex items-center gap-1 mx-0.5 hover:shadow-cyan-400/20 transition-all cursor-pointer"
+            >
+                <span>{linkTitle}</span>
+                <FaExternalLinkAlt className="text-[9px]" />
+            </a>
+        );
+        lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < text.length) {
+        parts.push(text.substring(lastIndex));
+    }
+
+    return parts;
+};
+
+// render rich content supporting paragraphs, inline images and external links
+const renderRichArticleContent = (content) => {
+    if (!content) return null;
+
+    // split content by double line breaks into distinct block segments
+    const blocks = content.split(/\n\s*\n/);
+
+    return blocks.map((block, idx) => {
+        const trimmed = block.trim();
+        if (!trimmed) return null;
+
+        // check if block is a standalone markdown image
+        const imageMatch = trimmed.match(/^!\[(.*?)\]\((https?:\/\/[^\s)]+)\)$/);
+        if (imageMatch) {
+            const altText = imageMatch[1];
+            const imageUrl = imageMatch[2];
+            return (
+                <figure key={idx} className="my-6 overflow-hidden rounded-2xl border border-cyan-500/20 bg-slate-900/60 shadow-xl">
+                    <img
+                        src={imageUrl}
+                        alt={altText || 'article illustration'}
+                        className="w-full max-h-[420px] object-cover"
+                    />
+                    {altText && (
+                        <figcaption className="text-center text-xs text-slate-400 py-2.5 px-4 bg-slate-950/80 italic border-t border-white/5">
+                            📷 {altText}
+                        </figcaption>
+                    )}
+                </figure>
+            );
+        }
+
+        // check if block is a blockquote
+        if (trimmed.startsWith('>')) {
+            const quoteText = trimmed.replace(/^>\s*/, '');
+            return (
+                <blockquote key={idx} className="p-4 my-5 rounded-xl bg-cyan-950/20 border-l-4 border-cyan-400 text-cyan-200 text-xs md:text-sm italic leading-relaxed">
+                    {renderInlineContent(quoteText)}
+                </blockquote>
+            );
+        }
+
+        // check if block is a heading
+        if (trimmed.startsWith('###')) {
+            return (
+                <h4 key={idx} className="text-base md:text-lg font-bold text-cyan-300 mt-6 mb-2">
+                    {trimmed.replace(/^###\s*/, '')}
+                </h4>
+            );
+        }
+        if (trimmed.startsWith('##')) {
+            return (
+                <h3 key={idx} className="text-lg md:text-xl font-bold text-cyan-200 mt-7 mb-3">
+                    {trimmed.replace(/^##\s*/, '')}
+                </h3>
+            );
+        }
+
+        // standard paragraph with potential inline images
+        if (trimmed.includes('![') && trimmed.includes('](')) {
+            // split by image pattern to render inline text and images in order
+            const imageRegex = /!\[(.*?)\]\((https?:\/\/[^\s)]+)\)/g;
+            const imageMatches = [...trimmed.matchAll(imageRegex)];
+            const segments = [];
+            let lastIndex = 0;
+            let subIdx = 0;
+
+            for (const match of imageMatches) {
+                if (match.index > lastIndex) {
+                    const textBefore = trimmed.substring(lastIndex, match.index);
+                    segments.push(
+                        <p key={`text-${idx}-${subIdx++}`} className="leading-relaxed text-slate-200">
+                            {renderInlineContent(textBefore)}
+                        </p>
+                    );
+                }
+                const altText = match[1];
+                const imageUrl = match[2];
+                segments.push(
+                    <figure key={`img-${idx}-${subIdx++}`} className="my-6 overflow-hidden rounded-2xl border border-cyan-500/20 bg-slate-900/60 shadow-xl">
+                        <img
+                            src={imageUrl}
+                            alt={altText || 'article illustration'}
+                            className="w-full max-h-[420px] object-cover"
+                        />
+                        {altText && (
+                            <figcaption className="text-center text-xs text-slate-400 py-2.5 px-4 bg-slate-950/80 italic border-t border-white/5">
+                                📷 {altText}
+                            </figcaption>
+                        )}
+                    </figure>
+                );
+                lastIndex = match.index + match[0].length;
+            }
+
+            if (lastIndex < trimmed.length) {
+                segments.push(
+                    <p key={`text-${idx}-${subIdx++}`} className="leading-relaxed text-slate-200">
+                        {renderInlineContent(trimmed.substring(lastIndex))}
+                    </p>
+                );
+            }
+            return <div key={idx} className="space-y-4">{segments}</div>;
+        }
+
+        return (
+            <p key={idx} className="leading-relaxed text-slate-200 text-sm md:text-base">
+                {renderInlineContent(trimmed)}
+            </p>
+        );
+    });
+};
 
 const BlogCard = () => {
     const [blogs, setBlogs] = useState([]);
@@ -512,7 +676,7 @@ const BlogCard = () => {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-white">Create New Article</h3>
-                                <p className="text-xs text-slate-400">Publish your technical insight under category & subcategory</p>
+                                <p className="text-xs text-slate-400">Publish your editorial insight with inline photos and hyperlinks</p>
                             </div>
                         </div>
 
@@ -647,16 +811,43 @@ const BlogCard = () => {
                                     />
                                 </div>
 
-                                {/* article content body */}
+                                {/* article content body with formatting toolbar */}
                                 <div>
-                                    <label className="block text-slate-300 font-semibold mb-1">
-                                        Full Content
-                                    </label>
+                                    <div className="flex items-center justify-between mb-1.5">
+                                        <label className="text-slate-300 font-semibold">
+                                            Full Content <span className="text-cyan-400">*</span>
+                                        </label>
+                                        <div className="flex items-center gap-2">
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    const sampleImg = '\n\n![Image Caption](https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000)\n\n';
+                                                    setFormData((prev) => ({ ...prev, content: (prev.content || '') + sampleImg }));
+                                                }}
+                                                className="inline-flex items-center gap-1 px-2.5 py-1 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/30 text-cyan-300 rounded-lg text-[10px] font-semibold transition-colors cursor-pointer"
+                                            >
+                                                <FaImage className="text-[10px]" /> + Insert Image
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    const sampleLink = ' [External Website Title](https://example.com) ';
+                                                    setFormData((prev) => ({ ...prev, content: (prev.content || '') + sampleLink }));
+                                                }}
+                                                className="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-950/80 hover:bg-blue-900 border border-blue-500/30 text-blue-300 rounded-lg text-[10px] font-semibold transition-colors cursor-pointer"
+                                            >
+                                                <FaLink className="text-[10px]" /> + Insert Link
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p className="text-[10px] text-slate-400 mb-2">
+                                        Write paragraphs separated by empty lines. Click <strong>+ Insert Image</strong> to place pictures between paragraphs, and <strong>+ Insert Link</strong> to connect external websites.
+                                    </p>
                                     <textarea
-                                        rows={6}
+                                        rows={7}
                                         value={formData.content}
                                         onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                        placeholder="Write your article body, key takeaways, diagrams explanation, or code snippets..."
+                                        placeholder="First paragraph of your article...&#10;&#10;![Chart or Photo](https://images.unsplash.com/...)&#10;&#10;Second paragraph referencing an [External Source](https://example.com)..."
                                         className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-400 font-mono text-[11px]"
                                     />
                                 </div>
@@ -761,8 +952,9 @@ const BlogCard = () => {
                             {readingBlog.description}
                         </div>
 
-                        <div className="text-slate-300 text-sm leading-relaxed space-y-4 mb-8 whitespace-pre-line">
-                            {readingBlog.content || readingBlog.description}
+                        {/* rich content rendering with paragraphs, inline images and external links */}
+                        <div className="text-slate-300 space-y-5 mb-8">
+                            {renderRichArticleContent(readingBlog.content || readingBlog.description)}
                         </div>
 
                         {/* tags in reading modal */}
