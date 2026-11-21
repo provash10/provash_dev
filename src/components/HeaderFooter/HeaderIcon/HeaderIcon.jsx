@@ -34,7 +34,7 @@ const HeaderIcon = () => {
     const menuItems = [
         { href: "/", label: "HOME", icon: <FaHome size={24} /> },
         { href: "/portfolio", label: "PORTFOLIO", icon: <FaTools size={24} /> },
-        { href: "/showcase/services", label: "SERVICES", icon: <FaBusinessTime size={24} /> },
+        { href: "/services", label: "SERVICES", icon: <FaBusinessTime size={24} /> },
         { href: "/showcase/allprojects", label: "PROJECTS", icon: <FaTools size={24} /> },
         { href: "/about", label: "ABOUT", icon: <IoMdContact size={24} /> },
         { href: "/contact", label: "CONTACT", icon: <MdContactPhone size={24} /> },

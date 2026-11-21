@@ -28,7 +28,7 @@ const Navbar = () => {
 					Home
 				</Link>
 				<Link
-					href="/#services"
+					href="/services"
 					className="text-sm font-semibold px-4 py-1.5 rounded-full text-slate-300 hover:text-white transition-all bg-slate-950/70 hover:bg-blue-600/30 border border-slate-800 hover:border-blue-500"
 				>
 					Services

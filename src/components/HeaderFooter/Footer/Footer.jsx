@@ -76,22 +76,22 @@ const Footer = () => {
 						</h4>
 						<ul className="space-y-2">
 							<li>
-								<Link href="/#services" className="hover:text-cyan-300 transition-colors">
+								<Link href="/services" className="hover:text-cyan-300 transition-colors">
 									Full-Stack Web Development
 								</Link>
 							</li>
 							<li>
-								<Link href="/#services" className="hover:text-cyan-300 transition-colors">
+								<Link href="/services" className="hover:text-cyan-300 transition-colors">
 									YouTube Automation & Editing
 								</Link>
 							</li>
 							<li>
-								<Link href="/#services" className="hover:text-cyan-300 transition-colors">
+								<Link href="/services" className="hover:text-cyan-300 transition-colors">
 									Social Media Ads & Marketing
 								</Link>
 							</li>
 							<li>
-								<Link href="/#services" className="hover:text-cyan-300 transition-colors">
+								<Link href="/services" className="hover:text-cyan-300 transition-colors">
 									Technical SEO & Consulting
 								</Link>
 							</li>
