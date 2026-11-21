@@ -29,8 +29,8 @@ export default function TechArchitectureHub() {
 			{/* middle secondary glowing orbit touching box corners shifted up */}
 			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-4 sm:-mt-5 w-[280px] sm:w-[325px] h-[280px] sm:h-[325px] rounded-full border border-blue-500/35 shadow-[0_0_20px_rgba(6,182,212,0.2)] pointer-events-none" />
 
-			{/* central platform pedestal */}
-			<div className="relative z-10 w-52 sm:w-60 h-52 sm:h-60 rounded-3xl bg-gradient-to-br from-[#0c214d]/90 via-[#071530]/95 to-[#040a17] border border-cyan-400/40 shadow-[0_0_50px_rgba(6,182,212,0.35)] p-5 flex flex-col items-center justify-center text-center space-y-3 backdrop-blur-2xl">
+			{/* central platform pedestal shifted up */}
+			<div className="relative z-10 -mt-4 sm:-mt-5 w-52 sm:w-60 h-52 sm:h-60 rounded-3xl bg-gradient-to-br from-[#0c214d]/90 via-[#071530]/95 to-[#040a17] border border-cyan-400/40 shadow-[0_0_50px_rgba(6,182,212,0.35)] p-5 flex flex-col items-center justify-center text-center space-y-3 backdrop-blur-2xl">
 				{/* glowing core icon */}
 				<div className="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-[0_0_25px_rgba(6,182,212,0.8)]">
 					<Cpu className="w-7 h-7 text-white animate-pulse" />
