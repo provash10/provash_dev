@@ -80,8 +80,8 @@ export default function TechArchitectureHub() {
 				<span className="truncate">PostgreSQL & Prisma ORM</span>
 			</div>
 
-			{/* bottom center live metrics glass card touching circle line */}
-			<div className="absolute bottom-10 sm:bottom-12 md:bottom-13 z-20 px-4 py-2 rounded-2xl bg-[#071329]/95 border border-cyan-500/30 text-white text-[11px] font-semibold shadow-[0_4px_25px_rgba(6,182,212,0.25)] backdrop-blur-xl flex items-center gap-4">
+			{/* bottom center live metrics glass card aligned with cta buttons */}
+			<div className="absolute bottom-16 sm:bottom-18 md:bottom-20 z-20 px-4 py-2 rounded-2xl bg-[#071329]/95 border border-cyan-500/30 text-white text-[11px] font-semibold shadow-[0_4px_25px_rgba(6,182,212,0.25)] backdrop-blur-xl flex items-center gap-4">
 				<div className="flex items-center gap-1.5 text-emerald-400">
 					<Activity className="w-3.5 h-3.5" />
 					<span>99.9% Sla</span>
