@@ -57,27 +57,27 @@ export default function TechArchitectureHub() {
 			</div>
 
 			{/* top left orbital badge: nextjs */}
-			<div className="absolute top-20 sm:top-24 md:top-26 -left-2 sm:left-0 md:left-2 z-20 px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.3)] backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-transform">
-				<Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-				<span>Next.js 16 (App Router)</span>
+			<div className="absolute top-10 sm:top-12 lg:top-14 -left-3 sm:-left-2 lg:left-0 z-20 w-[195px] sm:w-[215px] lg:w-[225px] py-1.5 px-3 rounded-2xl bg-slate-900/95 border border-cyan-400/40 text-cyan-300 text-xs font-bold shadow-[0_0_20px_rgba(6,182,212,0.3)] backdrop-blur-md flex items-center justify-center gap-2 hover:scale-105 transition-transform">
+				<Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+				<span className="truncate">Next.js 16 (App Router)</span>
 			</div>
 
 			{/* top right orbital badge: react */}
-			<div className="absolute top-20 sm:top-24 md:top-26 -right-2 sm:right-0 md:right-2 z-20 px-3.5 py-1.5 rounded-2xl bg-slate-900/90 border border-blue-500/40 text-blue-300 text-xs font-bold shadow-[0_0_20px_rgba(59,130,246,0.25)] backdrop-blur-md flex items-center gap-2 hover:scale-105 transition-transform">
-				<Code2 className="w-3.5 h-3.5 text-blue-400" />
-				<span>React 19 Server Components</span>
+			<div className="absolute top-10 sm:top-12 lg:top-14 -right-3 sm:-right-2 lg:right-0 z-20 w-[195px] sm:w-[215px] lg:w-[225px] py-1.5 px-3 rounded-2xl bg-slate-900/95 border border-blue-500/40 text-blue-300 text-xs font-bold shadow-[0_0_20px_rgba(59,130,246,0.25)] backdrop-blur-md flex items-center justify-center gap-2 hover:scale-105 transition-transform">
+				<Code2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+				<span className="truncate">React 19 Server Components</span>
 			</div>
 
 			{/* left middle orbital badge: typescript */}
-			<div className="absolute bottom-32 sm:bottom-34 md:bottom-36 -left-3 sm:left-0 z-20 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-blue-400/40 text-blue-200 text-xs font-bold shadow-[0_0_15px_rgba(56,189,248,0.25)] backdrop-blur-md flex items-center gap-1.5 hover:scale-105 transition-transform">
-				<Terminal className="w-3.5 h-3.5 text-blue-400" />
-				<span>TypeScript 5 Strict</span>
+			<div className="absolute bottom-24 sm:bottom-26 lg:bottom-28 -left-3 sm:-left-2 lg:left-0 z-20 w-[195px] sm:w-[215px] lg:w-[225px] py-1.5 px-3 rounded-2xl bg-slate-900/95 border border-blue-400/40 text-blue-200 text-xs font-bold shadow-[0_0_15px_rgba(56,189,248,0.25)] backdrop-blur-md flex items-center justify-center gap-2 hover:scale-105 transition-transform">
+				<Terminal className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+				<span className="truncate">TypeScript 5 Strict</span>
 			</div>
 
 			{/* right middle orbital badge: postgresql & prisma */}
-			<div className="absolute bottom-32 sm:bottom-34 md:bottom-36 -right-3 sm:right-0 z-20 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-[0_0_15px_rgba(129,140,248,0.25)] backdrop-blur-md flex items-center gap-1.5 hover:scale-105 transition-transform">
-				<Database className="w-3.5 h-3.5 text-indigo-400" />
-				<span>PostgreSQL & Prisma ORM</span>
+			<div className="absolute bottom-24 sm:bottom-26 lg:bottom-28 -right-3 sm:-right-2 lg:right-0 z-20 w-[195px] sm:w-[215px] lg:w-[225px] py-1.5 px-3 rounded-2xl bg-slate-900/95 border border-indigo-400/40 text-indigo-200 text-xs font-bold shadow-[0_0_15px_rgba(129,140,248,0.25)] backdrop-blur-md flex items-center justify-center gap-2 hover:scale-105 transition-transform">
+				<Database className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+				<span className="truncate">PostgreSQL & Prisma ORM</span>
 			</div>
 
 			{/* bottom center live metrics glass card touching circle line */}
