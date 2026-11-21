@@ -532,7 +532,7 @@ export default function AgencyHome() {
 			</section>
 
 			{/* enterprise tech stack showcase overlapping banner bottom */}
-			<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-38 md:-mt-56 z-20">
+			<section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-34 md:-mt-50 z-20">
 				<div className="rounded-3xl bg-[#09152a]/90 backdrop-blur-xl border border-cyan-500/25 p-5 md:p-7 shadow-[0_10px_40px_rgba(0,0,0,0.7),0_0_30px_rgba(6,182,212,0.15)] space-y-4">
 					<div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-cyan-500/20 pb-3">
 						<div className="flex items-center gap-2.5 text-cyan-300 font-bold text-xs md:text-sm uppercase tracking-wider">
