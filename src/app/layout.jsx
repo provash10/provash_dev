@@ -30,6 +30,24 @@ export default function RootLayout({ children }) {
 			className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
 			suppressHydrationWarning
 		>
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							(function() {
+								if (typeof window === 'undefined') return;
+								try {
+									var orig = Element.prototype.setAttribute;
+									Element.prototype.setAttribute = function(name, val) {
+										if (name === 'bis_skin_checked') return;
+										return orig.apply(this, arguments);
+									};
+								} catch (err) {}
+							})();
+						`,
+					}}
+				/>
+			</head>
 			<body
 				className="min-h-screen flex flex-col bg-slate-950 text-slate-100 antialiased"
 				suppressHydrationWarning
